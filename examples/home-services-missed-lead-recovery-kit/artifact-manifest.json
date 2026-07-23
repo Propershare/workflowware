@@ -1,0 +1,61 @@
+{
+  "title": "Home Services Missed Lead Recovery Kit",
+  "artifact_type": "workflowware_package",
+  "status": "prototype",
+  "created": "2026-07-22",
+  "registered_in_maat_memory": "1fc4281c-0c51-489f-9443-a986b4f81870",
+  "primary_artifact": "file:///E:/HermesLab/artifacts/home-services-missed-lead-recovery-kit/index.html",
+  "local_path": "E:/HermesLab/artifacts/home-services-missed-lead-recovery-kit",
+  "summary": "Concrete Workflowware package for recovering missed calls, voicemails, forms, and SMS leads in home-service businesses using governed AI follow-up, triage, approval rules, evals, and handoffs.",
+  "category_terms": [
+    "workflowware",
+    "agentic workflow distribution",
+    "AI workflow operating kit",
+    "missed lead recovery",
+    "home services AI workflow",
+    "governed AI workflow system"
+  ],
+  "target_niches": [
+    "HVAC",
+    "plumbing",
+    "roofing",
+    "pest control",
+    "landscaping",
+    "electrical",
+    "garage door repair",
+    "appliance repair"
+  ],
+  "related_artifacts": [
+    {
+      "title": "Agentic Workflow Distribution Thesis",
+      "maat_id": "2a289e03-144e-426c-8823-d3c6a36c5568",
+      "path": "E:/HermesLab/artifacts/agentic-workflow-distribution-thesis/"
+    },
+    {
+      "title": "BlackLabRats AI Service Installer System",
+      "maat_id": "8fafa11d-c2d5-4337-80db-26d251146086",
+      "path": "E:/HermesLab/artifacts/blacklabrats-ai-service-installer-system/"
+    }
+  ],
+  "files": [
+    "index.html",
+    "README.md",
+    "workflow-spec.md",
+    "agent-spec.md",
+    "install-guide.md",
+    "eval-template.csv",
+    "client-intake-form.md",
+    "offer-page-copy.md",
+    "old-way-new-way-teardown.md",
+    "approval-rules.md",
+    "agent-handoff.md",
+    "artifact-manifest.json"
+  ],
+  "agent_handoff": "E:/HermesLab/artifacts/home-services-missed-lead-recovery-kit/agent-handoff.md",
+  "next_actions": [
+    "Build control-room mockup",
+    "Create HVAC-specific example eval set",
+    "Turn offer-page-copy into Fiverr gig draft",
+    "Create public Workflowware catalog page"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Workflowware Public GitHub Repo Package",
+  "artifact_type": "public_repo_package",
+  "status": "local-ready-tm",
+  "created": "2026-07-22",
+  "registered_in_maat_memory": "1e4323c8-f7ea-45b5-8b20-8a85918f5e6a",
+  "local_path": "E:/HermesLab/artifacts/workflowware-public-repo",
+  "target_repo": "propershare/workflowware",
+  "target_repo_url": "https://github.com/propershare/workflowware",
+  "domain": "workflowware.org",
+  "primary_artifact": "file:///E:/HermesLab/artifacts/workflowware-public-repo/index.html",
+  "public_url": "https://workflowware.org",
+  "summary": "GitHub Pages-ready public repository package for workflowware.org and propershare/workflowware, including site, spec, manifest schema, docs, examples, and interim Workflowware™ brand protection guidance.",
+  "files": [
+    "index.html",
+    "README.md",
+    "SPEC.md",
+    "MANIFEST.schema.json",
+    "CNAME",
+    "LICENSE",
+    "docs/",
+    "docs/interim-brand-protection.md",
+    "examples/",
+    ".github/workflows/pages.yml"
+  ],
+  "related_artifacts": [
+    {
+      "title": "Workflowware.org Site Artifact",
+      "maat_id": "5b928b6f-d944-4635-a882-f15566ca8ac6",
+      "path": "E:/HermesLab/artifacts/workflowware-org-site/"
+    },
+    {
+      "title": "Workflowware Prior-Art and Naming Dossier",
+      "maat_id": "a9de7d08-0831-49b2-ba82-e511eb9bf573",
+      "path": "E:/HermesLab/artifacts/workflowware-prior-art-naming-dossier/"
+    }
+  ],
+  "agent_handoff": "E:/HermesLab/artifacts/workflowware-public-repo/README.md",
+  "next_actions": [
+    "Review local repo package",
+    "Create GitHub repo propershare/workflowware",
+    "Push initial commit",
+    "Enable GitHub Pages",
+    "Point workflowware.org DNS",
+    "Archive public URL",
+    "Update MAAT with live URLs"
+  ],
+  "brand_positioning": {
+    "mark": "Workflowware™",
+    "registration_status": "unregistered; do not use ®",
+    "interim_strategy": "publish clear public usage trail and maintainer/origin language until trademark filing budget exists"
+  }
+}

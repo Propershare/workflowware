@@ -1,0 +1,17 @@
+{
+  "title": "Template Workflowware Package",
+  "artifact_type": "workflowware_package",
+  "status": "template",
+  "primary_artifact": "README.md",
+  "summary": "Starter template for creating a Workflowware package.",
+  "files": [
+    "README.md",
+    "workflow-spec.md",
+    "agent-spec.md",
+    "approval-rules.md",
+    "eval-template.csv",
+    "artifact-manifest.json"
+  ],
+  "agent_handoff": "README.md",
+  "registered_in_maat_memory": "pending"
+}

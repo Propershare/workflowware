@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://workflowware.org/MANIFEST.schema.json",
+  "title": "Workflowware Manifest Schema v0.1",
+  "description": "Machine-readable metadata for a Workflowware package or related category artifact.",
+  "type": "object",
+  "required": [
+    "title",
+    "artifact_type",
+    "status",
+    "primary_artifact",
+    "summary",
+    "files",
+    "agent_handoff"
+  ],
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "artifact_type": {
+      "type": "string",
+      "enum": [
+        "workflowware_package",
+        "public_category_site",
+        "research_dossier",
+        "category_claim_research_dossier",
+        "html_strategy_artifact",
+        "other"
+      ]
+    },
+    "status": {
+      "type": "string"
+    },
+    "primary_artifact": {
+      "type": "string"
+    },
+    "public_url": {
+      "type": "string"
+    },
+    "local_path": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "category_terms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "agent_handoff": {
+      "type": "string"
+    },
+    "registered_in_maat_memory": {
+      "type": "string"
+    },
+    "approval_rules": {
+      "type": "string"
+    },
+    "evals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created": {
+      "type": "string"
+    },
+    "updated": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Workflowware™ | Agent-Operable Workflow Packages</title>
+  <meta name="description" content="Workflowware is software packaged as agent-operable workflows: portable packages with instructions, tools, evals, approval rules, memory pointers, and human-facing documentation." />
+  <meta property="og:title" content="Workflowware™" />
+  <meta property="og:description" content="Software packaged as agent-operable workflows." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root{
+      --bg:#05070b; --bg2:#0b1320; --panel:#101620; --panel2:#151d2a;
+      --ink:#f7fbff; --muted:#aab8ce; --soft:#dce7f5; --line:#2a354a;
+      --green:#b8ff5c; --cyan:#5ee7ff; --amber:#ffcf5a; --orange:#ff9f45;
+      --radius:28px; --shadow:0 28px 90px rgba(0,0,0,.42);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(circle at 18% 0,#193657 0,#070b12 42%,#030407 100%);color:var(--ink);font:16px/1.55 Inter,ui-sans-serif,system-ui,Segoe UI,Arial,sans-serif}
+    a{color:var(--cyan)}
+    main{max-width:1180px;margin:auto;padding:38px 22px 76px}
+    .nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:42px;gap:18px}
+    .brand{font-size:22px;font-weight:950;letter-spacing:-.045em;color:#fff;text-decoration:none}
+    .navlinks{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.navlinks a{color:#dbe7f7;text-decoration:none;font-weight:850}.navlinks .repo{border:1px solid var(--line);border-radius:999px;padding:7px 11px;background:#101725}
+    .hero{display:grid;grid-template-columns:1.08fr .92fr;gap:22px}.card{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+    .eyebrow{color:var(--green);text-transform:uppercase;letter-spacing:.15em;font-size:12px;font-weight:950}h1{font-size:clamp(46px,8vw,88px);line-height:.88;letter-spacing:-.075em;margin:12px 0 18px}.grad{background:linear-gradient(90deg,var(--green),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:22px;color:#e2ebf7;max-width:790px}.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.pill{border:1px solid #35425a;border-radius:999px;padding:8px 12px;background:#111927;font-weight:850;color:#dce7f5}.quote{font-size:28px;line-height:1.15;letter-spacing:-.04em;font-weight:950;margin:32px 0 22px}.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.btn{display:inline-block;border-radius:13px;padding:12px 16px;text-decoration:none;font-weight:950}.btn.primary{background:var(--green);color:#071108}.btn.secondary{border:1px solid var(--line);color:#e8f3ff;background:#101725}.section{margin-top:24px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.four{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.tag{display:inline-block;background:var(--green);color:#071108;border-radius:8px;padding:3px 8px;font-size:12px;font-weight:950}h2{font-size:34px;line-height:1;margin:0 0 16px;letter-spacing:-.04em}h3{margin:0 0 8px}.muted{color:var(--muted)}pre{overflow:auto;background:#05080d;border:1px solid var(--line);border-radius:18px;padding:18px;color:#d6f7ff}.matrix{width:100%;border-collapse:collapse}.matrix th,.matrix td{border:1px solid var(--line);padding:12px;text-align:left;vertical-align:top}.matrix th{background:#151d2b}.matrix td{background:rgba(255,255,255,.025)}.shift{position:relative;min-height:150px}.arrow{color:var(--cyan);font-weight:950;font-size:22px;display:grid;place-items:center}.tier{display:flex;flex-direction:column;gap:10px;min-height:230px}.price{font-size:30px;font-weight:950;letter-spacing:-.04em;color:var(--green)}.small{font-size:13px}.free{border-color:rgba(184,255,92,.38)}.pro{border-color:rgba(94,231,255,.34)}.warn{color:var(--amber)}.stack{display:grid;gap:10px}.layer{display:flex;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:15px;padding:12px 14px;background:rgba(255,255,255,.035)}.layer b{color:#fff}.footer{margin-top:28px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:13px}.note{background:rgba(184,255,92,.08);border:1px solid rgba(184,255,92,.25);border-radius:18px;padding:16px;color:#eaffd0}
+    @media(max-width:980px){.hero,.grid,.two,.four{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}h1{font-size:50px}.arrow{transform:rotate(90deg)}}
+  </style>
+</head>
+<body>
+<main>
+  <nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="#top">workflowware.org</a>
+    <div class="navlinks">
+      <a href="#what">What</a><a href="#shift">Shift</a><a href="#spec">Spec</a><a href="#tiers">Tiers</a><a href="#examples">Examples</a><a href="#origin">Origin</a><a class="repo" href="https://github.com/propershare/workflowware">GitHub</a>
+    </div>
+  </nav>
+
+  <section id="top" class="hero">
+    <div class="card">
+      <div class="eyebrow">Agentic Workflow Distribution</div>
+      <h1><span class="grad">Workflowware™</span> is software packaged as agent-operable workflows.</h1>
+      <p class="lead">Portable workflow packages with instructions, tools, evals, approval rules, memory pointers, and human-facing documentation so agents can install, operate, evaluate, and improve real work.</p>
+      <div class="pills"><span class="pill">workflow spec</span><span class="pill">agent handoff</span><span class="pill">approval rules</span><span class="pill">evals</span><span class="pill">manifest</span></div>
+    </div>
+    <div class="card">
+      <p class="quote">Prompts are ingredients. Agents are workers. <span class="grad">Workflowware</span> is the operating package.</p>
+      <p class="muted">Apps give people tools. Workflowware gives agents and humans a governed job package.</p>
+      <div class="cta-row"><a class="btn primary" href="#spec">Read the v0.1 spec</a><a class="btn secondary" href="#tiers">See tiers</a><a class="btn secondary" href="https://github.com/propershare/workflowware">propershare/workflowware</a></div>
+    </div>
+  </section>
+
+  <section id="what" class="section grid">
+    <div class="card"><span class="tag">CATEGORY</span><h3>Agentic Workflow Distribution</h3><p class="muted">The practice of packaging workflows so agents can operate them with human governance.</p></div>
+    <div class="card"><span class="tag">PACKAGE</span><h3>Workflowware</h3><p class="muted">The distributable unit: a workflow artifact with specs, tools, evals, approvals, and handoff.</p></div>
+    <div class="card"><span class="tag">OFFER</span><h3>AI Workflow Operating Kit</h3><p class="muted">The buyer-facing deliverable: installable workflow capability, not vague automation hype.</p></div>
+  </section>
+
+  <section id="shift" class="section card">
+    <h2>The distribution unit is shifting</h2>
+    <div class="four shift">
+      <div class="card"><span class="tag">APPS</span><h3>Dashboards/tools</h3><p class="muted">Humans still operate the workflow.</p></div>
+      <div class="card"><span class="tag">PROMPTS</span><h3>Instruction snippets</h3><p class="muted">Useful, but too thin to be reliable software.</p></div>
+      <div class="card"><span class="tag">TEMPLATES</span><h3>Automations</h3><p class="muted">Often brittle, platform-bound, and light on governance.</p></div>
+      <div class="card"><span class="tag">WORKFLOWWARE</span><h3>Governed job packages</h3><p class="muted">Agents and humans can operate the work together.</p></div>
+    </div>
+  </section>
+
+  <section class="section two">
+    <div class="card">
+      <h2>Package anatomy</h2>
+      <div class="stack">
+        <div class="layer"><b>Human trust surface</b><span class="muted">explainer / proof</span></div>
+        <div class="layer"><b>Workflow spec</b><span class="muted">trigger / finish line</span></div>
+        <div class="layer"><b>Agent spec</b><span class="muted">role / tools / outputs</span></div>
+        <div class="layer"><b>Governance</b><span class="muted">approval / escalation</span></div>
+        <div class="layer"><b>Evals</b><span class="muted">test cases / expected actions</span></div>
+        <div class="layer"><b>Manifest + memory handoff</b><span class="muted">agent-readable</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>What this is — and is not</h2>
+      <table class="matrix"><tr><th>Not just</th><th>Workflowware adds</th></tr><tr><td>A prompt</td><td>Workflow map, evals, governance, handoff, install path.</td></tr><tr><td>A chatbot</td><td>A job-specific operating package with finish lines and rules.</td></tr><tr><td>An automation template</td><td>Human judgment boundaries, approval states, memory and proof.</td></tr><tr><td>An agent skill</td><td>Business wrapper, examples, public trust surface, and deployment instructions.</td></tr></table>
+    </div>
+  </section>
+
+  <section id="spec" class="section two">
+    <div class="card"><h2>Minimum package</h2><pre>workflowware-package/
+  README.md
+  index.html
+  workflow-spec.md
+  agent-spec.md
+  install-guide.md
+  approval-rules.md
+  eval-template.csv
+  agent-handoff.md
+  artifact-manifest.json</pre></div>
+    <div class="card"><h2>Required layers</h2><ul><li>Human trust surface</li><li>Workflow map</li><li>Agent instructions</li><li>Governance and approvals</li><li>Evaluation examples</li><li>Install path</li><li>Memory / manifest / handoff</li><li>Business wrapper</li></ul></div>
+  </section>
+
+  <section id="tiers" class="section card">
+    <h2>Free spec, paid implementation</h2>
+    <p class="muted">Workflowware should be free to understand and start building. BlackLabRats and MAAT Runtime become valuable when a real business needs installation, governance, memory, audits, and ongoing operation.</p>
+    <div class="grid">
+      <div class="card tier free"><span class="tag">FREE</span><h3>Workflowware Spec</h3><div class="price">$0</div><p class="muted">Definition, package structure, starter templates, manifest examples, and agent-handoff examples.</p><p class="small muted">For developers, agents, researchers, and first package builders.</p></div>
+      <div class="card tier free"><span class="tag">DIY</span><h3>Starter Kit</h3><div class="price">$49</div><p class="muted">Polished templates, intake forms, teardown worksheets, eval examples, approval rules, and 3 example packages.</p><p class="small muted">For consultants and freelancers.</p></div>
+      <div class="card tier pro"><span class="tag">SERVICE</span><h3>Workflowware Blueprint</h3><div class="price">$250+</div><p class="muted">Old-way/new-way map, risk notes, agent opportunity map, and implementation path for one painful workflow.</p><p class="small muted">Best first paid offer.</p></div>
+      <div class="card tier pro"><span class="tag">IMPLEMENT</span><h3>AI Workflow Operating Kit</h3><div class="price">$1,000+</div><p class="muted">A real package: workflow spec, agent spec, install guide, evals, approval rules, handoff, and visual artifact.</p><p class="small muted">For implementation-ready businesses.</p></div>
+      <div class="card tier pro"><span class="tag">PRO</span><h3>MAAT-backed System</h3><div class="price">$3,000+</div><p class="muted">Governed memory, artifact registry, eval tracking, approval logs, operator artifacts, and recurring improvement loop.</p><p class="small muted">Buyer-facing name: Workflowware Control Layer.</p></div>
+      <div class="card tier pro"><span class="tag">TRAINING</span><h3>Installer Program</h3><div class="price">$1,500+</div><p class="muted">Teach operators how to package, sell, install, and govern Workflowware with reusable examples and sales assets.</p><p class="small muted">For freelancers, consultants, and agencies.</p></div>
+    </div>
+    <p class="note"><b>MAAT Runtime note:</b> Keep the full runtime/pro toolkit private or partner-level. The free public layer spreads the standard; the paid layer installs, governs, remembers, and improves real workflows.</p>
+  </section>
+
+  <section id="examples" class="section card">
+    <h2>Early examples</h2>
+    <table class="matrix"><tr><th>Package</th><th>Purpose</th></tr><tr><td>Home Services Missed Lead Recovery Kit</td><td>Recover missed calls/forms/texts through governed AI triage, follow-up, booking rules, and escalation.</td></tr><tr><td>BlackLabRats AI Service Installer System</td><td>Train/install/upsell governed AI workflow systems as productized services.</td></tr><tr><td>Workflowware Prior-Art and Naming Dossier</td><td>Research and flag-stamping dossier for the category claim.</td></tr></table>
+  </section>
+
+  <section id="origin" class="section card">
+    <h2>Origin note</h2>
+    <p>Workflowware.org is maintained by <b>BlackLabRats / propershare</b> as a public category/spec home for Workflowware™ and Agentic Workflow Distribution.</p>
+    <p class="muted"><b>Interim trademark position:</b> Until a federal trademark application is funded and filed, use Workflowware™ — not Workflowware®. The goal is to publish a clear usage trail without overclaiming registration.</p>
+    <p class="muted">We do not claim to have invented agents, prompts, skills, automation templates, or SaaS. The claim is narrower: the missing layer is the governed, agent-operable workflow artifact that packages the job itself.</p>
+    <div class="cta-row"><a class="btn primary" href="https://github.com/propershare/workflowware">Follow propershare/workflowware</a><a class="btn secondary" href="#tiers">Choose a tier</a></div>
+  </section>
+
+  <div class="footer">Draft v0.2 · Workflowware™ is used as an unregistered mark · Domain reported owned through GoDaddy as of 2026-07-22 · Built from BlackLabRats / Hermes / MAAT artifact system.</div>
+</main>
+</body>
+</html>

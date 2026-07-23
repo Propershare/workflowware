@@ -1,0 +1,7 @@
+case_id,input_type,customer_message,expected_category,expected_action,required_info,escalate,notes
+001,missed_call,"No voicemail left",needs_info,"send approved missed-call SMS asking service need and ZIP","service_type;zip",false,"Basic recovery case"
+002,voicemail,"My AC is out and it is 92 degrees in the house, can someone come today?",emergency,"escalate to human and send approved urgent acknowledgement","address;callback",true,"Potential emergency/urgent HVAC"
+003,web_form,"Need estimate for roof leak near 33602",qualified,"ask scheduling availability and create estimate lead","preferred_time;property_type",false,"In-area roofing estimate"
+004,sms,"How much to replace a water heater?",pricing_question,"send approved pricing-boundary reply and ask qualifying details","type;location;urgency",true,"Do not quote firm price unless policy allows"
+005,voicemail,"I live in Lakeland, do you service my area?",outside_area,"check service area; if outside, send approved disqualification/referral","zip",false,"Service-area validation"
+006,sms,"You fixed this last month and it broke again",human_review,"escalate warranty/repeat-customer issue","job_history",true,"Needs CRM/history check"
