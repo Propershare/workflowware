@@ -19,7 +19,10 @@
     "LICENSE",
     "docs/",
     "docs/interim-brand-protection.md",
-    "examples/"
+    "examples/",
+    "docs/customer-getting-started.md",
+    "docs/best-practices.md",
+    "docs/ai-agent-buyer-guide.md"
   ],
   "related_artifacts": [
     {
@@ -53,5 +56,11 @@
   "pages_url": "https://propershare.github.io/workflowware/",
   "dns_status": "workflowware.org currently resolves to GoDaddy DPS; GitHub Pages is live at propershare.github.io/workflowware until DNS is changed.",
   "custom_domain_plan": "Add CNAME=workflowware.org after GoDaddy DNS is pointed to GitHub Pages.",
-  "initial_commit": "8712cfa74f9ff5193912fea2f3d77d6c64294d84"
+  "initial_commit": "8712cfa74f9ff5193912fea2f3d77d6c64294d84",
+  "documentation": [
+    "docs/customer-getting-started.md",
+    "docs/best-practices.md",
+    "docs/ai-agent-buyer-guide.md"
+  ],
+  "last_updated_note": "Added customer, best-practices, and AI-agent buyer/operator documentation for early Workflowware testing."
 }

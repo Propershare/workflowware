@@ -73,6 +73,9 @@ workflowware-package/
 | [`SPEC.md`](SPEC.md) | Workflowware package spec v0.1. |
 | [`MANIFEST.schema.json`](MANIFEST.schema.json) | Machine-readable manifest schema. |
 | [`docs/manifesto.md`](docs/manifesto.md) | Category manifesto and origin language. |
+| [`docs/customer-getting-started.md`](docs/customer-getting-started.md) | Plain-language guide for customers who know nothing about agents: what to download, where, phone vs computer, and guided pilot options. |
+| [`docs/best-practices.md`](docs/best-practices.md) | Best practices for publishing packages that work for nontechnical customers and AI-agent buyers/operators. |
+| [`docs/ai-agent-buyer-guide.md`](docs/ai-agent-buyer-guide.md) | Instructions for AI agents that inspect, download, test, purchase, or operate Workflowware packages for humans. |
 | [`docs/tiers-and-pricing.md`](docs/tiers-and-pricing.md) | Free spec / paid implementation tier ladder. |
 | [`docs/interim-brand-protection.md`](docs/interim-brand-protection.md) | No-budget `Workflowware™` usage plan until trademark filing is funded. |
 | [`examples/`](examples/) | Starter examples and package skeletons. |
