@@ -80,6 +80,26 @@ workflowware-package/
 | [`docs/interim-brand-protection.md`](docs/interim-brand-protection.md) | No-budget `Workflowware™` usage plan until trademark filing is funded. |
 | [`examples/`](examples/) | Starter examples and package skeletons. |
 
+
+---
+
+## Testing now
+
+The first public pilot is live:
+
+```text
+Missed Lead Recovery Workflowware
+```
+
+Start here:
+
+- [Pilot page](pilot.html)
+- [Testing guide](docs/testing-guide.md)
+- [Download tester ZIP](downloads/missed-lead-recovery-workflowware-v0.1.zip)
+- [Request guided pilot](https://github.com/Propershare/workflowware/issues/new?template=workflowware-pilot.yml)
+
+Use fake or anonymized sample data first. Do not submit passwords, API keys, browser cookies, payment data, live inbox access, or full customer lists.
+
 ---
 
 ## Public site

@@ -1,0 +1,68 @@
+name: Workflowware Pilot Request
+description: Request a sample-data pilot for the Missed Lead Recovery Workflowware package.
+title: "Pilot request: missed lead recovery"
+labels: ["pilot", "workflowware"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use fake or anonymized sample data first. Do not submit passwords, API keys, browser cookies, payment data, live inbox access, or full customer lists.
+  - type: input
+    id: business_type
+    attributes:
+      label: Business type
+      description: Example: HVAC, lawn care, cleaning, real estate, barber, consultant.
+    validations:
+      required: true
+  - type: dropdown
+    id: test_mode
+    attributes:
+      label: Test mode
+      options:
+        - Package review
+        - Sample-data test
+        - Guided pilot
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: What are you using?
+      options:
+        - Phone
+        - Computer
+        - AI agent helping me
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: sample_leads
+    attributes:
+      label: Sample missed leads or fake examples
+      description: Paste 1-3 fake or anonymized missed leads/messages.
+      placeholder: "Lead: Need AC repair asap. Received yesterday. Nobody replied. Goal: draft safe follow-up."
+    validations:
+      required: true
+  - type: textarea
+    id: approval_boundaries
+    attributes:
+      label: Approval boundaries
+      description: What should require human approval? What should never be automated?
+    validations:
+      required: true
+  - type: textarea
+    id: success
+    attributes:
+      label: What would make this useful?
+      description: Describe the result you want from the pilot.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I did not include passwords, API keys, browser cookies, payment data, or live account access.
+          required: true
+        - label: I understand this pilot drafts and evaluates; it does not send customer messages without human approval.
+          required: true

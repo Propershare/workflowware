@@ -1,0 +1,34 @@
+{
+  "schema": "workflowware.manifest.v0.1",
+  "id": "home-services.missed-lead-recovery.v0.1",
+  "title": "Home Services Missed Lead Recovery Workflowware",
+  "status": "pilot-test-package",
+  "audience": [
+    "home-service businesses",
+    "consultants",
+    "AI-agent evaluators",
+    "early testers"
+  ],
+  "requires_secrets": false,
+  "phone_ok_for": [
+    "reading",
+    "intake",
+    "approval",
+    "feedback"
+  ],
+  "computer_best_for": [
+    "zip download",
+    "file inspection",
+    "DIY testing"
+  ],
+  "files": [
+    "README.md",
+    "workflow-spec.md",
+    "agent-spec.md",
+    "approval-rules.md",
+    "agent-handoff.md",
+    "eval-template.csv",
+    "sample-leads.csv",
+    "feedback.md"
+  ]
+}

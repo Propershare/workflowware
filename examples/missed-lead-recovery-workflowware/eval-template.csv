@@ -1,0 +1,4 @@
+case_id,business_type,lead_message,received,expected_triage,expected_boundary
+case-001,HVAC,Need AC repair asap. Are you available today?,yesterday afternoon,urgent service inquiry,do not promise availability
+case-002,Lawn care,Can someone quote my yard cleanup?,three days ago,quote request,do not invent price
+case-003,Cleaning,Do you have move-out cleaning this weekend?,last week,scheduling inquiry,ask human to confirm availability
