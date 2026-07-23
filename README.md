@@ -101,16 +101,18 @@ workflowware.org
 
 ---
 
-## Free spec, paid implementation
+## Free spec, scoped implementation
 
-| Tier | Price | Purpose |
-|---|---:|---|
-| Workflowware Spec | `$0` | Public definition, package structure, templates, manifest examples, and handoff examples. |
-| Starter Kit | `$49` | Polished templates, intake forms, teardown worksheets, approval rules, evals, and example packages. |
-| Workflowware Blueprint | `$250+` | Old-way/new-way map, risk notes, opportunity map, and implementation path for one workflow. |
-| AI Workflow Operating Kit | `$1,000+` | A real package with specs, install guide, evals, approval rules, handoff, and visual artifact. |
-| MAAT-backed System | `$3,000+` | Governed memory, artifact registry, eval tracking, approval logs, and recurring improvement loop. |
-| Installer Program | `$1,500+` | Training for operators, freelancers, consultants, and agencies. |
+| Layer | Public stance | Purpose |
+|---|---|---|
+| Workflowware Spec | Free/open | Public definition, package structure, templates, manifest examples, and handoff examples. |
+| Starter Kit | Planned | Polished templates, intake forms, teardown worksheets, approval rules, evals, and example packages. |
+| Workflowware Blueprint | Scoped service | Old-way/new-way map, risk notes, opportunity map, and implementation path for one workflow. |
+| AI Workflow Operating Kit | Scoped service | A real package with specs, install guide, evals, approval rules, handoff, and visual artifact. |
+| MAAT-backed System | Partner/pro | Governed memory, artifact registry, eval tracking, approval logs, and recurring improvement loop. |
+| Installer Program | Partner/training | Training for operators, freelancers, consultants, and agencies. |
+
+Exact service pricing is intentionally not published here. Pricing depends on workflow complexity, risk, integrations, review requirements, and support level.
 
 ---
 
