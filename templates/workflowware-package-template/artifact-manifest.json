@@ -1,0 +1,33 @@
+{
+  "schema": "workflowware.manifest.v0.1",
+  "id": "{{PACKAGE_ID}}",
+  "title": "{{PACKAGE_TITLE}}",
+  "status": "template",
+  "audience": [
+    "customers with zero agent knowledge",
+    "AI-agent evaluators",
+    "human operators"
+  ],
+  "requires_secrets": false,
+  "phone_ok_for": [
+    "reading",
+    "intake",
+    "approval",
+    "feedback"
+  ],
+  "computer_best_for": [
+    "zip download",
+    "file inspection",
+    "DIY testing"
+  ],
+  "files": [
+    "README.md",
+    "workflow-spec.md",
+    "agent-spec.md",
+    "approval-rules.md",
+    "agent-handoff.md",
+    "eval-template.csv",
+    "sample-data.csv",
+    "feedback.md"
+  ]
+}

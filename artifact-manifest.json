@@ -28,7 +28,10 @@
     "downloads/README.md",
     "downloads/missed-lead-recovery-workflowware-v0.1.zip",
     "examples/missed-lead-recovery-workflowware/",
-    ".github/ISSUE_TEMPLATE/workflowware-pilot.yml"
+    ".github/ISSUE_TEMPLATE/workflowware-pilot.yml",
+    "docs/library.md",
+    "docs/workflowware-library-roadmap.md",
+    "templates/workflowware-package-template/"
   ],
   "related_artifacts": [
     {
@@ -68,7 +71,7 @@
     "docs/best-practices.md",
     "docs/ai-agent-buyer-guide.md"
   ],
-  "last_updated_note": "Added Missed Lead Recovery pilot page, tester ZIP, testing guide, and guided pilot issue template.",
+  "last_updated_note": "Added Workflowware library index, revenue-focused roadmap, and reusable package template.",
   "pilot_offer": {
     "title": "Missed Lead Recovery Workflowware Pilot",
     "page": "pilot.html",
@@ -76,5 +79,11 @@
     "testing_guide": "docs/testing-guide.md",
     "guided_pilot_issue_template": ".github/ISSUE_TEMPLATE/workflowware-pilot.yml",
     "safety": "sample or anonymized data first; no secrets or live credentials"
+  },
+  "library": {
+    "index": "docs/library.md",
+    "roadmap": "docs/workflowware-library-roadmap.md",
+    "template": "templates/workflowware-package-template/",
+    "next_package_candidate": "Review Response and Reputation Recovery Workflowware"
   }
 }
