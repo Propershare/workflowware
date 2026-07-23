@@ -1,30 +1,55 @@
+<div align="center">
+
 # Workflowware™
 
-**Workflowware™ is software packaged as agent-operable workflows.**
+### Software packaged as agent-operable workflows.
 
-This repository is the public home for the Workflowware category/spec draft and the `workflowware.org` static site.
+<p>
+  <a href="https://propershare.github.io/workflowware/"><strong>Live site</strong></a>
+  ·
+  <a href="SPEC.md"><strong>Spec v0.1</strong></a>
+  ·
+  <a href="MANIFEST.schema.json"><strong>Manifest schema</strong></a>
+  ·
+  <a href="examples/"><strong>Examples</strong></a>
+</p>
+
+<p>
+  <img alt="Status" src="https://img.shields.io/badge/status-public%20draft-b8ff5c?style=for-the-badge&labelColor=101620">
+  <img alt="Mark" src="https://img.shields.io/badge/mark-Workflowware%E2%84%A2-5ee7ff?style=for-the-badge&labelColor=101620">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-f7fbff?style=for-the-badge&labelColor=101620">
+</p>
+
+</div>
+
+---
+
+## The idea
+
+**Workflowware™** is a portable package for real work: the instructions, specs, evals, approval rules, templates, install path, and agent handoff needed for agents and humans to operate a workflow together.
+
+> **Prompts are ingredients. Agents are workers. Workflowware is the operating package.**
+
+Software used to ship as apps. Agents shift the unit of distribution toward governed workflow packages.
+
+---
 
 ## Agentic Workflow Distribution
 
-**Agentic Workflow Distribution** is the practice of packaging business workflows as portable artifacts that include instructions, tools, prompts, evals, approval rules, memory pointers, and human-facing documentation so agents can install, operate, evaluate, and improve them.
+**Agentic Workflow Distribution** is the practice of packaging business workflows as portable artifacts that include:
 
-> Prompts are ingredients. Agents are workers. Workflowware is the operating package.
+| Layer | Purpose |
+|---|---|
+| Human trust surface | Explain what the package does, why it exists, and how it is controlled. |
+| Workflow spec | Define the trigger, context, old workflow, new workflow, finish line, edge cases, and success metrics. |
+| Agent spec | Define the role, inputs, tools, allowed actions, prohibited actions, output schema, and escalation behavior. |
+| Governance | Define approval rules, safety boundaries, audit trails, and non-autonomous zones. |
+| Evals | Provide examples and expected behavior so the workflow can be tested and improved. |
+| Manifest + handoff | Give future agents and humans a machine-readable package map. |
 
-## Why this repo exists
+---
 
-Software used to ship as apps. Agents shift the unit of distribution toward governed workflow packages. This repo defines the early package structure, examples, and public language for that layer.
-
-## Start here
-
-- [Workflowware package spec](SPEC.md)
-- [Manifest schema](MANIFEST.schema.json)
-- [Manifesto](docs/manifesto.md)
-- [Tiers and pricing model](docs/tiers-and-pricing.md)
-- [Interim brand protection plan](docs/interim-brand-protection.md)
-- [Origin note](docs/origin-note.md)
-- [Example packages](examples/)
-
-## Minimum package
+## Minimum package structure
 
 ```text
 workflowware-package/
@@ -39,28 +64,120 @@ workflowware-package/
   artifact-manifest.json
 ```
 
+---
+
+## Start here
+
+| Resource | What it is |
+|---|---|
+| [`SPEC.md`](SPEC.md) | Workflowware package spec v0.1. |
+| [`MANIFEST.schema.json`](MANIFEST.schema.json) | Machine-readable manifest schema. |
+| [`docs/manifesto.md`](docs/manifesto.md) | Category manifesto and origin language. |
+| [`docs/tiers-and-pricing.md`](docs/tiers-and-pricing.md) | Free spec / paid implementation tier ladder. |
+| [`docs/interim-brand-protection.md`](docs/interim-brand-protection.md) | No-budget `Workflowware™` usage plan until trademark filing is funded. |
+| [`examples/`](examples/) | Starter examples and package skeletons. |
+
+---
+
 ## Public site
 
-The `index.html` file is designed for GitHub Pages with the custom domain:
+The current public preview is live here:
+
+```text
+https://propershare.github.io/workflowware/
+```
+
+Target custom domain:
 
 ```text
 workflowware.org
 ```
 
-A `CNAME` file should be added when `workflowware.org` DNS is pointed at GitHub Pages. Until then, the public preview can use the default GitHub Pages URL.
+`workflowware.org` still needs GoDaddy DNS pointed to GitHub Pages. After DNS is changed, add a `CNAME` file containing:
 
-## What we claim
+```text
+workflowware.org
+```
 
-We are defining and practicing the artifact layer for agentic workflow distribution: human trust surface + workflow spec + agent spec + evals + governance + install guide + manifest + memory/handoff.
+---
 
-## What we do not claim
+## Free spec, paid implementation
 
-We do not claim to have invented agents, prompts, skills, automation templates, SaaS, or workflow tools.
+| Tier | Price | Purpose |
+|---|---:|---|
+| Workflowware Spec | `$0` | Public definition, package structure, templates, manifest examples, and handoff examples. |
+| Starter Kit | `$49` | Polished templates, intake forms, teardown worksheets, approval rules, evals, and example packages. |
+| Workflowware Blueprint | `$250+` | Old-way/new-way map, risk notes, opportunity map, and implementation path for one workflow. |
+| AI Workflow Operating Kit | `$1,000+` | A real package with specs, install guide, evals, approval rules, handoff, and visual artifact. |
+| MAAT-backed System | `$3,000+` | Governed memory, artifact registry, eval tracking, approval logs, and recurring improvement loop. |
+| Installer Program | `$1,500+` | Training for operators, freelancers, consultants, and agencies. |
+
+---
+
+## MAAT Runtime relationship
+
+Workflowware is intended to be stack-neutral.
+
+BlackLabRats uses **MAAT Runtime** as the private/pro foundation for professional Workflowware systems:
+
+```text
+workflowware.org              public category/spec surface
+propershare/workflowware      public repo/spec/templates
+BlackLabRats                  service/training brand
+MAAT Runtime                  private/pro governance + memory foundation
+Hermes                        operator/agent cockpit
+```
+
+Short version:
+
+> **Workflowware.org defines the package. MAAT Runtime powers the professional operating layer.**
+
+---
 
 ## Interim trademark position
 
-Until a federal trademark application is funded and filed, use `Workflowware™`, not `Workflowware®`. The goal is to publish a clear public usage trail while avoiding overclaiming registration.
+Until a federal trademark application is funded and filed, use:
+
+```text
+Workflowware™
+```
+
+Do **not** use:
+
+```text
+Workflowware®
+```
+
+The goal is to publish a clear public usage trail without overclaiming registration.
+
+---
+
+## What we claim
+
+We are defining and practicing the artifact layer for agentic workflow distribution:
+
+```text
+human trust surface
++ workflow spec
++ agent spec
++ evals
++ governance
++ install guide
++ manifest
++ memory / handoff
+= Workflowware package
+```
+
+## What we do not claim
+
+We do **not** claim to have invented agents, prompts, skills, automation templates, SaaS, or workflow tools.
+
+The claim is narrower:
+
+> The missing layer is the governed, agent-operable workflow artifact that packages the job itself.
+
+---
 
 ## Maintainer
 
-Maintained by BlackLabRats / propershare.
+Maintained by **BlackLabRats / propershare**.
