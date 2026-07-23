@@ -1,7 +1,7 @@
 {
   "title": "Workflowware Public GitHub Repo Package",
   "artifact_type": "public_repo_package",
-  "status": "local-ready-tm",
+  "status": "published-repo",
   "created": "2026-07-22",
   "registered_in_maat_memory": "1e4323c8-f7ea-45b5-8b20-8a85918f5e6a",
   "local_path": "E:/HermesLab/artifacts/workflowware-public-repo",
@@ -20,8 +20,7 @@
     "LICENSE",
     "docs/",
     "docs/interim-brand-protection.md",
-    "examples/",
-    ".github/workflows/pages.yml"
+    "examples/"
   ],
   "related_artifacts": [
     {
@@ -49,5 +48,10 @@
     "mark": "Workflowware™",
     "registration_status": "unregistered; do not use ®",
     "interim_strategy": "publish clear public usage trail and maintainer/origin language until trademark filing budget exists"
-  }
+  },
+  "published_repo_url": "https://github.com/Propershare/workflowware",
+  "commit": "8712cfa74f9ff5193912fea2f3d77d6c64294d84",
+  "pages_build_type": "legacy",
+  "pages_url": "http://workflowware.org/",
+  "dns_status": "workflowware.org currently resolves to GoDaddy DPS; update GoDaddy DNS to GitHub Pages for site to show this repo."
 }
