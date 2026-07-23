@@ -1,7 +1,7 @@
 {
   "title": "Workflowware Public GitHub Repo Package",
   "artifact_type": "public_repo_package",
-  "status": "published-repo",
+  "status": "published-pages",
   "created": "2026-07-22",
   "registered_in_maat_memory": "1e4323c8-f7ea-45b5-8b20-8a85918f5e6a",
   "local_path": "E:/HermesLab/artifacts/workflowware-public-repo",
@@ -16,7 +16,6 @@
     "README.md",
     "SPEC.md",
     "MANIFEST.schema.json",
-    "CNAME",
     "LICENSE",
     "docs/",
     "docs/interim-brand-protection.md",
@@ -52,6 +51,7 @@
   "published_repo_url": "https://github.com/Propershare/workflowware",
   "commit": "bee3081bfa23fcaaabd69a5ccc230c23173a70a9",
   "pages_build_type": "legacy",
-  "pages_url": "http://workflowware.org/",
-  "dns_status": "workflowware.org currently resolves to GoDaddy DPS; update GoDaddy DNS to GitHub Pages for site to show this repo."
+  "pages_url": "https://propershare.github.io/workflowware/",
+  "dns_status": "workflowware.org currently resolves to GoDaddy DPS; GitHub Pages is live at propershare.github.io/workflowware until DNS is changed.",
+  "custom_domain_plan": "Add CNAME=workflowware.org after GoDaddy DNS is pointed to GitHub Pages."
 }

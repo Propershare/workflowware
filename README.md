@@ -47,7 +47,7 @@ The `index.html` file is designed for GitHub Pages with the custom domain:
 workflowware.org
 ```
 
-The `CNAME` file is included for GitHub Pages.
+A `CNAME` file should be added when `workflowware.org` DNS is pointed at GitHub Pages. Until then, the public preview can use the default GitHub Pages URL.
 
 ## What we claim
 
