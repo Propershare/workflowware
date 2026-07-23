@@ -49,9 +49,9 @@
     "interim_strategy": "publish clear public usage trail and maintainer/origin language until trademark filing budget exists"
   },
   "published_repo_url": "https://github.com/Propershare/workflowware",
-  "commit": "bee3081bfa23fcaaabd69a5ccc230c23173a70a9",
   "pages_build_type": "legacy",
   "pages_url": "https://propershare.github.io/workflowware/",
   "dns_status": "workflowware.org currently resolves to GoDaddy DPS; GitHub Pages is live at propershare.github.io/workflowware until DNS is changed.",
-  "custom_domain_plan": "Add CNAME=workflowware.org after GoDaddy DNS is pointed to GitHub Pages."
+  "custom_domain_plan": "Add CNAME=workflowware.org after GoDaddy DNS is pointed to GitHub Pages.",
+  "initial_commit": "8712cfa74f9ff5193912fea2f3d77d6c64294d84"
 }
