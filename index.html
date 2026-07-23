@@ -1,174 +1,563 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Workflowware™ | Agent-Operable Workflow Packages</title>
-  <meta name="description" content="Workflowware is software packaged as agent-operable workflows: portable packages with instructions, tools, evals, approval rules, memory pointers, and human-facing documentation." />
-  <meta property="og:title" content="Workflowware™" />
-  <meta property="og:description" content="Software packaged as agent-operable workflows." />
-  <meta property="og:type" content="website" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workflowware™ — Software packaged as agent-operable workflows</title>
+  <meta name="description" content="Workflowware is the operating package for real work: workflow specs, agent behavior, approvals, evals, and handoff — portable for humans and agents.">
+  <meta name="maat-artifact" content="tehuti.workflowware.public-site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#05070b; --bg2:#0b1320; --panel:#101620; --panel2:#151d2a;
-      --ink:#f7fbff; --muted:#aab8ce; --soft:#dce7f5; --line:#2a354a;
-      --green:#b8ff5c; --cyan:#5ee7ff; --amber:#ffcf5a; --orange:#ff9f45;
-      --radius:28px; --shadow:0 28px 90px rgba(0,0,0,.42);
+    :root {
+      --bg: #e7ece8;
+      --bg-deep: #d5ddd6;
+      --ink: #0e1411;
+      --ink-soft: #3a453f;
+      --line: #b7c2ba;
+      --accent: #1f4fd8;
+      --accent-ink: #102a7a;
+      --signal: #c8f542;
+      --paper: #f7faf7;
+      --max: 1120px;
+      --ease: cubic-bezier(.22, 1, .36, 1);
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:radial-gradient(circle at 18% 0,#193657 0,#070b12 42%,#030407 100%);color:var(--ink);font:16px/1.55 Inter,ui-sans-serif,system-ui,Segoe UI,Arial,sans-serif}
-    a{color:var(--cyan)}
-    main{max-width:1180px;margin:auto;padding:38px 22px 76px}
-    .nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:42px;gap:18px}
-    .brand{font-size:22px;font-weight:950;letter-spacing:-.045em;color:#fff;text-decoration:none}
-    .navlinks{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.navlinks a{color:#dbe7f7;text-decoration:none;font-weight:850}.navlinks .repo{border:1px solid var(--line);border-radius:999px;padding:7px 11px;background:#101725}
-    .hero{display:grid;grid-template-columns:1.08fr .92fr;gap:22px}.card{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
-    .eyebrow{color:var(--green);text-transform:uppercase;letter-spacing:.15em;font-size:12px;font-weight:950}h1{font-size:clamp(46px,8vw,88px);line-height:.88;letter-spacing:-.075em;margin:12px 0 18px}.grad{background:linear-gradient(90deg,var(--green),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:22px;color:#e2ebf7;max-width:790px}.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.pill{border:1px solid #35425a;border-radius:999px;padding:8px 12px;background:#111927;font-weight:850;color:#dce7f5}.quote{font-size:28px;line-height:1.15;letter-spacing:-.04em;font-weight:950;margin:32px 0 22px}.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.btn{display:inline-block;border-radius:13px;padding:12px 16px;text-decoration:none;font-weight:950}.btn.primary{background:var(--green);color:#071108}.btn.secondary{border:1px solid var(--line);color:#e8f3ff;background:#101725}.section{margin-top:24px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.four{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.tag{display:inline-block;background:var(--green);color:#071108;border-radius:8px;padding:3px 8px;font-size:12px;font-weight:950}h2{font-size:34px;line-height:1;margin:0 0 16px;letter-spacing:-.04em}h3{margin:0 0 8px}.muted{color:var(--muted)}pre{overflow:auto;background:#05080d;border:1px solid var(--line);border-radius:18px;padding:18px;color:#d6f7ff}.matrix{width:100%;border-collapse:collapse}.matrix th,.matrix td{border:1px solid var(--line);padding:12px;text-align:left;vertical-align:top}.matrix th{background:#151d2b}.matrix td{background:rgba(255,255,255,.025)}.shift{position:relative;min-height:150px}.arrow{color:var(--cyan);font-weight:950;font-size:22px;display:grid;place-items:center}.tier{display:flex;flex-direction:column;gap:10px;min-height:230px}.stance{font-size:30px;font-weight:950;letter-spacing:-.04em;color:var(--green)}.small{font-size:13px}.free{border-color:rgba(184,255,92,.38)}.pro{border-color:rgba(94,231,255,.34)}.warn{color:var(--amber)}.stack{display:grid;gap:10px}.layer{display:flex;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:15px;padding:12px 14px;background:rgba(255,255,255,.035)}.layer b{color:#fff}.footer{margin-top:28px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:13px}.note{background:rgba(184,255,92,.08);border:1px solid rgba(184,255,92,.25);border-radius:18px;padding:16px;color:#eaffd0}
-    @media(max-width:980px){.hero,.grid,.two,.four{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}h1{font-size:50px}.arrow{transform:rotate(90deg)}}
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Literata", Georgia, serif;
+      font-optical-sizing: auto;
+      line-height: 1.55;
+      background:
+        radial-gradient(ellipse 90% 55% at 80% -10%, #cfd9ff 0%, transparent 55%),
+        radial-gradient(ellipse 70% 45% at 0% 20%, #d9e8c8 0%, transparent 50%),
+        linear-gradient(165deg, var(--bg) 0%, var(--bg-deep) 100%);
+      min-height: 100vh;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-ink); }
+
+    .skip {
+      position: absolute; left: -999px; top: 0;
+    }
+    .skip:focus { left: 12px; top: 12px; background: var(--paper); padding: 8px 12px; z-index: 20; }
+
+    /* ——— top bar (minimal; brand lives in hero) ——— */
+    .top {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.25rem;
+      padding: 1rem 1.25rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .top a {
+      font-family: "Syne", sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      color: var(--ink-soft);
+    }
+    .top a:hover { color: var(--ink); }
+
+    /* ——— HERO: one composition ——— */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 3rem);
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: end;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-visual {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Full-bleed package stack as dominant visual plane */
+    .package-plane {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, transparent 40%, rgba(31, 79, 216, 0.08) 40%, rgba(31, 79, 216, 0.08) 41%, transparent 41%),
+        repeating-linear-gradient(
+          -12deg,
+          transparent,
+          transparent 28px,
+          rgba(14, 20, 17, 0.035) 28px,
+          rgba(14, 20, 17, 0.035) 29px
+        );
+    }
+
+    .stack {
+      position: absolute;
+      right: -4%;
+      top: 8%;
+      width: min(52vw, 620px);
+      height: min(78vh, 720px);
+      display: grid;
+      align-content: center;
+      gap: 0.85rem;
+      padding: 0 4vw;
+      transform: rotate(-4deg);
+    }
+
+    .layer {
+      background: var(--paper);
+      border: 1px solid var(--ink);
+      padding: 1.1rem 1.35rem 1rem;
+      box-shadow: 6px 6px 0 rgba(14, 20, 17, 0.12);
+      opacity: 0;
+      transform: translateY(28px);
+      animation: rise 0.9s var(--ease) forwards;
+    }
+    .layer:nth-child(1) { animation-delay: 0.15s; width: 92%; margin-left: 8%; }
+    .layer:nth-child(2) { animation-delay: 0.28s; width: 96%; margin-left: 4%; }
+    .layer:nth-child(3) { animation-delay: 0.41s; width: 100%; }
+    .layer:nth-child(4) { animation-delay: 0.54s; width: 88%; margin-left: 6%; background: var(--ink); color: var(--paper); box-shadow: 6px 6px 0 rgba(31, 79, 216, 0.35); }
+    .layer:nth-child(5) { animation-delay: 0.67s; width: 94%; margin-left: 3%; background: var(--signal); border-color: var(--ink); }
+
+    .layer .k {
+      font-family: "Syne", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 0.25rem;
+    }
+    .layer .t {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      width: 100%;
+      margin: 0 auto;
+      padding: 12vh 1.25rem 3.5rem;
+    }
+
+    .brand {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: clamp(3.2rem, 11vw, 7.5rem);
+      line-height: 0.88;
+      letter-spacing: -0.06em;
+      margin: 0 0 1.25rem;
+      color: var(--ink);
+      max-width: 14ch;
+      opacity: 0;
+      animation: brandIn 1s var(--ease) 0.05s forwards;
+    }
+    .brand .tm {
+      font-size: 0.28em;
+      vertical-align: super;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+
+    @keyframes brandIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .headline {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.35rem, 3.2vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      max-width: 18ch;
+      margin: 0 0 0.85rem;
+      opacity: 0;
+      animation: brandIn 1s var(--ease) 0.2s forwards;
+    }
+
+    .support {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: var(--ink-soft);
+      max-width: 34ch;
+      margin: 0 0 1.75rem;
+      opacity: 0;
+      animation: brandIn 1s var(--ease) 0.32s forwards;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem 1.1rem;
+      align-items: center;
+      opacity: 0;
+      animation: brandIn 1s var(--ease) 0.42s forwards;
+    }
+
+    .cta a {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      padding: 0.85rem 1.25rem;
+      border: 1.5px solid var(--ink);
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease);
+    }
+    .cta a.primary {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .cta a.primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .cta a.ghost {
+      background: transparent;
+      color: var(--ink);
+    }
+    .cta a.ghost:hover {
+      background: var(--paper);
+      transform: translateY(-2px);
+    }
+
+    /* ——— sections: one job each ——— */
+    section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 4.5rem 1.25rem;
+      border-bottom: 1px solid var(--line);
+    }
+    section:last-of-type { border-bottom: 0; }
+
+    .sec-label {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.75rem;
+    }
+    section h2 {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin: 0 0 0.85rem;
+      max-width: 16ch;
+    }
+    .sec-lead {
+      font-size: 1.12rem;
+      color: var(--ink-soft);
+      max-width: 42ch;
+      margin: 0 0 2rem;
+    }
+
+    .quote-block {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+      max-width: 22ch;
+      margin: 0;
+      padding-left: 1rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .anatomy {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--ink);
+    }
+    .anatomy li {
+      list-style: none;
+      display: grid;
+      grid-template-columns: minmax(7rem, 11rem) 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+      margin: 0;
+    }
+    .anatomy ul { margin: 0; padding: 0; }
+    .anatomy .name {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .anatomy .desc { color: var(--ink-soft); margin: 0; }
+
+    .pilot-panel {
+      background: var(--ink);
+      color: var(--paper);
+      margin: 0;
+      padding: 4.5rem 1.25rem;
+    }
+    .pilot-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .pilot-panel .sec-label { color: var(--signal); }
+    .pilot-panel h2 { color: var(--paper); max-width: 18ch; }
+    .pilot-panel .sec-lead { color: rgba(247, 250, 247, 0.78); }
+    .pilot-panel .cta a.primary {
+      background: var(--signal);
+      color: var(--ink);
+      border-color: var(--signal);
+    }
+    .pilot-panel .cta a.primary:hover {
+      background: var(--paper);
+      border-color: var(--paper);
+      color: var(--ink);
+    }
+    .pilot-panel .cta a.ghost {
+      color: var(--paper);
+      border-color: rgba(247, 250, 247, 0.45);
+    }
+    .pilot-panel .cta a.ghost:hover {
+      background: rgba(247, 250, 247, 0.08);
+      color: var(--paper);
+    }
+
+    .links {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 720px) {
+      .links { grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+    }
+    .links a.block {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      padding-top: 0.75rem;
+      border-top: 2px solid var(--ink);
+      transition: border-color 0.25s var(--ease);
+    }
+    .links a.block:hover { border-color: var(--accent); }
+    .links h3 {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.4rem;
+    }
+    .links p { margin: 0; color: var(--ink-soft); font-size: 0.98rem; }
+
+    .claim {
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 800px) {
+      .claim { grid-template-columns: 1.2fr 1fr; align-items: start; }
+    }
+    .claim p { margin: 0 0 1rem; color: var(--ink-soft); max-width: 40ch; }
+    .claim p:last-child { margin-bottom: 0; }
+
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3.5rem;
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+    }
+    footer .mark {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 860px) {
+      .stack {
+        position: relative;
+        right: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+        transform: none;
+        padding: 1.5rem 1.25rem 0;
+        order: -1;
+      }
+      .hero {
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+        align-items: stretch;
+      }
+      .hero-visual {
+        position: relative;
+        min-height: 280px;
+      }
+      .package-plane { opacity: 0.7; }
+      .hero-copy {
+        padding: 2rem 1.25rem 3rem;
+      }
+      .layer { box-shadow: 4px 4px 0 rgba(14, 20, 17, 0.1); }
+      .anatomy li {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .brand, .headline, .support, .cta, .layer {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 <body>
-<main>
-  <nav class="nav" aria-label="Main navigation">
-    <a class="brand" href="#top">workflowware.org</a>
-    <div class="navlinks">
-      <a href="#what">What</a><a href="#shift">Shift</a><a href="#spec">Spec</a><a href="#docs">Docs</a><a href="pilot.html">Pilot</a><a href="#tiers">Tiers</a><a href="#examples">Examples</a><a href="#origin">Origin</a><a class="repo" href="https://github.com/propershare/workflowware">GitHub</a>
-    </div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <nav class="top" aria-label="Primary">
+    <a href="SPEC.md">Spec</a>
+    <a href="pilot.html">Pilot</a>
+    <a href="docs/customer-getting-started.md">Docs</a>
+    <a href="https://github.com/Propershare/workflowware">GitHub</a>
   </nav>
 
-  <section id="top" class="hero">
-    <div class="card">
-      <div class="eyebrow">Agentic Workflow Distribution</div>
-      <h1><span class="grad">Workflowware™</span> is software packaged as agent-operable workflows.</h1>
-      <p class="lead">Portable workflow packages with instructions, tools, evals, approval rules, memory pointers, and human-facing documentation so agents can install, operate, evaluate, and improve real work.</p>
-      <div class="pills"><span class="pill">workflow spec</span><span class="pill">agent handoff</span><span class="pill">approval rules</span><span class="pill">evals</span><span class="pill">manifest</span></div>
-    </div>
-    <div class="card">
-      <p class="quote">Prompts are ingredients. Agents are workers. <span class="grad">Workflowware</span> is the operating package.</p>
-      <p class="muted">Apps give people tools. Workflowware gives agents and humans a governed job package.</p>
-      <div class="cta-row"><a class="btn primary" href="pilot.html">Test missed lead recovery</a><a class="btn secondary" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">Download tester ZIP</a><a class="btn secondary" href="#docs">Start here</a><a class="btn secondary" href="https://github.com/propershare/workflowware">propershare/workflowware</a></div>
-    </div>
-  </section>
-
-  <section id="what" class="section grid">
-    <div class="card"><span class="tag">CATEGORY</span><h3>Agentic Workflow Distribution</h3><p class="muted">The practice of packaging workflows so agents can operate them with human governance.</p></div>
-    <div class="card"><span class="tag">PACKAGE</span><h3>Workflowware</h3><p class="muted">The distributable unit: a workflow artifact with specs, tools, evals, approvals, and handoff.</p></div>
-    <div class="card"><span class="tag">OFFER</span><h3>AI Workflow Operating Kit</h3><p class="muted">The buyer-facing deliverable: installable workflow capability, not vague automation hype.</p></div>
-  </section>
-
-  <section id="shift" class="section card">
-    <h2>The distribution unit is shifting</h2>
-    <div class="four shift">
-      <div class="card"><span class="tag">APPS</span><h3>Dashboards/tools</h3><p class="muted">Humans still operate the workflow.</p></div>
-      <div class="card"><span class="tag">PROMPTS</span><h3>Instruction snippets</h3><p class="muted">Useful, but too thin to be reliable software.</p></div>
-      <div class="card"><span class="tag">TEMPLATES</span><h3>Automations</h3><p class="muted">Often brittle, platform-bound, and light on governance.</p></div>
-      <div class="card"><span class="tag">WORKFLOWWARE</span><h3>Governed job packages</h3><p class="muted">Agents and humans can operate the work together.</p></div>
-    </div>
-  </section>
-
-  <section class="section two">
-    <div class="card">
-      <h2>Package anatomy</h2>
+  <header class="hero" id="main">
+    <div class="hero-visual" aria-hidden="true">
+      <div class="package-plane"></div>
       <div class="stack">
-        <div class="layer"><b>Human trust surface</b><span class="muted">explainer / proof</span></div>
-        <div class="layer"><b>Workflow spec</b><span class="muted">trigger / finish line</span></div>
-        <div class="layer"><b>Agent spec</b><span class="muted">role / tools / outputs</span></div>
-        <div class="layer"><b>Governance</b><span class="muted">approval / escalation</span></div>
-        <div class="layer"><b>Evals</b><span class="muted">test cases / expected actions</span></div>
-        <div class="layer"><b>Manifest + memory handoff</b><span class="muted">agent-readable</span></div>
+        <div class="layer"><div class="k">Layer 01</div><div class="t">Human trust surface</div></div>
+        <div class="layer"><div class="k">Layer 02</div><div class="t">Workflow + agent specs</div></div>
+        <div class="layer"><div class="k">Layer 03</div><div class="t">Approvals + evals</div></div>
+        <div class="layer"><div class="k">Layer 04</div><div class="t">Install + handoff</div></div>
+        <div class="layer"><div class="k">Unit</div><div class="t">The operating package</div></div>
       </div>
     </div>
-    <div class="card">
-      <h2>What this is — and is not</h2>
-      <table class="matrix"><tr><th>Not just</th><th>Workflowware adds</th></tr><tr><td>A prompt</td><td>Workflow map, evals, governance, handoff, install path.</td></tr><tr><td>A chatbot</td><td>A job-specific operating package with finish lines and rules.</td></tr><tr><td>An automation template</td><td>Human judgment boundaries, approval states, memory and proof.</td></tr><tr><td>An agent skill</td><td>Business wrapper, examples, public trust surface, and deployment instructions.</td></tr></table>
-    </div>
-  </section>
 
-  <section id="spec" class="section two">
-    <div class="card"><h2>Minimum package</h2><pre>workflowware-package/
-  README.md
-  index.html
-  workflow-spec.md
-  agent-spec.md
-  install-guide.md
-  approval-rules.md
-  eval-template.csv
-  agent-handoff.md
-  artifact-manifest.json</pre></div>
-    <div class="card"><h2>Required layers</h2><ul><li>Human trust surface</li><li>Workflow map</li><li>Agent instructions</li><li>Governance and approvals</li><li>Evaluation examples</li><li>Install path</li><li>Memory / manifest / handoff</li><li>Business wrapper</li></ul></div>
-  </section>
-
-
-
-
-
-  <section id="pilot" class="section card">
-    <span class="tag">PILOT OPEN</span>
-    <h2>Testing now: Missed Lead Recovery Workflowware</h2>
-    <p class="muted">The first tester package helps home-service businesses triage missed calls, forms, texts, and messages using sample data first. Customers do not need to understand agents or install MAAT Runtime.</p>
-    <div class="grid">
-      <div class="card"><h3>For phone users</h3><p class="muted">Read the page, submit sample leads, review drafts, approve/reject, and give feedback.</p></div>
-      <div class="card"><h3>For computer users</h3><p class="muted">Download the ZIP, inspect the package files, and test with sample leads.</p></div>
-      <div class="card"><h3>For AI agents</h3><p class="muted">Inspect the package, read approval rules, use sample data first, and ask the human before purchases or live actions.</p></div>
-    </div>
-    <div class="cta-row"><a class="btn primary" href="pilot.html">Open pilot page</a><a class="btn secondary" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">Download tester ZIP</a><a class="btn secondary" href="https://github.com/Propershare/workflowware/issues/new?template=workflowware-pilot.yml">Request guided pilot</a></div>
-  </section>
-
-  <section id="docs" class="section card">
-    <h2>Documentation: start here</h2>
-    <p class="muted">Workflowware docs are written for two audiences at once: customers who know nothing about agents, and AI agents that may be asked to inspect, download, test, or operate a package for a human.</p>
-    <div class="grid">
-      <div class="card">
-        <span class="tag">CUSTOMERS</span>
-        <h3>Getting started</h3>
-        <p class="muted">Plain-language guide: what to download, where to start, whether a phone is enough, and when to choose a guided pilot.</p>
-        <a class="btn secondary" href="docs/customer-getting-started.md">Read customer guide</a>
-      </div>
-      <div class="card">
-        <span class="tag">BEST PRACTICES</span>
-        <h3>Package rules</h3>
-        <p class="muted">How packages should explain outcomes, device needs, downloads, approvals, sample data, feedback, and no-secret boundaries.</p>
-        <a class="btn secondary" href="docs/best-practices.md">Read best practices</a>
-      </div>
-      <div class="card">
-        <span class="tag">AI AGENTS</span>
-        <h3>Agent buyer/operator guide</h3>
-        <p class="muted">Instructions for AI agents that are asked to evaluate, download, purchase, test, or operate a Workflowware package for a human.</p>
-        <a class="btn secondary" href="docs/ai-agent-buyer-guide.md">Read agent guide</a>
+    <div class="hero-copy">
+      <p class="brand">Workflowware<span class="tm">™</span></p>
+      <h1 class="headline">Software packaged as agent-operable workflows.</h1>
+      <p class="support">The job, the rules, the evals, and the handoff — portable for humans and agents.</p>
+      <div class="cta">
+        <a class="primary" href="pilot.html">Test the pilot</a>
+        <a class="ghost" href="SPEC.md">Read the spec</a>
       </div>
     </div>
-    <p class="note"><b>Early rule:</b> a phone is fine for reading, intake, sample-data submission, approvals, and feedback. A computer is better for ZIP downloads, file editing, and DIY local runs. Nontechnical customers should use the guided pilot path.</p>
+  </header>
+
+  <section aria-labelledby="shift-title">
+    <p class="sec-label">The shift</p>
+    <h2 id="shift-title">Apps sold tools. Agents need the work packaged.</h2>
+    <p class="sec-lead">Prompts are ingredients. Agents are workers. Workflowware is the operating package.</p>
+    <blockquote class="quote-block">
+      If you remove the model, the package should still tell you how the job gets done.
+    </blockquote>
   </section>
 
-  <section id="tiers" class="section card">
-    <h2>Free spec, scoped implementation</h2>
-    <p class="muted">Workflowware should be free to understand and start building. Implementation is scoped by workflow complexity, integrations, approval requirements, risk, and ongoing support needs.</p>
-    <div class="grid">
-      <div class="card tier free"><span class="tag">FREE</span><h3>Workflowware Spec</h3><div class="stance">Free/open</div><p class="muted">Definition, package structure, starter templates, manifest examples, and agent-handoff examples.</p><p class="small muted">For developers, agents, researchers, and first package builders.</p></div>
-      <div class="card tier free"><span class="tag">DIY</span><h3>Starter Kit</h3><div class="stance">Planned</div><p class="muted">Polished templates, intake forms, teardown worksheets, eval examples, approval rules, and 3 example packages.</p><p class="small muted">For consultants and freelancers.</p></div>
-      <div class="card tier pro"><span class="tag">SERVICE</span><h3>Workflowware Blueprint</h3><div class="stance">Scoped</div><p class="muted">Old-way/new-way map, risk notes, agent opportunity map, and implementation path for one painful workflow.</p><p class="small muted">Best first paid offer.</p></div>
-      <div class="card tier pro"><span class="tag">IMPLEMENT</span><h3>AI Workflow Operating Kit</h3><div class="stance">Scoped</div><p class="muted">A real package: workflow spec, agent spec, install guide, evals, approval rules, handoff, and visual artifact.</p><p class="small muted">For implementation-ready businesses.</p></div>
-      <div class="card tier pro"><span class="tag">PRO</span><h3>MAAT-backed System</h3><div class="stance">Partner/pro</div><p class="muted">Governed memory, artifact registry, eval tracking, approval logs, operator artifacts, and recurring improvement loop.</p><p class="small muted">Buyer-facing name: Workflowware Control Layer.</p></div>
-      <div class="card tier pro"><span class="tag">TRAINING</span><h3>Installer Program</h3><div class="stance">Training</div><p class="muted">Teach operators how to package, sell, install, and govern Workflowware with reusable examples and sales assets.</p><p class="small muted">For freelancers, consultants, and agencies.</p></div>
+  <section aria-labelledby="anatomy-title">
+    <p class="sec-label">Package anatomy</p>
+    <h2 id="anatomy-title">What every kit carries.</h2>
+    <p class="sec-lead">A Workflowware package is readable by people and agents — not a prompt dump.</p>
+    <div class="anatomy">
+      <ul>
+        <li>
+          <span class="name">Trust surface</span>
+          <p class="desc">Explain what it does, who it’s for, and how it’s controlled.</p>
+        </li>
+        <li>
+          <span class="name">Workflow spec</span>
+          <p class="desc">Trigger, context, finish line, edge cases, success metrics.</p>
+        </li>
+        <li>
+          <span class="name">Agent spec</span>
+          <p class="desc">Role, tools, allowed actions, outputs, escalation.</p>
+        </li>
+        <li>
+          <span class="name">Governance</span>
+          <p class="desc">Approval rules, non-autonomous zones, audit expectations.</p>
+        </li>
+        <li>
+          <span class="name">Evals</span>
+          <p class="desc">Example inputs and expected behavior you can test.</p>
+        </li>
+        <li>
+          <span class="name">Handoff</span>
+          <p class="desc">Manifest + install path so the next operator can continue.</p>
+        </li>
+      </ul>
     </div>
-    <p class="note"><b>Why no fixed public prices?</b> The free public layer spreads the standard. Real implementation pricing should be quoted after workflow review because governance, memory, integrations, and support scope change the work.</p>
   </section>
 
-  <section id="examples" class="section card">
-    <h2>Early examples</h2>
-    <table class="matrix"><tr><th>Package</th><th>Purpose</th></tr><tr><td>Home Services Missed Lead Recovery Kit</td><td>Recover missed calls/forms/texts through governed AI triage, follow-up, booking rules, and escalation.</td></tr><tr><td>BlackLabRats AI Service Installer System</td><td>Train/install/upsell governed AI workflow systems as productized services.</td></tr><tr><td>Workflowware Prior-Art and Naming Dossier</td><td>Research and flag-stamping dossier for the category claim.</td></tr></table>
+  <div class="pilot-panel" id="pilot">
+    <div class="pilot-inner">
+      <p class="sec-label">Open pilot</p>
+      <h2>Missed Lead Recovery</h2>
+      <p class="sec-lead">First public kit for home-service businesses. Sample data first — no live inbox, no secrets, no unattended send.</p>
+      <div class="cta">
+        <a class="primary" href="pilot.html">Open pilot page</a>
+        <a class="ghost" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">Download tester ZIP</a>
+        <a class="ghost" href="https://github.com/Propershare/workflowware/issues/new?template=workflowware-pilot.yml">Request guided pilot</a>
+      </div>
+    </div>
+  </div>
+
+  <section aria-labelledby="start-title">
+    <p class="sec-label">Start here</p>
+    <h2 id="start-title">Built for customers and agents.</h2>
+    <p class="sec-lead">Phone works for reading and sample feedback. Computer works for ZIP and DIY. Agents must ask before live actions.</p>
+    <div class="links">
+      <a class="block" href="docs/customer-getting-started.md">
+        <h3>Customer guide</h3>
+        <p>Plain language: what to download, phone vs computer, guided pilot.</p>
+      </a>
+      <a class="block" href="docs/ai-agent-buyer-guide.md">
+        <h3>Agent buyer guide</h3>
+        <p>How an AI agent should inspect, test, and operate a package for a human.</p>
+      </a>
+      <a class="block" href="docs/best-practices.md">
+        <h3>Best practices</h3>
+        <p>How to publish packages that nontechnical buyers can actually use.</p>
+      </a>
+    </div>
   </section>
 
-  <section id="origin" class="section card">
-    <h2>Origin note</h2>
-    <p>Workflowware.org is maintained by <b>BlackLabRats / propershare</b> as a public category/spec home for Workflowware™ and Agentic Workflow Distribution.</p>
-    <p class="muted"><b>Interim trademark position:</b> Until a federal trademark application is funded and filed, use Workflowware™ — not Workflowware®. The goal is to publish a clear usage trail without overclaiming registration.</p>
-    <p class="muted">We do not claim to have invented agents, prompts, skills, automation templates, or SaaS. The claim is narrower: the missing layer is the governed, agent-operable workflow artifact that packages the job itself.</p>
-    <div class="cta-row"><a class="btn primary" href="https://github.com/propershare/workflowware">Follow propershare/workflowware</a><a class="btn secondary" href="#tiers">Choose a tier</a></div>
+  <section aria-labelledby="claim-title">
+    <p class="sec-label">Claim</p>
+    <div class="claim">
+      <div>
+        <h2 id="claim-title">We package the job itself.</h2>
+        <p>We do not claim to have invented agents, prompts, skills, or automation templates.</p>
+        <p>The claim is narrower: the missing layer is the governed, agent-operable workflow artifact — <strong>Workflowware™</strong>.</p>
+      </div>
+      <div>
+        <p class="sec-label" style="margin-top:0.35rem">Maintainer</p>
+        <p>BlackLabRats / propershare. Public spec stays free. Implementation is scoped. MAAT Runtime powers professional installs when governance and memory are required — not for every DIY pilot.</p>
+        <div class="cta" style="margin-top:1.25rem;opacity:1;animation:none">
+          <a class="ghost" href="https://github.com/Propershare/workflowware">propershare/workflowware</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <div class="footer">Draft v0.2 · Workflowware™ is used as an unregistered mark · Domain reported owned through GoDaddy as of 2026-07-22 · Built from BlackLabRats / Hermes / MAAT artifact system.</div>
-</main>
+  <footer>
+    <div class="mark">Workflowware™</div>
+    <p>Unregistered mark — use ™, not ®, until filing is funded. Domain: workflowware.org · Pages: propershare.github.io/workflowware · Spec v0.1</p>
+  </footer>
 </body>
 </html>
