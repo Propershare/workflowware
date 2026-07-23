@@ -50,7 +50,7 @@
     "interim_strategy": "publish clear public usage trail and maintainer/origin language until trademark filing budget exists"
   },
   "published_repo_url": "https://github.com/Propershare/workflowware",
-  "commit": "8712cfa74f9ff5193912fea2f3d77d6c64294d84",
+  "commit": "bee3081bfa23fcaaabd69a5ccc230c23173a70a9",
   "pages_build_type": "legacy",
   "pages_url": "http://workflowware.org/",
   "dns_status": "workflowware.org currently resolves to GoDaddy DPS; update GoDaddy DNS to GitHub Pages for site to show this repo."
