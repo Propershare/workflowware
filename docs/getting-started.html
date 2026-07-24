@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Getting started — Workflowware™</title>
+  <meta name="description" content="Use Workflowware even if you know nothing about AI agents. Phone vs computer, sample data, guided pilot.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="../index.html"><span class="logo-mark" aria-hidden="true">W</span><span>Workflowware</span></a>
+      <div class="nav-links">
+        <a href="../spec.html">Spec</a>
+        <a href="../library.html">Library</a>
+        <a href="../pilot.html">Pilot</a>
+        <a class="is-active" href="../docs.html">Docs</a>
+        <a href="https://github.com/Propershare/workflowware">GitHub</a>
+      </div>
+    </nav>
+
+    <div class="docs-layout" id="main">
+      <aside class="docs-side" aria-label="Docs navigation">
+        <h2>Start</h2>
+        <a href="../docs.html">Overview</a>
+        <a class="is-active" href="getting-started.html">Getting started</a>
+        <a href="testing.html">Testing the pilot</a>
+        <a href="../spec.html">Package spec</a>
+        <div class="group">
+          <h2>Catalog</h2>
+          <a href="../library.html">Library shelves</a>
+          <a href="research-workflowware.md">Research Workflowware</a>
+        </div>
+        <div class="group">
+          <h2>For agents</h2>
+          <a href="ai-agent-buyer-guide.md">Agent operator guide</a>
+          <a href="best-practices.md">Publishing rules</a>
+        </div>
+        <div class="group">
+          <h2>Reference</h2>
+          <a href="manifesto.md">Manifesto</a>
+          <a href="interim-brand-protection.md">Trademark note</a>
+          <a href="../MANIFEST.schema.json">Manifest schema</a>
+        </div>
+      </aside>
+
+      <article class="docs-main">
+        <h1>Getting started</h1>
+        <p class="lead">Workflowware is usable even if you know nothing about AI agents. You do not need MAAT Runtime, agent frameworks, model providers, prompts, or code to test a package.</p>
+        <p class="md-source">Also available as markdown: <a class="doc-link" href="customer-getting-started.md">customer-getting-started.md</a></p>
+
+        <h2>What am I buying or downloading?</h2>
+        <p>You are getting a <strong>workflow package</strong>: a folder of instructions, examples, rules, and test cases that explain how a specific job should be performed by humans and AI agents together.</p>
+        <pre>missed-lead-recovery-workflowware/
+  README.md
+  workflow-spec.md
+  agent-spec.md
+  approval-rules.md
+  eval-template.csv
+  agent-handoff.md
+  artifact-manifest.json</pre>
+        <p>A package is not an app-store app. It is closer to a complete operating manual plus test kit for one job.</p>
+
+        <h2>Where do I download it?</h2>
+        <p>Early public downloads may come from the Workflowware website, the <code>propershare/workflowware</code> GitHub repository, a GitHub Release ZIP, or a direct link during a pilot.</p>
+        <p>If you are not technical, choose the <a class="doc-link" href="../pilot.html">guided pilot</a> instead of installing files yourself.</p>
+
+        <h2>Can I use this on a phone?</h2>
+        <p>Yes, for review and guided testing. On a phone you can usually read the package page, fill intake, submit sample data, review drafts, approve or reject a message, and give feedback.</p>
+        <p>A phone is usually <strong>not</strong> the best place to unpack ZIPs, edit package files, run scripts, or connect business tools.</p>
+        <table>
+          <thead>
+            <tr><th>Task</th><th>Phone</th><th>Computer</th><th>Guided pilot</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Read the website</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Fill out intake</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Submit 3–5 sample leads</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Review outputs</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Download ZIP package</td><td>Maybe</td><td>Yes</td><td>Not required</td></tr>
+            <tr><td>Edit package files</td><td>No</td><td>Yes</td><td>Not required</td></tr>
+            <tr><td>Connect business systems</td><td>Not recommended</td><td>Maybe</td><td>Best</td></tr>
+          </tbody>
+        </table>
+
+        <h2>What if I know zero about agents?</h2>
+        <p>Use the guided pilot path. Answer plain business questions:</p>
+        <ul>
+          <li>What job do you want help with?</li>
+          <li>What does a good result look like?</li>
+          <li>What should require human approval?</li>
+          <li>What should never happen automatically?</li>
+          <li>Can you provide fake or sample examples?</li>
+        </ul>
+        <p>BlackLabRats/Hermes can operate the package for you and return the results.</p>
+
+        <h2>What if my AI agent is doing the work?</h2>
+        <p>That is expected. Tell the agent:</p>
+        <pre>Open the package README first.
+Do not request secrets or passwords.
+Read approval-rules.md before taking action.
+Use sample data first.
+Do not connect live business systems unless I explicitly approve it.
+Return a summary of what the package does, what files it includes, and what action needs my decision.</pre>
+
+        <h2>What should I never submit?</h2>
+        <ul>
+          <li>Passwords, API keys, browser cookies</li>
+          <li>Payment card data</li>
+          <li>Private customer lists</li>
+          <li>Live inbox credentials</li>
+          <li>Anything you are not allowed to share</li>
+        </ul>
+        <p>Use fake or anonymized examples first.</p>
+
+        <h2>First test recommendation</h2>
+        <p>Start with sample data:</p>
+        <pre>Business type: HVAC
+Lead message: Need AC repair asap. Are you available today?
+Received: yesterday afternoon
+Problem: nobody replied
+Goal: draft a safe follow-up message for human approval</pre>
+        <p>The package should return triage notes, a draft follow-up, approval questions, a next-action recommendation, and notes on what it could not know.</p>
+
+        <h2>What happens after I test?</h2>
+        <p>You may receive package output, a summary, a feedback form, an option for a guided install, or an option for a managed/pro system. Professional installs may use a private governed runtime behind the scenes — you do not need to install that runtime unless the project scope requires it.</p>
+
+        <div class="cta-row" style="margin-top:1.5rem">
+          <a class="btn primary" href="../pilot.html">Go to the pilot →</a>
+          <a class="btn secondary" href="testing.html">Testing guide</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="site">
+      <strong>Workflowware™</strong>
+      Human-readable guide — markdown copy kept for agents and GitHub
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,5 +1,7 @@
 # Customer Getting Started Guide
 
+> Readable HTML (same content): [getting-started.html](getting-started.html)
+
 Workflowware™ is meant to be usable even if you know nothing about AI agents.
 
 You do **not** need to understand MAAT Runtime, agent frameworks, model providers, prompts, or code to test a Workflowware package.

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Docs — Workflowware™</title>
-  <meta name="description" content="Workflowware documentation: start here, pilot testing, package spec, and agent rules.">
+  <meta name="description" content="Workflowware documentation: choose your path — customer, tester, builder, or agent.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,11 +26,16 @@
 
     <div class="docs-layout" id="main">
       <aside class="docs-side" aria-label="Docs navigation">
-        <h2>Docs</h2>
+        <h2>Start</h2>
         <a class="is-active" href="docs.html">Overview</a>
-        <a href="docs/customer-getting-started.md">Getting started</a>
-        <a href="docs/testing-guide.md">Testing the pilot</a>
+        <a href="docs/getting-started.html">Getting started</a>
+        <a href="docs/testing.html">Testing the pilot</a>
         <a href="spec.html">Package spec</a>
+        <div class="group">
+          <h2>Catalog</h2>
+          <a href="library.html">Library shelves</a>
+          <a href="docs/research-workflowware.md">Research Workflowware</a>
+        </div>
         <div class="group">
           <h2>For agents</h2>
           <a href="docs/ai-agent-buyer-guide.md">Agent operator guide</a>
@@ -46,20 +51,34 @@
 
       <article class="docs-main">
         <h1>Documentation</h1>
-        <p class="lead">Short path in. Workflowware packages a real job — specs, approvals, evals, handoff — so humans and agents can operate it together without guessing.</p>
+        <p class="lead">Pick your path. Workflowware packages a real job — specs, approvals, evals, handoff — so humans and agents can operate it together without guessing.</p>
+
+        <h2>Choose a path</h2>
+        <div class="docs-paths">
+          <a class="docs-path" href="docs/getting-started.html">
+            <strong>Customer</strong>
+            <span>New here? Phone vs computer, sample data, guided pilot.</span>
+          </a>
+          <a class="docs-path" href="docs/testing.html">
+            <strong>Tester</strong>
+            <span>Run the Missed Lead Recovery pilot safely with fake leads.</span>
+          </a>
+          <a class="docs-path" href="spec.html">
+            <strong>Builder</strong>
+            <span>Package anatomy, required files, and the reusable template.</span>
+          </a>
+          <a class="docs-path" href="docs/ai-agent-buyer-guide.md">
+            <strong>Agent</strong>
+            <span>Inspect packages, respect approvals, return a human summary.</span>
+          </a>
+        </div>
 
         <h2>Start here</h2>
         <ul>
-          <li>New to this? Read <a class="doc-link" href="docs/customer-getting-started.md">Getting started</a> — phone vs computer, sample data, guided pilot.</li>
-          <li>Want to try something now? Open the <a class="doc-link" href="pilot.html">Missed Lead Recovery pilot</a>.</li>
+          <li>Read <a class="doc-link" href="docs/getting-started.html">Getting started</a> — then open the <a class="doc-link" href="pilot.html">Missed Lead Recovery pilot</a>.</li>
+          <li>Follow <a class="doc-link" href="docs/testing.html">Testing the pilot</a> before any live inbox or CRM connect.</li>
           <li>Building a package? Use the <a class="doc-link" href="spec.html">package spec</a> and <a class="doc-link" href="templates/workflowware-package-template/README.md">template</a>.</li>
-        </ul>
-
-        <h2>What you will not find here</h2>
-        <ul>
-          <li>Private runtime endpoints or install secrets</li>
-          <li>Unattended “set it and forget it” automation promises</li>
-          <li>A catalog of every internal lab project</li>
+          <li>Browse <a class="doc-link" href="library.html">Library shelves</a> for customer, research, operator, runtime, and training lanes.</li>
         </ul>
 
         <h2>Rules that always apply</h2>
@@ -69,10 +88,17 @@
           <li>No passwords, API keys, cookies, or live inbox dumps in chat</li>
         </ul>
 
+        <h2>What you will not find here</h2>
+        <ul>
+          <li>Private runtime endpoints or install secrets</li>
+          <li>Unattended “set it and forget it” automation promises</li>
+          <li>A dump of every internal lab project</li>
+        </ul>
+
         <h2>Source files</h2>
-        <p>Long-form guides live as markdown in the repo so agents and GitHub readers can consume them directly. This page is the map — not a second copy of every document.</p>
+        <p>Top guides are readable HTML on this site. Long-form and agent-oriented copies also live as markdown in the repo so GitHub readers and agents can consume them directly.</p>
         <div class="cta-row" style="margin-top:1.25rem">
-          <a class="btn primary" href="pilot.html">Go to pilot →</a>
+          <a class="btn primary" href="docs/getting-started.html">Open Getting started →</a>
           <a class="btn secondary" href="https://github.com/Propershare/workflowware/tree/main/docs">Browse docs/ on GitHub</a>
         </div>
       </article>
@@ -80,7 +106,7 @@
 
     <footer class="site">
       <strong>Workflowware™</strong>
-      Docs stay thin on purpose — depth lives in linked guides
+      Docs are a chooser first — depth lives in the guides
     </footer>
   </div>
 </body>

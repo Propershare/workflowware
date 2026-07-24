@@ -1,5 +1,7 @@
 # Workflowware Testing Guide
 
+> Readable HTML (same content): [testing.html](testing.html)
+
 Use this guide to test the first public Workflowware™ package: **Home Services Missed Lead Recovery**.
 
 ## Fastest safe test

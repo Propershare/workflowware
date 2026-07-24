@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testing the pilot — Workflowware™</title>
+  <meta name="description" content="Test Missed Lead Recovery Workflowware with sample data. Device guidance, expected outputs, agent rules, feedback.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="../index.html"><span class="logo-mark" aria-hidden="true">W</span><span>Workflowware</span></a>
+      <div class="nav-links">
+        <a href="../spec.html">Spec</a>
+        <a href="../library.html">Library</a>
+        <a href="../pilot.html">Pilot</a>
+        <a class="is-active" href="../docs.html">Docs</a>
+        <a href="https://github.com/Propershare/workflowware">GitHub</a>
+      </div>
+    </nav>
+
+    <div class="docs-layout" id="main">
+      <aside class="docs-side" aria-label="Docs navigation">
+        <h2>Start</h2>
+        <a href="../docs.html">Overview</a>
+        <a href="getting-started.html">Getting started</a>
+        <a class="is-active" href="testing.html">Testing the pilot</a>
+        <a href="../spec.html">Package spec</a>
+        <div class="group">
+          <h2>Catalog</h2>
+          <a href="../library.html">Library shelves</a>
+          <a href="research-workflowware.md">Research Workflowware</a>
+        </div>
+        <div class="group">
+          <h2>For agents</h2>
+          <a href="ai-agent-buyer-guide.md">Agent operator guide</a>
+          <a href="best-practices.md">Publishing rules</a>
+        </div>
+        <div class="group">
+          <h2>Reference</h2>
+          <a href="manifesto.md">Manifesto</a>
+          <a href="interim-brand-protection.md">Trademark note</a>
+          <a href="../MANIFEST.schema.json">Manifest schema</a>
+        </div>
+      </aside>
+
+      <article class="docs-main">
+        <h1>Testing the pilot</h1>
+        <p class="lead">Use this guide to test the first public Workflowware package: Home Services Missed Lead Recovery.</p>
+        <p class="md-source">Also available as markdown: <a class="doc-link" href="testing-guide.md">testing-guide.md</a></p>
+
+        <h2>Fastest safe test</h2>
+        <p>Use fake or anonymized sample data first. Do not send passwords, API keys, browser cookies, payment data, live inbox access, or full customer lists.</p>
+
+        <h2>Device guidance</h2>
+        <table>
+          <thead>
+            <tr><th>Device / path</th><th>Good for</th><th>Not good for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Phone</td><td>Reading, intake, sample submission, approval, feedback</td><td>Unzipping or editing package files</td></tr>
+            <tr><td>Computer</td><td>Downloading ZIPs, editing files, DIY testing</td><td>Not required for guided pilot</td></tr>
+            <tr><td>AI agent</td><td>Inspecting files, summarizing, checking approval rules</td><td>Acting without human approval</td></tr>
+            <tr><td>Guided pilot</td><td>Nontechnical testers</td><td>Unattended production automation</td></tr>
+          </tbody>
+        </table>
+
+        <h2>What to test</h2>
+        <p>Submit 1–3 missed lead examples like:</p>
+        <pre>Business type: HVAC
+Lead message: Need AC repair asap. Are you available today?
+Received: yesterday afternoon
+Problem: nobody replied
+Goal: draft a safe follow-up for human approval</pre>
+        <p>Expected output:</p>
+        <ul>
+          <li>Triage notes</li>
+          <li>Safe follow-up draft</li>
+          <li>Approval questions</li>
+          <li>Next-action recommendation</li>
+          <li>Uncertainty notes</li>
+        </ul>
+
+        <h2>Instructions for AI agents</h2>
+        <ol>
+          <li>Read the package <code>README.md</code> first.</li>
+          <li>Read <code>approval-rules.md</code> before suggesting any action.</li>
+          <li>Use sample data before live data.</li>
+          <li>Do not request secrets or credentials.</li>
+          <li>Draft first; do not send messages.</li>
+          <li>Ask the human before purchases, account connections, customer contact, or live system changes.</li>
+          <li>Return a plain-language summary for a nontechnical human.</li>
+        </ol>
+
+        <h2>Feedback questions</h2>
+        <ul>
+          <li>Was the package understandable?</li>
+          <li>Could a phone user understand what to do?</li>
+          <li>Could an AI agent inspect it safely?</li>
+          <li>What confused you?</li>
+          <li>Would the output help recover a missed lead?</li>
+          <li>Would you consider a scoped setup/blueprint?</li>
+        </ul>
+
+        <div class="cta-row" style="margin-top:1.5rem">
+          <a class="btn primary" href="../pilot.html">Open the pilot →</a>
+          <a class="btn secondary" href="../downloads/missed-lead-recovery-workflowware-v0.1.zip">Download tester ZIP</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="site">
+      <strong>Workflowware™</strong>
+      Sample data first — draft before send
+    </footer>
+  </div>
+</body>
+</html>
