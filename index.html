@@ -561,29 +561,10 @@
             Test the pilot
             <span aria-hidden="true">→</span>
           </a>
-          <a class="btn secondary" href="spec.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3z"/><path d="M14 3v5h5"/></svg>
-            Read the spec
+          <a class="btn secondary" href="library.html">
+            See what we build
             <span aria-hidden="true">→</span>
           </a>
-        </div>
-        <div class="traits" aria-label="Product traits">
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 19c1.5-3 4-4.5 7-4.5S17.5 16 19 19"/></svg>
-            Agent-native
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 7h8M8 12h8M8 17h5"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg>
-            Interoperable
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-            Verifiable
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="7" width="13" height="10" rx="2"/><path d="M16 10h3l2 2v5h-5"/></svg>
-            Portable
-          </span>
         </div>
       </div>
 
@@ -614,86 +595,36 @@
       </div>
     </header>
 
-    <div class="proof">
-      <div class="label">Open repos</div>
-      <div class="proof-logos" aria-label="Public GitHub repositories">
-        <a href="https://github.com/Propershare/workflowware"><code>workflowware</code></a>
-        <a href="https://github.com/Propershare/hermes-agent"><code>hermes-agent</code></a>
-        <a href="https://github.com/Propershare/maat-ecosystem"><code>maat-ecosystem</code></a>
-        <a href="https://github.com/Propershare/tehuti-guard"><code>tehuti-guard</code></a>
-        <a href="https://github.com/Propershare/maatbenchmark"><code>maatbenchmark</code></a>
-      </div>
-    </div>
-
-    <section class="block" aria-labelledby="shift-title">
-      <p class="sec-kicker">The shift</p>
-      <h2 id="shift-title">Apps sold tools. Agents need the work packaged.</h2>
-      <p class="sec-lead">Prompts are ingredients. Agents are workers. Workflowware is the operating package.</p>
-      <blockquote class="quote">If you remove the model, the package should still tell you how the job gets done.</blockquote>
-    </section>
-
-    <section class="block" aria-labelledby="anatomy-title">
-      <p class="sec-kicker">Package anatomy</p>
-      <h2 id="anatomy-title">What every kit carries.</h2>
-      <p class="sec-lead">A Workflowware package is readable by people and agents — not a prompt dump.</p>
-      <div class="anatomy">
-        <ul>
-          <li><span class="name">Trust surface</span><p class="desc">Explain what it does, who it’s for, and how it’s controlled.</p></li>
-          <li><span class="name">Workflow spec</span><p class="desc">Trigger, context, finish line, edge cases, success metrics.</p></li>
-          <li><span class="name">Agent spec</span><p class="desc">Role, tools, allowed actions, outputs, escalation.</p></li>
-          <li><span class="name">Governance</span><p class="desc">Approval rules, non-autonomous zones, audit expectations.</p></li>
-          <li><span class="name">Evals</span><p class="desc">Example inputs and expected behavior you can test.</p></li>
-          <li><span class="name">Handoff</span><p class="desc">Manifest + install path so the next operator can continue.</p></li>
-        </ul>
-      </div>
+    <section class="block" aria-labelledby="shift-title" style="border-top:1px solid var(--line);padding-top:2.5rem">
+      <p class="sec-kicker">The point</p>
+      <h2 id="shift-title" style="font-size:clamp(1.5rem,3vw,2rem);max-width:18ch;letter-spacing:-0.035em;margin:0 0 0.85rem">If you remove the model, the package should still tell you how the job gets done.</h2>
+      <p class="sec-lead" style="color:var(--muted);max-width:42ch;line-height:1.55;margin:0 0 2rem">Prompts are ingredients. Agents are workers. Workflowware is the operating package.</p>
     </section>
 
     <div class="pilot-band" id="pilot">
-      <p class="sec-kicker">Open pilot</p>
+      <p class="sec-kicker">Live pilot</p>
       <h2>Missed Lead Recovery</h2>
-      <p class="sec-lead">First public kit for home-service businesses. Sample data first — no live inbox, no secrets, no unattended send.</p>
+      <p class="sec-lead">First public kit — home services. Sample data first. Human approval before any real send.</p>
       <div class="cta-row">
-        <a class="btn primary" href="pilot.html">Open pilot page →</a>
-        <a class="btn secondary" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">Download tester ZIP</a>
-        <a class="btn secondary" href="https://github.com/Propershare/workflowware/issues/new?template=workflowware-pilot.yml">Request guided pilot</a>
+        <a class="btn primary" href="pilot.html">Open pilot →</a>
+        <a class="btn secondary" href="library.html">See what we can build</a>
       </div>
     </div>
 
-    <section class="block" aria-labelledby="start-title">
-      <p class="sec-kicker">Start here</p>
-      <h2 id="start-title">Built for customers, agents, and operators.</h2>
-      <p class="sec-lead">Phone works for reading and sample feedback. Computer works for ZIP and DIY. Agents must ask before live actions.</p>
-      <div class="cards">
-        <a href="docs.html"><h3>Docs hub</h3><p>Customer, agent, and publisher paths in one place.</p></a>
-        <a href="docs/customer-getting-started.md"><h3>Customer guide</h3><p>What to download, phone vs computer, guided pilot.</p></a>
-        <a href="docs/ai-agent-buyer-guide.md"><h3>Agent buyer guide</h3><p>How an AI agent should inspect and operate a package.</p></a>
-        <a href="library.html"><h3>Library</h3><p>Roadmap, template, and next package candidates.</p></a>
-      </div>
-    </section>
-
-    <section class="block" aria-labelledby="library-title">
-      <p class="sec-kicker">Library</p>
-      <h2 id="library-title">A revenue-focused package library.</h2>
-      <p class="sec-lead">Next kits: review response, estimate follow-up, inbox triage, intake cleanup, content repurposing.</p>
-      <div class="cards">
-        <a href="docs/workflowware-library-roadmap.md"><h3>Roadmap</h3><p>Package backlog and acceptance criteria.</p></a>
-        <a href="templates/workflowware-package-template/README.md"><h3>Package template</h3><p>Reusable skeleton with specs, approvals, evals.</p></a>
-        <a href="examples/missed-lead-recovery-workflowware/README.md"><h3>Seed package</h3><p>Missed-lead recovery pattern for the next kits.</p></a>
-      </div>
-    </section>
-
-    <section class="block" aria-labelledby="claim-title">
-      <p class="sec-kicker">Claim</p>
-      <h2 id="claim-title">We package the job itself.</h2>
-      <p class="sec-lead">We do not claim to have invented agents, prompts, skills, or automation templates. The claim is narrower: the governed, agent-operable workflow artifact — <strong>Workflowware™</strong>.</p>
+    <section class="block" style="border-top:0;padding-top:1.5rem" aria-labelledby="next-title">
+      <p class="sec-kicker">Next</p>
+      <h2 id="next-title" style="font-size:1.35rem;letter-spacing:-0.03em;margin:0 0 1rem">Keep going</h2>
       <div class="cta-row">
-        <a class="btn secondary" href="https://github.com/Propershare/workflowware">propershare/workflowware →</a>
+        <a class="btn secondary" href="spec.html">Package spec</a>
+        <a class="btn secondary" href="library.html">Library — packages we build</a>
+        <a class="btn secondary" href="docs.html">Docs</a>
+        <a class="btn secondary" href="https://github.com/Propershare/workflowware">GitHub</a>
       </div>
     </section>
 
     <footer class="site">
       <strong>Workflowware™</strong>
-      Unregistered mark — use ™, not ®, until filing is funded. Domain: workflowware.org · Maintained by BlackLabRats / propershare · Spec v0.1
+      Unregistered mark — use ™, not ®, until filing is funded. Maintained by BlackLabRats / propershare · Spec v0.1
     </footer>
   </div>
 </body>
