@@ -128,12 +128,21 @@ Training packages teach humans and agents how to package and install Workflowwar
 
 Current docs and planned packages:
 
+- Python Coding Starter Workflowware — beginner-safe 30-day Python starter kit for learners, mentors, and AI tutors.
 - [Customer getting started](customer-getting-started.md)
 - [AI agent buyer/operator guide](ai-agent-buyer-guide.md)
 - [Best practices](best-practices.md)
 - Workflowware Installer Program
 - Customer Zero-Agent Onboarding
 - Workflowware Sales Teardown Kit
+
+### Python Coding Starter Workflowware
+
+- **Status:** draft-ready training kit
+- **MAAT ID:** `25027e2e-1c08-454d-99d5-5504118a353d`
+- **Audience:** brand-new Python learners, mentors, AI tutors, BlackLabRats training operators
+- **Purpose:** a 30-day beginner path with setup guide, first lesson, practice exercises, mini-projects, mentor guide, progress tracker, and agent handoff.
+- **Public safety:** educational only; no secrets, no paid API dependency, no offensive security automation. Defensive/security examples use owned or sample files only.
 
 ---
 
