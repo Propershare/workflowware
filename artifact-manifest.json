@@ -31,7 +31,8 @@
     ".github/ISSUE_TEMPLATE/workflowware-pilot.yml",
     "docs/library.md",
     "docs/workflowware-library-roadmap.md",
-    "templates/workflowware-package-template/"
+    "templates/workflowware-package-template/",
+    "docs/research-workflowware.md"
   ],
   "related_artifacts": [
     {
@@ -71,7 +72,7 @@
     "docs/best-practices.md",
     "docs/ai-agent-buyer-guide.md"
   ],
-  "last_updated_note": "Added Workflowware library index, revenue-focused roadmap, and reusable package template.",
+  "last_updated_note": "Organized Workflowware library into category shelves and added sanitized Research Workflowware / Tehuti Research Kit entries.",
   "pilot_offer": {
     "title": "Missed Lead Recovery Workflowware Pilot",
     "page": "pilot.html",
@@ -83,7 +84,17 @@
   "library": {
     "index": "docs/library.md",
     "roadmap": "docs/workflowware-library-roadmap.md",
+    "research_workflowware": "docs/research-workflowware.md",
     "template": "templates/workflowware-package-template/",
+    "shelves": [
+      "customer-pilot-packages",
+      "research-workflowware",
+      "operator-workflowware",
+      "runtime-pro-workflowware",
+      "training-installer-workflowware"
+    ],
+    "internal_pro_research_entry": "Tehuti Research Kit",
+    "tehuti_research_kit_maat_id": "9f4e1017-ae33-40d1-86ab-8883605d7113",
     "next_package_candidate": "Review Response and Reputation Recovery Workflowware"
   }
 }
