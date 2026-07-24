@@ -363,14 +363,29 @@
     .proof-logos {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.1rem 1.5rem;
+      gap: 0.55rem 0.75rem;
       align-items: center;
     }
-    .proof-logos span {
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: -0.03em;
-      color: #8a94a1;
+    .proof-logos a {
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.4rem 0.75rem;
+      transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+    .proof-logos a:hover {
+      border-color: #b7c0cc;
+      transform: translateY(-1px);
+    }
+    .proof-logos a code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
     }
 
     /* ——— Lower sections (same system) ——— */
@@ -600,13 +615,13 @@
     </header>
 
     <div class="proof">
-      <div class="label">Built for teams packaging real work</div>
-      <div class="proof-logos" aria-label="Stack">
-        <span>BlackLabRats</span>
-        <span>propershare</span>
-        <span>MAAT</span>
-        <span>Hermes</span>
-        <span>Tehuti Lab</span>
+      <div class="label">Open repos</div>
+      <div class="proof-logos" aria-label="Public GitHub repositories">
+        <a href="https://github.com/Propershare/workflowware"><code>workflowware</code></a>
+        <a href="https://github.com/Propershare/hermes-agent"><code>hermes-agent</code></a>
+        <a href="https://github.com/Propershare/maat-ecosystem"><code>maat-ecosystem</code></a>
+        <a href="https://github.com/Propershare/tehuti-guard"><code>tehuti-guard</code></a>
+        <a href="https://github.com/Propershare/maatbenchmark"><code>maatbenchmark</code></a>
       </div>
     </div>
 
