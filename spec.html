@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spec — Workflowware™</title>
+  <meta name="description" content="Workflowware Package Spec v0.1 — what every agent-operable workflow package must include.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true">W</span><span>Workflowware</span></a>
+      <div class="nav-links">
+        <a class="is-active" href="spec.html">Spec</a>
+        <a href="library.html">Library</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="docs.html">Docs</a>
+        <a href="https://github.com/Propershare/workflowware">GitHub</a>
+      </div>
+    </nav>
+
+    <header class="page-hero" id="main">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Spec v0.1</p>
+      <h1>The package standard for <span class="mark">agent-operable</span> work.</h1>
+      <p class="lead">Workflowware is software packaged as an agent-operable workflow — readable by humans and agents, with the job, rules, evals, and handoff in one kit.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://github.com/Propershare/workflowware/blob/main/SPEC.md">View SPEC.md on GitHub →</a>
+        <a class="btn secondary" href="templates/workflowware-package-template/README.md">Open package template</a>
+      </div>
+    </header>
+
+    <section class="block">
+      <p class="sec-kicker">Definition</p>
+      <h2>What a package must do.</h2>
+      <p class="sec-lead">Explain the job, define the workflow, describe agent behavior, state safety boundaries, include evaluation examples, and provide handoff metadata.</p>
+    </section>
+
+    <section class="block">
+      <p class="sec-kicker">Minimum package</p>
+      <h2>MVP file set.</h2>
+      <pre>workflowware-package/
+  README.md
+  index.html
+  workflow-spec.md
+  agent-spec.md
+  install-guide.md
+  approval-rules.md
+  eval-template.csv
+  agent-handoff.md
+  artifact-manifest.json</pre>
+    </section>
+
+    <section class="block">
+      <p class="sec-kicker">Required layers</p>
+      <h2>Concepts every kit carries.</h2>
+      <div class="cards">
+        <div class="card"><h3>Human trust surface</h3><p>What it does, why it exists, how it’s controlled, and what proof exists.</p></div>
+        <div class="card"><h3>Workflow spec</h3><p>Trigger, context, old/new workflow, finish line, edge cases, success metrics.</p></div>
+        <div class="card"><h3>Agent spec</h3><p>Role, inputs, tools, allowed/prohibited actions, outputs, escalation.</p></div>
+        <div class="card"><h3>Governance</h3><p>Approvals, safety boundaries, audit trail, human review, non-autonomous zones.</p></div>
+        <div class="card"><h3>Evals</h3><p>Example inputs and expected behavior you can test and improve.</p></div>
+        <div class="card"><h3>Handoff + manifest</h3><p>Install path, customization notes, and machine-readable package map.</p></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="sec-kicker">Manifest</p>
+      <h2>Machine-readable fields v0.1.</h2>
+      <pre>{
+  "title": "string",
+  "artifact_type": "workflowware_package | …",
+  "status": "draft | prototype | active | published",
+  "primary_artifact": "file:///… or https://…",
+  "summary": "string",
+  "files": [],
+  "related_artifacts": [],
+  "agent_handoff": "path",
+  "registered_in_maat_memory": "uuid or pending"
+}</pre>
+      <p class="sec-lead" style="margin-top:1.25rem">Full schema: <a href="MANIFEST.schema.json"><code>MANIFEST.schema.json</code></a></p>
+    </section>
+
+    <div class="band">
+      <p class="sec-kicker">Next</p>
+      <h2>See a live package.</h2>
+      <p class="sec-lead">Missed Lead Recovery is the first public pilot built on this spec.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="pilot.html">Open the pilot →</a>
+        <a class="btn secondary" href="library.html">Browse the library</a>
+      </div>
+    </div>
+
+    <footer class="site">
+      <strong>Workflowware™</strong>
+      Spec v0.1 · Free/open package definition · Maintained by BlackLabRats / propershare
+    </footer>
+  </div>
+</body>
+</html>
