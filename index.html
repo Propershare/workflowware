@@ -70,30 +70,34 @@
       position: relative;
       min-height: calc(100vh - 3.5rem);
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      /* Copy stays left; artwork cannot invade that track */
+      grid-template-columns: minmax(16rem, 0.95fr) minmax(14rem, 1.05fr);
       align-items: center;
-      gap: 1.5rem 2rem;
+      column-gap: 3rem;
+      row-gap: 1.5rem;
       max-width: var(--max);
       margin: 0 auto;
       padding: 2rem 1.25rem 3rem;
-      overflow: visible;
+      overflow: hidden;
       border-bottom: 1px solid var(--line);
     }
 
     .hero-visual {
       position: relative;
-      z-index: 0;
-      min-height: min(62vh, 520px);
+      z-index: 1;
+      min-height: min(58vh, 480px);
       pointer-events: none;
-      overflow: visible;
+      /* Keep tilted stack inside this column only */
+      overflow: hidden;
+      isolation: isolate;
     }
 
     /* Dominant package visual (right column on desktop) */
     .package-plane {
       position: absolute;
-      inset: -8% -12% -8% -20%;
+      inset: 0;
       background:
-        linear-gradient(105deg, transparent 40%, rgba(31, 79, 216, 0.08) 40%, rgba(31, 79, 216, 0.08) 41%, transparent 41%),
+        linear-gradient(105deg, transparent 42%, rgba(31, 79, 216, 0.09) 42%, rgba(31, 79, 216, 0.09) 43%, transparent 43%),
         repeating-linear-gradient(
           -12deg,
           transparent,
@@ -101,53 +105,51 @@
           rgba(14, 20, 17, 0.035) 28px,
           rgba(14, 20, 17, 0.035) 29px
         );
-      border-radius: 0;
     }
 
     .stack {
       position: relative;
       z-index: 1;
-      width: 100%;
-      max-width: 420px;
-      margin: 0 auto;
+      width: min(100%, 360px);
+      margin: 1.25rem auto;
       display: grid;
       align-content: center;
-      gap: 0.75rem;
-      padding: 1.5rem 0.5rem;
-      transform: rotate(-3deg);
+      gap: 0.7rem;
+      padding: 1.25rem 0.75rem;
+      transform: rotate(-2.5deg);
+      transform-origin: center center;
     }
 
     .layer {
       background: var(--paper);
       border: 1px solid var(--ink);
-      padding: 0.95rem 1.15rem 0.9rem;
-      box-shadow: 5px 5px 0 rgba(14, 20, 17, 0.12);
+      padding: 0.9rem 1.05rem 0.85rem;
+      box-shadow: 4px 4px 0 rgba(14, 20, 17, 0.12);
       opacity: 0;
       transform: translateY(28px);
       animation: rise 0.9s var(--ease) forwards;
     }
-    .layer:nth-child(1) { animation-delay: 0.15s; width: 92%; margin-left: 8%; }
-    .layer:nth-child(2) { animation-delay: 0.28s; width: 96%; margin-left: 4%; }
+    .layer:nth-child(1) { animation-delay: 0.15s; width: 92%; margin-left: 4%; }
+    .layer:nth-child(2) { animation-delay: 0.28s; width: 96%; margin-left: 2%; }
     .layer:nth-child(3) { animation-delay: 0.41s; width: 100%; }
-    .layer:nth-child(4) { animation-delay: 0.54s; width: 88%; margin-left: 6%; background: var(--ink); color: var(--paper); box-shadow: 5px 5px 0 rgba(31, 79, 216, 0.35); }
-    .layer:nth-child(5) { animation-delay: 0.67s; width: 94%; margin-left: 3%; background: var(--signal); border-color: var(--ink); }
+    .layer:nth-child(4) { animation-delay: 0.54s; width: 90%; margin-left: 4%; background: var(--ink); color: var(--paper); box-shadow: 4px 4px 0 rgba(31, 79, 216, 0.35); }
+    .layer:nth-child(5) { animation-delay: 0.67s; width: 94%; margin-left: 2%; background: var(--signal); border-color: var(--ink); }
 
     .layer .k {
       font-family: "Syne", sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       opacity: 0.7;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
     }
     .layer .t {
       font-family: "Syne", sans-serif;
       font-weight: 700;
-      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
       letter-spacing: -0.02em;
-      line-height: 1.25;
-      overflow-wrap: anywhere;
+      line-height: 1.3;
     }
 
     @keyframes rise {
@@ -156,37 +158,40 @@
 
     .hero-copy {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       min-width: 0;
-      max-width: 34rem;
-      padding: 0.5rem 0 0;
+      max-width: 28rem;
+      padding: 0.5rem 0.5rem 0 0;
+      /* Hard stop: brand cannot paint over the stack */
+      overflow: hidden;
     }
 
     .brand {
       font-family: "Syne", sans-serif;
       font-weight: 800;
-      /* Cap size so the word fits; never stretch edge-to-edge */
-      font-size: clamp(2.6rem, 7vw, 4.75rem);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      margin: 0 0 1.1rem;
-      padding: 0.08em 0.12em 0.12em 0;
+      font-size: clamp(2.5rem, 5.5vw, 3.85rem);
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+      margin: 0 0 1.15rem;
       color: var(--ink);
-      width: max-content;
+      width: 100%;
       max-width: 100%;
-      overflow: visible;
-      white-space: normal;
-      hyphens: none;
+      display: block;
       opacity: 0;
       animation: brandIn 1s var(--ease) 0.05s forwards;
     }
+    .brand .line {
+      display: block;
+      line-height: 1.12;
+      padding-bottom: 0.06em; /* keep descenders if any */
+    }
     .brand .tm {
-      font-size: 0.32em;
+      font-size: 0.34em;
       vertical-align: super;
       letter-spacing: 0;
       font-weight: 700;
       line-height: 1;
-      margin-left: 0.05em;
+      margin-left: 0.06em;
     }
 
     @keyframes brandIn {
@@ -197,22 +202,22 @@
     .headline {
       font-family: "Syne", sans-serif;
       font-weight: 700;
-      font-size: clamp(1.25rem, 2.6vw, 1.75rem);
-      line-height: 1.3;
-      letter-spacing: -0.025em;
-      max-width: 22ch;
-      margin: 0 0 0.9rem;
-      padding-bottom: 0.05em; /* room for descenders (g, y, p) */
+      font-size: clamp(1.2rem, 2.3vw, 1.6rem);
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      max-width: 20ch;
+      margin: 0 0 0.95rem;
+      padding-bottom: 0.12em; /* room for g / y / p */
       overflow: visible;
       opacity: 0;
       animation: brandIn 1s var(--ease) 0.2s forwards;
     }
 
     .support {
-      font-size: clamp(1.05rem, 2vw, 1.15rem);
-      line-height: 1.5;
+      font-size: clamp(1.02rem, 1.8vw, 1.12rem);
+      line-height: 1.55;
       color: var(--ink-soft);
-      max-width: 36ch;
+      max-width: 34ch;
       margin: 0 0 1.75rem;
       opacity: 0;
       animation: brandIn 1s var(--ease) 0.32s forwards;
@@ -429,8 +434,15 @@
       }
       .package-plane { opacity: 0.55; inset: -4% -8%; }
       .brand {
-        font-size: clamp(2.4rem, 11vw, 3.4rem);
-        width: auto;
+        font-size: clamp(2.6rem, 12vw, 3.5rem);
+      }
+      .hero-copy {
+        overflow: visible;
+        max-width: none;
+        padding-right: 0;
+      }
+      .hero-visual {
+        overflow: hidden;
       }
       .headline { max-width: none; }
       .layer { box-shadow: 4px 4px 0 rgba(14, 20, 17, 0.1); }
@@ -465,7 +477,10 @@
 
   <header class="hero" id="main">
     <div class="hero-copy">
-      <p class="brand">Workflowware<span class="tm">™</span></p>
+      <p class="brand" aria-label="Workflowware">
+        <span class="line">Workflow</span>
+        <span class="line">ware<span class="tm">™</span></span>
+      </p>
       <h1 class="headline">Software packaged as agent-operable workflows.</h1>
       <p class="support">The job, the rules, the evals, and the handoff — portable for humans and agents.</p>
       <div class="cta">
