@@ -1,6 +1,6 @@
 {
   "name": "Workflowware",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "purpose": "A platform for discovering, installing, verifying, running, and handing off governed AI workflow packages.",
   "start_here": [
     "AGENTS.md",
@@ -65,22 +65,38 @@
     "/app.html": {
       "file": "app.html",
       "role": "platform_lab",
-      "status": "active_build"
+      "status": "active_build",
+      "min_tier": "free"
     },
     "/app-library.html": {
       "file": "app-library.html",
       "role": "platform_library",
-      "status": "active_build"
+      "status": "active_build",
+      "min_tier": "free"
     },
     "/app-marketplace.html": {
       "file": "app-marketplace.html",
       "role": "platform_marketplace",
-      "status": "active_build"
+      "status": "active_build",
+      "min_tier": "pro",
+      "paywall": true
     },
     "/app-builder.html": {
       "file": "app-builder.html",
       "role": "platform_builder",
-      "status": "active_build"
+      "status": "active_build",
+      "min_tier": "pro",
+      "paywall": true
+    },
+    "/pricing.html": {
+      "file": "pricing.html",
+      "role": "pricing_and_tiers",
+      "primary_actions": [
+        "start_free",
+        "request_pro",
+        "demo_unlock_pro"
+      ],
+      "status": "active"
     }
   },
   "core_entities": {
@@ -148,5 +164,25 @@
     "platform_shell": "platform-classic.css",
     "contact_sheet": "visuals/assets-inbox/reference-platform-contact-sheet.png",
     "dense_dashboard_art": "parked_for_tehuti_lab_control"
+  },
+  "entitlements": {
+    "map": "assets/entitlements.json",
+    "gate": "assets/ww-entitlements.js",
+    "free": [
+      "marketing",
+      "spec",
+      "docs",
+      "public_library",
+      "pilot",
+      "lab_preview",
+      "library_browse"
+    ],
+    "pro": [
+      "builder",
+      "marketplace",
+      "lab_full",
+      "install_actions"
+    ],
+    "runtime_hook": "not_wired"
   }
 }

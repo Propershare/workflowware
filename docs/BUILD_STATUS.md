@@ -27,6 +27,16 @@
 - Platform panels built in **classic colors** from contact sheet layout
 - Honest metrics (unproven / no invented success %)
 
+## Entitlements
+
+| Tier | Access |
+|------|--------|
+| Free | Marketing, spec, docs, public library, pilot, Lab preview, library browse |
+| Pro | Builder, Marketplace, full Lab actions (demo unlock or request) |
+
+Gate: `assets/ww-entitlements.js` + `assets/entitlements.json` + `pricing.html`  
+Runtime hook reserved for `/v1/who` + `/v1/entitlements`.
+
 ## Next
 
 1. Local `workflowware-ctl` status JSON into Lab terminal/health  

@@ -1,0 +1,66 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-07-31",
+  "doctrine": "Free = understand and start. Pro = platform operating layer. Exact prices stay scoped — see docs/tiers-and-pricing.md. Runtime will replace local demo sessions.",
+  "tiers": {
+    "anonymous": {
+      "label": "Visitor",
+      "public": true
+    },
+    "free": {
+      "label": "Free",
+      "public": true,
+      "includes": [
+        "marketing_site",
+        "spec_docs",
+        "public_library",
+        "pilot",
+        "platform_lab_preview",
+        "platform_library_browse"
+      ]
+    },
+    "pro": {
+      "label": "Pro",
+      "public": false,
+      "includes": [
+        "everything_in_free",
+        "platform_lab_full",
+        "platform_marketplace",
+        "platform_builder",
+        "create_workflow",
+        "install_actions",
+        "runtime_status_when_wired"
+      ],
+      "billing": "scoped_after_review",
+      "contact": "mailto:hello@workflowware.org?subject=Workflowware%20Pro"
+    }
+  },
+  "routes": {
+    "index.html": { "min_tier": "anonymous" },
+    "spec.html": { "min_tier": "anonymous" },
+    "docs.html": { "min_tier": "anonymous" },
+    "library.html": { "min_tier": "anonymous" },
+    "pilot.html": { "min_tier": "anonymous" },
+    "pricing.html": { "min_tier": "anonymous" },
+    "app.html": { "min_tier": "free", "mode": "preview_on_free" },
+    "app-library.html": { "min_tier": "free", "mode": "browse_on_free" },
+    "app-marketplace.html": { "min_tier": "pro" },
+    "app-builder.html": { "min_tier": "pro" }
+  },
+  "features": {
+    "lab_preview": { "min_tier": "free" },
+    "lab_full": { "min_tier": "pro" },
+    "library_browse": { "min_tier": "free" },
+    "marketplace": { "min_tier": "pro" },
+    "builder": { "min_tier": "pro" },
+    "create_workflow": { "min_tier": "pro" },
+    "install_actions": { "min_tier": "pro" },
+    "open_command_center": { "min_tier": "pro" }
+  },
+  "runtime_hook": {
+    "status": "not_wired",
+    "who_endpoint": "/v1/who",
+    "entitlement_endpoint": "/v1/entitlements",
+    "note": "When Workflowware Runtime is connected, replace localStorage session with signed Runtime who/may."
+  }
+}

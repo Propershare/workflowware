@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pricing — Workflowware™</title>
+  <meta name="description" content="Free tier for the Workflowware standard. Pro platform tier for Lab, marketplace, and builder — scoped after review.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <style>
+    .tier-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:1.5rem 0 2rem}
+    .tier-card{border:1px solid var(--line);border-radius:14px;padding:1.35rem 1.4rem;background:#fff}
+    .tier-card.pro{border-color:var(--lime-deep);box-shadow:0 0 0 3px rgba(200,245,66,.25)}
+    .tier-card h2{margin:0 0 .35rem;font-size:1.35rem;letter-spacing:-.02em}
+    .tier-card .price{font-size:.95rem;color:var(--muted);margin:0 0 1rem}
+    .tier-card ul{margin:0 0 1.25rem;padding-left:1.1rem;color:var(--muted);line-height:1.55}
+    .tier-card li{margin:.35rem 0}
+    .tier-card .btn{width:100%;justify-content:center}
+    .fine{font-size:.85rem;color:var(--muted);line-height:1.5}
+    @media(max-width:720px){.tier-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true">W</span><span>Workflowware</span></a>
+      <div class="nav-links">
+        <a href="app.html">Platform</a>
+        <a href="spec.html">Spec</a>
+        <a href="library.html">Library</a>
+        <a href="pilot.html">Pilot</a>
+        <a class="is-active" href="pricing.html">Pricing</a>
+        <a href="docs.html">Docs</a>
+      </div>
+    </nav>
+
+    <header class="page-hero" id="main">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Free to start · Pro to operate</p>
+      <h1>Free standard. Paid platform wall.</h1>
+      <p class="lead">
+        Spec, docs, and the public pilot stay free. The operating platform
+        (Builder, Marketplace installs, full Lab actions) sits behind Pro.
+        Exact Pro pricing is scoped after review — not a fake public rate card.
+      </p>
+    </header>
+
+    <section class="tier-grid" aria-label="Tiers">
+      <article class="tier-card">
+        <h2>Free</h2>
+        <p class="price">$0 · always</p>
+        <ul>
+          <li>Public marketing site</li>
+          <li>Spec + docs</li>
+          <li>Public library + live pilot</li>
+          <li>Platform Lab preview</li>
+          <li>Platform library browse</li>
+        </ul>
+        <a class="btn primary" href="app.html" id="start-free">Start Free →</a>
+      </article>
+      <article class="tier-card pro">
+        <h2>Pro</h2>
+        <p class="price">Scoped after review · demo unlock for lab</p>
+        <ul>
+          <li>Everything in Free</li>
+          <li>Workflow Builder</li>
+          <li>Marketplace installs</li>
+          <li>Full Lab actions + command center</li>
+          <li>Runtime status when wired</li>
+        </ul>
+        <a class="btn primary" href="mailto:hello@workflowware.org?subject=Workflowware%20Pro">Request Pro</a>
+        <p style="margin:.75rem 0 0">
+          <button class="btn secondary" type="button" id="demo-pro" style="width:100%;justify-content:center">Unlock Pro (demo)</button>
+        </p>
+      </article>
+    </section>
+
+    <p class="fine">
+      Offer ladder doctrine: <a href="docs/tiers-and-pricing.md">docs/tiers-and-pricing.md</a>.
+      Machine map: <a href="assets/entitlements.json">assets/entitlements.json</a>.
+      Next: connect Workflowware Runtime <code>/v1/who</code> + <code>/v1/entitlements</code> so this wall stops using local demo sessions.
+    </p>
+
+    <footer class="site" style="margin-top:2rem">
+      <strong>Workflowware™</strong>
+      Free to understand. Pro to run the platform.
+    </footer>
+  </div>
+  <script src="assets/ww-entitlements.js"></script>
+  <script>
+    document.getElementById('start-free').addEventListener('click', function () {
+      if (window.WWEntitlements) WWEntitlements.ensureFreeSession();
+    });
+    document.getElementById('demo-pro').addEventListener('click', function () {
+      if (window.WWEntitlements) {
+        WWEntitlements.setTier('pro');
+        location.href = 'app-builder.html';
+      }
+    });
+  </script>
+</body>
+</html>

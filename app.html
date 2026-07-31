@@ -55,9 +55,9 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
           <input type="search" placeholder="Search workflows, agents, docs…" aria-label="Search platform">
         </label>
-        <div class="pc-actions">
+        <div class="pc-actions" data-ww-tier-chip>
           <a class="pc-btn" href="index.html">Marketing</a>
-          <a class="pc-btn lime" href="app-builder.html">Create workflow</a>
+          <a class="pc-btn lime" href="app-builder.html" data-ww-requires="pro">Create workflow</a>
           <a class="pc-btn primary" href="pilot.html">Launch pilot →</a>
         </div>
       </header>
@@ -109,7 +109,7 @@
 > next: status JSON endpoint for this panel
 > you are in control_</pre>
               <div class="pc-term-actions">
-                <a class="pc-btn lime" href="http://127.0.0.1:8040/lab" rel="noopener">Open command center</a>
+                <a class="pc-btn lime" href="http://127.0.0.1:8040/lab" rel="noopener" data-ww-requires="pro">Open command center</a>
                 <a class="pc-btn" href="docs.html" style="color:#fff;border-color:#697782">Docs</a>
               </div>
             </section>
@@ -139,9 +139,9 @@
             <section class="pc-panel" aria-label="Quick actions">
               <div class="pc-panel-head">Quick actions</div>
               <div class="pc-quick">
-                <a class="pc-btn primary" href="app-builder.html">Create new workflow</a>
+                <a class="pc-btn primary" href="app-builder.html" data-ww-requires="pro">Create new workflow</a>
                 <a class="pc-btn" href="app-library.html">Browse library</a>
-                <a class="pc-btn" href="app-marketplace.html">Open marketplace</a>
+                <a class="pc-btn" href="app-marketplace.html" data-ww-requires="pro">Open marketplace</a>
                 <a class="pc-btn" href="pilot.html">Run live pilot</a>
               </div>
             </section>
@@ -150,6 +150,7 @@
       </main>
     </div>
   </div>
+  <script src="assets/ww-entitlements.js"></script>
   <script src="assets/platform-shell.js"></script>
 </body>
 </html>
