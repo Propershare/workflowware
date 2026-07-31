@@ -1,6 +1,6 @@
 {
   "name": "Workflowware",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "purpose": "A platform for discovering, installing, verifying, running, and handing off governed AI workflow packages.",
   "start_here": [
     "AGENTS.md",
@@ -90,11 +90,10 @@
     },
     "/pricing.html": {
       "file": "pricing.html",
-      "role": "pricing_and_tiers",
+      "role": "access_truth",
       "primary_actions": [
-        "start_free",
-        "request_pro",
-        "demo_unlock_pro"
+        "open_pilot",
+        "email_governed_install"
       ],
       "status": "active"
     }
@@ -168,7 +167,7 @@
   "entitlements": {
     "map": "assets/entitlements.json",
     "gate": "assets/ww-entitlements.js",
-    "free": [
+    "open": [
       "marketing",
       "spec",
       "docs",
@@ -177,12 +176,13 @@
       "lab_preview",
       "library_browse"
     ],
-    "pro": [
+    "governed": [
       "builder",
       "marketplace",
       "lab_full",
       "install_actions"
     ],
+    "local_operator_override": "127.0.0.1/localhost only",
     "runtime_hook": "not_wired"
   }
 }

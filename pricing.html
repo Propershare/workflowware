@@ -3,24 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Pricing — Workflowware™</title>
-  <meta name="description" content="Free tier for the Workflowware standard. Pro platform tier for Lab, marketplace, and builder — scoped after review.">
+  <title>Access — Workflowware™</title>
+  <meta name="description" content="What Workflowware leaves open, and what requires a governed install with BlackLabRats.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css">
   <link rel="icon" href="assets/favicon.ico" sizes="any">
   <style>
-    .tier-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:1.5rem 0 2rem}
-    .tier-card{border:1px solid var(--line);border-radius:14px;padding:1.35rem 1.4rem;background:#fff}
-    .tier-card.pro{border-color:var(--lime-deep);box-shadow:0 0 0 3px rgba(200,245,66,.25)}
-    .tier-card h2{margin:0 0 .35rem;font-size:1.35rem;letter-spacing:-.02em}
-    .tier-card .price{font-size:.95rem;color:var(--muted);margin:0 0 1rem}
-    .tier-card ul{margin:0 0 1.25rem;padding-left:1.1rem;color:var(--muted);line-height:1.55}
-    .tier-card li{margin:.35rem 0}
-    .tier-card .btn{width:100%;justify-content:center}
-    .fine{font-size:.85rem;color:var(--muted);line-height:1.5}
-    @media(max-width:720px){.tier-grid{grid-template-columns:1fr}}
+    .access-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:1.5rem 0 2rem}
+    .access-card{border:1px solid var(--line);border-radius:14px;padding:1.35rem 1.4rem;background:#fff}
+    .access-card.governed{border-color:var(--navy);background:linear-gradient(180deg,#fff 70%,rgba(200,245,66,.12))}
+    .access-card h2{margin:0 0 .5rem;font-size:1.25rem;letter-spacing:-.02em}
+    .access-card .stand{margin:0 0 1rem;font-size:.95rem;color:var(--muted);line-height:1.45}
+    .access-card ul{margin:0 0 1.25rem;padding-left:1.1rem;color:var(--ink);line-height:1.55}
+    .access-card li{margin:.4rem 0;color:var(--muted)}
+    .access-card li strong{color:var(--ink);font-weight:600}
+    .access-card .btn{width:100%;justify-content:center}
+    .truth{border:1px solid var(--line);border-radius:12px;padding:1rem 1.15rem;background:#f7f8fa;font-size:.9rem;line-height:1.55;color:var(--muted)}
+    .truth strong{color:var(--ink)}
+    @media(max-width:720px){.access-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -33,73 +35,63 @@
         <a href="spec.html">Spec</a>
         <a href="library.html">Library</a>
         <a href="pilot.html">Pilot</a>
-        <a class="is-active" href="pricing.html">Pricing</a>
+        <a class="is-active" href="pricing.html">Access</a>
         <a href="docs.html">Docs</a>
       </div>
     </nav>
 
     <header class="page-hero" id="main">
-      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Free to start · Pro to operate</p>
-      <h1>Free standard. Paid platform wall.</h1>
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Access · no invented rates</p>
+      <h1>Open to learn. Paid to install and govern.</h1>
       <p class="lead">
-        Spec, docs, and the public pilot stay free. The operating platform
-        (Builder, Marketplace installs, full Lab actions) sits behind Pro.
-        Exact Pro pricing is scoped after review — not a fake public rate card.
+        The Workflowware standard is public. The operating platform — Builder,
+        marketplace install path, and full Lab — is not a self-serve checkout.
+        That work is sold as a scoped install after we see the workflow.
       </p>
     </header>
 
-    <section class="tier-grid" aria-label="Tiers">
-      <article class="tier-card">
-        <h2>Free</h2>
-        <p class="price">$0 · always</p>
+    <section class="access-grid" aria-label="Access">
+      <article class="access-card">
+        <h2>Open</h2>
+        <p class="stand">No account. No fee. This is the standard.</p>
         <ul>
-          <li>Public marketing site</li>
-          <li>Spec + docs</li>
-          <li>Public library + live pilot</li>
-          <li>Platform Lab preview</li>
-          <li>Platform library browse</li>
+          <li><strong>Spec + docs</strong> — definition, package shape, agent handoff</li>
+          <li><strong>Public library</strong> — one live pilot, two next packages</li>
+          <li><strong>Missed Lead pilot</strong> — test with sample leads</li>
+          <li><strong>Lab preview</strong> — see the shell; metrics stay unproven until Runtime is wired</li>
         </ul>
-        <a class="btn primary" href="app.html" id="start-free">Start Free →</a>
+        <a class="btn primary" href="pilot.html">Open the pilot →</a>
       </article>
-      <article class="tier-card pro">
-        <h2>Pro</h2>
-        <p class="price">Scoped after review · demo unlock for lab</p>
+
+      <article class="access-card governed">
+        <h2>Governed install</h2>
+        <p class="stand">Paid relationship with BlackLabRats. Price follows scope — not a published menu.</p>
         <ul>
-          <li>Everything in Free</li>
-          <li>Workflow Builder</li>
-          <li>Marketplace installs</li>
-          <li>Full Lab actions + command center</li>
-          <li>Runtime status when wired</li>
+          <li><strong>Builder</strong> — author and verify packages for your workflow</li>
+          <li><strong>Marketplace install path</strong> — when packages are real enough to sell</li>
+          <li><strong>Full Lab</strong> — operator actions once Runtime entitlements exist</li>
+          <li><strong>MAAT-backed memory / audit</strong> — when the install calls for it</li>
         </ul>
-        <a class="btn primary" href="mailto:hello@workflowware.org?subject=Workflowware%20Pro">Request Pro</a>
-        <p style="margin:.75rem 0 0">
-          <button class="btn secondary" type="button" id="demo-pro" style="width:100%;justify-content:center">Unlock Pro (demo)</button>
-        </p>
+        <a class="btn primary" href="mailto:hello@workflowware.org?subject=Workflowware%20governed%20install">Email hello@workflowware.org</a>
       </article>
     </section>
 
-    <p class="fine">
-      Offer ladder doctrine: <a href="docs/tiers-and-pricing.md">docs/tiers-and-pricing.md</a>.
-      Machine map: <a href="assets/entitlements.json">assets/entitlements.json</a>.
-      Next: connect Workflowware Runtime <code>/v1/who</code> + <code>/v1/entitlements</code> so this wall stops using local demo sessions.
+    <div class="truth">
+      <strong>Truth.</strong>
+      This site does not charge a card. A browser toggle is not payment.
+      Until Workflowware Runtime answers who may enter Builder and Marketplace,
+      those routes stay closed to the public. Lab operators on this machine use a
+      local override for development — that is not a product SKU.
+    </div>
+
+    <p class="fine" style="margin-top:1.25rem;font-size:.85rem;color:var(--muted)">
+      Written offer ladder (internal): <a href="docs/tiers-and-pricing.md">docs/tiers-and-pricing.md</a>.
     </p>
 
     <footer class="site" style="margin-top:2rem">
       <strong>Workflowware™</strong>
-      Free to understand. Pro to run the platform.
+      Prompts are ingredients. Agents are workers. Workflowware is the operating package.
     </footer>
   </div>
-  <script src="assets/ww-entitlements.js"></script>
-  <script>
-    document.getElementById('start-free').addEventListener('click', function () {
-      if (window.WWEntitlements) WWEntitlements.ensureFreeSession();
-    });
-    document.getElementById('demo-pro').addEventListener('click', function () {
-      if (window.WWEntitlements) {
-        WWEntitlements.setTier('pro');
-        location.href = 'app-builder.html';
-      }
-    });
-  </script>
 </body>
 </html>

@@ -67,8 +67,8 @@
       created_at: (readSession() && readSession().created_at) || new Date().toISOString(),
       upgraded_at: tier === 'pro' ? new Date().toISOString() : undefined,
       note: tier === 'pro'
-        ? 'Demo Pro unlock — not a real charge. Wire Runtime + billing next.'
-        : 'Demo free session.'
+        ? 'Local operator override — not payment. Runtime entitlements replace this.'
+        : 'Open / preview session.'
     };
     return writeSession(s);
   }
@@ -106,7 +106,7 @@
       .ww-tier-chip.pro{background:rgba(200,245,66,.35);border-color:#a8d12a}
       .ww-tier-chip.free{background:#f3f5f8}
       .ww-locked{position:relative}
-      .ww-locked::after{content:"Pro";position:absolute;top:8px;right:8px;background:#121826;color:#c8f542;font:700 9px Sora,system-ui,sans-serif;padding:3px 7px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase}
+      .ww-locked::after{content:"Governed";position:absolute;top:8px;right:8px;background:#121826;color:#c8f542;font:700 9px Sora,system-ui,sans-serif;padding:3px 7px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase}
       [data-ww-requires="pro"].ww-is-locked{opacity:.55;pointer-events:none;filter:grayscale(.15)}
       .ww-banner-free{margin:0 0 12px;padding:10px 12px;border-radius:8px;background:rgba(200,245,66,.18);border:1px solid #c5df7a;font-size:.78rem}
     `;
@@ -124,28 +124,32 @@
     root.setAttribute('role', 'dialog');
     root.setAttribute('aria-modal', 'true');
     root.setAttribute('aria-labelledby', 'ww-paywall-title');
+    const isLocal = ['127.0.0.1', 'localhost'].includes(location.hostname);
     root.innerHTML = `
       <div class="ww-paywall-card">
-        <h2 id="ww-paywall-title">${opts.title || 'Pro required'}</h2>
-        <p>${opts.body || 'This platform surface is on the paid tier.'}</p>
+        <h2 id="ww-paywall-title">${opts.title || 'Governed access required'}</h2>
+        <p>${opts.body || 'This surface is part of a paid, scoped install — not the open standard.'}</p>
         <ul>
-          <li><strong>Free</strong> — Spec, docs, public library, pilot, Lab preview</li>
-          <li><strong>Pro</strong> — Builder, marketplace installs, full Lab actions</li>
+          <li><strong>Open</strong> — Spec, docs, public library, pilot, Lab preview</li>
+          <li><strong>Governed</strong> — Builder, marketplace install path, full Lab (after agreement)</li>
         </ul>
-        <p style="font-size:.78rem">No invented public price. Pro is scoped after review — or use demo unlock while Runtime billing is offline.</p>
+        <p style="font-size:.78rem">There is no self-serve checkout here. Price follows the workflow after review.</p>
         <div class="ww-paywall-actions">
-          <button type="button" class="lime" data-ww-demo-pro>Unlock Pro (demo)</button>
-          <a class="primary" href="mailto:hello@workflowware.org?subject=Workflowware%20Pro">Request Pro</a>
-          <a href="pricing.html">Compare tiers</a>
-          <a href="${opts.fallback || 'app.html'}">Stay on Free</a>
+          <a class="primary" href="mailto:hello@workflowware.org?subject=Workflowware%20governed%20install">Email to begin</a>
+          <a href="pricing.html">Access</a>
+          <a href="${opts.fallback || 'app.html'}">Back to Lab preview</a>
+          ${isLocal ? '<button type="button" class="lime" data-ww-operator>Operator override (local only)</button>' : ''}
         </div>
       </div>
     `;
     document.body.appendChild(root);
-    root.querySelector('[data-ww-demo-pro]').addEventListener('click', () => {
-      setTier('pro');
-      location.reload();
-    });
+    const op = root.querySelector('[data-ww-operator]');
+    if (op) {
+      op.addEventListener('click', () => {
+        setTier('pro');
+        location.reload();
+      });
+    }
   }
 
   function applyFeatureLocks() {
@@ -161,8 +165,8 @@
         e.preventDefault();
         e.stopPropagation();
         showPaywall({
-          title: 'Upgrade to Pro',
-          body: 'That action needs the Pro platform tier.',
+          title: 'Governed access required',
+          body: 'That action is not part of the open standard.',
           fallback: 'app.html'
         });
       }, true);
@@ -177,16 +181,16 @@
     const chip = document.createElement('a');
     chip.href = 'pricing.html';
     chip.className = 'ww-tier-chip ' + (s.tier === 'pro' ? 'pro' : 'free');
-    chip.textContent = s.tier === 'pro' ? 'Pro' : 'Free';
-    chip.title = s.note || 'Account tier';
+    chip.textContent = s.tier === 'pro' ? 'Operator' : 'Open';
+    chip.title = s.note || 'Access';
     host.prepend(chip);
 
-    if (s.tier === 'pro') {
+    if (s.tier === 'pro' && ['127.0.0.1', 'localhost'].includes(location.hostname)) {
       const reset = document.createElement('button');
       reset.type = 'button';
       reset.className = 'pc-btn';
       reset.style.fontSize = '0.65rem';
-      reset.textContent = 'Use Free';
+      reset.textContent = 'Open access';
       reset.addEventListener('click', () => {
         setTier('free');
         location.reload();
@@ -203,8 +207,8 @@
     const b = document.createElement('p');
     b.className = 'ww-banner-free';
     b.innerHTML = mode === 'preview_on_free'
-      ? 'Free tier · Lab preview. Builder, marketplace installs, and full Lab actions need <a href="pricing.html">Pro</a>.'
-      : 'Free tier · Browse only. Installs and builder need <a href="pricing.html">Pro</a>.';
+      ? 'Lab preview (open). Builder and marketplace install path require a <a href="pricing.html">governed install</a>.'
+      : 'Library browse (open). Install actions require a <a href="pricing.html">governed install</a>.';
     main.prepend(b);
   }
 
@@ -241,8 +245,8 @@
       // Hard wall for Pro-only pages
       document.documentElement.style.visibility = 'hidden';
       showPaywall({
-        title: 'Pro platform wall',
-        body: `"${page}" is behind the paid platform tier. Start Free on Lab, or unlock Pro.`,
+        title: 'Governed access required',
+        body: `"${page}" is closed until a governed install (or local operator override) says otherwise.`,
         fallback: 'app.html'
       });
       // Keep shell visible under wall

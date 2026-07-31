@@ -27,15 +27,15 @@
 - Platform panels built in **classic colors** from contact sheet layout
 - Honest metrics (unproven / no invented success %)
 
-## Entitlements
+## Access (Maat)
 
-| Tier | Access |
-|------|--------|
-| Free | Marketing, spec, docs, public library, pilot, Lab preview, library browse |
-| Pro | Builder, Marketplace, full Lab actions (demo unlock or request) |
+| Layer | Truth |
+|-------|--------|
+| Open | Spec, docs, public library, pilot, Lab preview — no fee, no account theater |
+| Governed | Builder + marketplace install path + full Lab — scoped install via hello@; not self-serve checkout |
+| Local override | Lab hostname only — development, not a SKU |
 
-Gate: `assets/ww-entitlements.js` + `assets/entitlements.json` + `pricing.html`  
-Runtime hook reserved for `/v1/who` + `/v1/entitlements`.
+Public page: `pricing.html` (Access). Gate: `assets/ww-entitlements.js`.
 
 ## Next
 
