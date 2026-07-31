@@ -2,111 +2,147 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Library — Workflowware™</title>
-  <meta name="description" content="One live pilot and two next packages. MAAT governs; Workflowware installs.">
+  <meta name="description" content="Governed Workflowware package library. One live pilot. Two next. No vaporware shelf.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/platform-classic.css">
   <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <style>
+    .pc-card .who{font-size:.72rem;color:var(--muted);margin:0}
+    .pc-card .cta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+    .pc-fulfill{margin-top:14px;padding:16px;display:grid;gap:8px}
+    .pc-fulfill h2{margin:0;font-size:1.05rem;letter-spacing:-.02em}
+    .pc-fulfill p{margin:0;font-size:.85rem;color:var(--muted);line-height:1.45}
+  </style>
 </head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="shell">
-    <nav class="nav" aria-label="Primary">
-      <a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true">W</span><span>Workflowware</span></a>
-      <div class="nav-links">
-        <a href="spec.html">Spec</a>
-        <a class="is-active" href="library.html">Library</a>
-        <a href="pilot.html">Pilot</a>
-        <a href="pricing.html">Access</a>
-        <a href="docs.html">Docs</a>
-        <a href="https://maatecosystem.com/">MAAT</a>
-        <a href="https://github.com/Propershare/workflowware">GitHub</a>
-      </div>
-    </nav>
+<body data-page="library">
+  <div class="pc-app">
+    <aside class="pc-rail" aria-label="Platform navigation">
+      <a class="pc-mark" href="app.html" aria-label="Workflowware Lab">W</a>
+      <nav class="pc-nav">
+        <a href="index.html" data-nav="site"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V21h-6v-6H9v6H3z"/></svg>Site</a>
+        <a href="app.html" data-nav="lab"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v5l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V3M8 14h8"/></svg>Lab</a>
+        <a href="library.html" data-nav="library" class="active"><svg viewBox="0 0 24 24"><path d="M4 5h5v14H4zM10 5h5v14h-5zM16 5h4v14h-4z"/></svg>Library</a>
+        <a href="app-marketplace.html" data-nav="marketplace" data-ww-requires="pro"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="19" r="2"/><path d="m7 11 3-4m4 0 3 4"/></svg>Market</a>
+        <a href="app-builder.html" data-nav="builder" data-ww-requires="pro"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Builder</a>
+        <a href="pilot.html" data-nav="pilot"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 21c.7-4.6 3-7 7-7s6.3 2.4 7 7"/></svg>Pilot</a>
+        <a href="docs.html" data-nav="docs"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg>Docs</a>
+        <a href="spec.html" data-nav="evals"><svg viewBox="0 0 24 24"><path d="M5 3v6m14-6v6M3 12h18"/></svg>Evals</a>
+      </nav>
+      <div class="pc-operator">Ma'at Lab<br>Operator <span class="pc-dot"></span></div>
+    </aside>
 
-    <header class="page-hero" id="main">
-      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Honest catalog</p>
-      <h1>One pilot. Two next. No fake menu.</h1>
-      <p class="maat-bridge"><strong>MAAT is the governance layer. Workflowware is what you install.</strong>
-        <a href="https://maatecosystem.com/">maatecosystem.com</a> ·
-        <a href="https://maatecosystem.com/llms.txt">llms.txt</a></p>
-      <p class="lead">Three packages only on this page. Everything else is custom after a scoped conversation — not a shelf of vaporware.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="pilot.html">Try the live pilot →</a>
-        <a class="btn secondary" href="mailto:hello@workflowware.org">Email hello@workflowware.org</a>
-      </div>
-    </header>
+    <div class="pc-shell">
+      <header class="pc-topbar">
+        <div class="pc-brand">
+          <strong>Package library</strong>
+          <small>One live pilot · two next · governed access</small>
+        </div>
+        <label class="pc-search">
+          <input type="search" id="lib-filter" placeholder="Filter packages…" aria-label="Filter packages">
+        </label>
+        <div class="pc-actions" data-ww-tier-chip>
+          <a class="pc-btn" href="pricing.html">Access</a>
+          <a class="pc-btn primary" href="pilot.html">Open pilot →</a>
+        </div>
+      </header>
 
-    <section class="block">
-      <p class="sec-kicker">1 · Live</p>
-      <h2>Missed Lead Recovery</h2>
-      <div class="pkg-grid">
-        <article class="pkg">
-          <div class="status live">Live pilot</div>
-          <h3>Missed Lead Recovery</h3>
-          <p>Turn missed calls, forms, and messages into triage notes, a safe follow-up draft, and a human approval gate — before anything is sent.</p>
-          <p class="who">Home services · local operators · consultants</p>
-          <div class="cta-row">
-            <a class="btn secondary" href="pilot.html">Open pilot</a>
-            <a class="btn secondary" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">ZIP</a>
+      <main class="pc-main" id="main">
+        <p class="pc-note">
+          Three packages only. MAAT governs; Workflowware installs.
+          Everything else is custom after a scoped conversation — not a shelf of vaporware.
+        </p>
+
+        <div class="pc-split">
+          <aside class="pc-panel pc-filters" aria-label="Categories">
+            <h3>Categories</h3>
+            <button type="button" class="active" data-cat="all">All</button>
+            <button type="button" data-cat="operations">Operations</button>
+            <button type="button" data-cat="research">Research</button>
+            <button type="button" data-cat="education">Education</button>
+          </aside>
+
+          <section class="pc-cards" id="lib-cards" aria-label="Packages">
+            <article class="pc-card" data-cat="operations" data-name="missed lead recovery">
+              <div class="meta"><span class="pc-tag free">Live pilot</span><span>v0.1</span></div>
+              <h3>Missed Lead Recovery</h3>
+              <p>Turn missed calls, forms, and messages into triage notes, a safe follow-up draft, and a human approval gate — before anything is sent.</p>
+              <p class="who">Home services · local operators · consultants</p>
+              <div class="cta-row">
+                <a class="pc-btn primary" href="pilot.html">Open pilot</a>
+                <a class="pc-btn" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">ZIP</a>
+              </div>
+            </article>
+
+            <article class="pc-card" data-cat="research" data-name="african scientific chronology research kit">
+              <div class="meta"><span class="pc-tag">Next</span><span>scoped</span></div>
+              <h3>Chronology Research Kit</h3>
+              <p>Governed research workflow: state a historical proposition; separate primary, secondary, archaeological, linguistic, and interpretive evidence; compare chronologies; record disagreement; block unsupported synthesis; produce a citation-ready brief.</p>
+              <p class="who">Researchers · educators · African-centered scholarship</p>
+              <div class="cta-row">
+                <a class="pc-btn" href="mailto:hello@workflowware.org?subject=Chronology%20Research%20Kit">Request scoped build</a>
+              </div>
+            </article>
+
+            <article class="pc-card" data-cat="education" data-name="kemetic mathematics teaching kit">
+              <div class="meta"><span class="pc-tag">Next</span><span>scoped</span></div>
+              <h3>Kemetic Mathematics Teaching Kit</h3>
+              <p>Teaching workflow for unit fractions, seked, right-triangle relations, area/volume procedures, and truncated-pyramid calculations — with a hard line between what a source demonstrates and what the teacher or agent infers.</p>
+              <p class="who">Teachers · tutors · curriculum labs</p>
+              <div class="cta-row">
+                <a class="pc-btn" href="mailto:hello@workflowware.org?subject=Kemetic%20Mathematics%20Kit">Request scoped build</a>
+              </div>
+            </article>
+          </section>
+        </div>
+
+        <section class="pc-panel pc-fulfill" aria-label="Fulfillment">
+          <div class="pc-panel-head">Fulfillment</div>
+          <div style="padding:14px 16px 16px;display:grid;gap:8px">
+            <h2>Sample first. Scope second. Install third.</h2>
+            <p>No GitHub account required for business owners. Custom work stays guided — approvals and evals before live systems.</p>
+            <div class="cta-row">
+              <a class="pc-btn primary" href="mailto:hello@workflowware.org">Email hello@workflowware.org</a>
+              <a class="pc-btn" href="spec.html">Read the package spec</a>
+            </div>
           </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="block">
-      <p class="sec-kicker">2 · Next</p>
-      <h2>African Scientific Chronology Research Kit</h2>
-      <div class="pkg-grid">
-        <article class="pkg">
-          <div class="status build">Next package</div>
-          <h3>Chronology Research Kit</h3>
-          <p>Governed research workflow: state a historical proposition; separate primary, secondary, archaeological, linguistic, and interpretive evidence; compare chronologies; record disagreement; block unsupported synthesis; produce a citation-ready brief.</p>
-          <p class="who">Researchers · educators · African-centered scholarship</p>
-          <div class="cta-row">
-            <a class="btn secondary" href="mailto:hello@workflowware.org?subject=Chronology%20Research%20Kit">Request scoped build</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="block">
-      <p class="sec-kicker">3 · Next</p>
-      <h2>Kemetic Mathematics Teaching Kit</h2>
-      <div class="pkg-grid">
-        <article class="pkg">
-          <div class="status build">Next package</div>
-          <h3>Kemetic Mathematics Teaching Kit</h3>
-          <p>Teaching workflow for unit fractions, seked, right-triangle relations, area/volume procedures, and truncated-pyramid calculations — with a hard line between what a source demonstrates and what the teacher or agent infers.</p>
-          <p class="who">Teachers · tutors · curriculum labs</p>
-          <div class="cta-row">
-            <a class="btn secondary" href="mailto:hello@workflowware.org?subject=Kemetic%20Mathematics%20Kit">Request scoped build</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <div class="band">
-      <p class="sec-kicker">Fulfillment</p>
-      <h2>Sample first. Scope second. Install third.</h2>
-      <p class="sec-lead">No GitHub account required for business owners. Custom work stays guided — approvals and evals before live systems.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="mailto:hello@workflowware.org">Email hello@workflowware.org</a>
-        <a class="btn secondary" href="spec.html">Read the package spec</a>
-      </div>
+        </section>
+      </main>
     </div>
-
-    <footer class="site">
-      <strong>Workflowware™</strong>
-      One cooked dish on the menu — plus two we are building next
-    </footer>
   </div>
+
   <script src="assets/ww-entitlements.js"></script>
+  <script src="assets/platform-shell.js"></script>
+  <script>
+    (function () {
+      const cards = [...document.querySelectorAll('#lib-cards .pc-card')];
+      const buttons = [...document.querySelectorAll('.pc-filters [data-cat]')];
+      const search = document.getElementById('lib-filter');
+      let cat = 'all';
+
+      function apply() {
+        const q = (search.value || '').trim().toLowerCase();
+        cards.forEach((card) => {
+          const catOk = cat === 'all' || card.dataset.cat === cat;
+          const name = (card.dataset.name || card.textContent).toLowerCase();
+          const qOk = !q || name.includes(q);
+          card.style.display = catOk && qOk ? '' : 'none';
+        });
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          buttons.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          cat = btn.dataset.cat;
+          apply();
+        });
+      });
+      search.addEventListener('input', apply);
+    })();
+  </script>
 </body>
 </html>
