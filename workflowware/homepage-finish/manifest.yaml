@@ -1,0 +1,93 @@
+package:
+  id: workflowware-homepage-finish-v1
+  name: Workflowware Homepage Finish
+  version: 1.0.0
+  owner: Maat Lab
+  purpose: Finish the Workflowware homepage to the approved Afrofuturist dashboard reference using coordinated human and AI agents.
+  status: active
+
+entrypoints:
+  human: README.md
+  agent: tasks.json
+  governance: policy.yaml
+  handoff: handoff.md
+
+inputs:
+  - index.html
+  - assets/v2-polish.css
+  - assets/hero-queen.svg
+  - assets/workflowware-logo.svg
+  - AGENTS.md
+  - agent-map.json
+
+outputs:
+  - finished index.html
+  - complete SVG icon system
+  - workflow-stack.svg
+  - package-cube.svg
+  - favicon.svg
+  - updated build status
+  - visual QA report
+
+roles:
+  coordinator:
+    owns:
+      - task assignment
+      - merge order
+      - conflict prevention
+      - final acceptance
+  asset_agent:
+    owns:
+      - logo variants
+      - navigation icons
+      - package icons
+      - workflow illustrations
+    allowed_paths:
+      - assets/**
+  layout_agent:
+    owns:
+      - desktop grid
+      - spacing
+      - panel alignment
+      - responsive behavior
+    allowed_paths:
+      - index.html
+      - assets/v2-polish.css
+  semantic_agent:
+    owns:
+      - aria labels
+      - page manifest
+      - small-model navigation
+      - honest UI labels
+    allowed_paths:
+      - index.html
+      - agent-map.json
+      - docs/**
+  qa_agent:
+    owns:
+      - visual comparison
+      - link checks
+      - mobile review
+      - accessibility review
+    allowed_paths:
+      - workflowware/homepage-finish/reports/**
+      - docs/BUILD_STATUS.md
+
+rules:
+  - One agent owns index.html at a time.
+  - Asset agents do not edit layout files.
+  - Every change uses a dedicated branch.
+  - Every branch opens a pull request to main.
+  - No task is complete without visible evidence.
+  - Do not invent live metrics or features.
+  - Preserve the approved reference layout.
+
+acceptance:
+  - No emoji icons remain.
+  - Logo is used consistently.
+  - Hero illustration is loaded from assets.
+  - Major panels align to the approved reference.
+  - Desktop widths 1366, 1440, and 1536 are controlled.
+  - Mobile remains usable.
+  - Agent-readable page metadata is present.
+  - QA report lists remaining gaps honestly.
