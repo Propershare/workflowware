@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Library — Workflowware Platform</title>
+  <meta name="description" content="Honest Workflowware package library inside the classic platform shell.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/platform-classic.css">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+</head>
+<body data-page="library">
+  <div class="pc-app">
+    <aside class="pc-rail" aria-label="Platform navigation">
+      <a class="pc-mark" href="app.html">W</a>
+      <nav class="pc-nav">
+        <a href="index.html" data-nav="site"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V21h-6v-6H9v6H3z"/></svg>Site</a>
+        <a href="app.html" data-nav="lab"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v5l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V3M8 14h8"/></svg>Lab</a>
+        <a href="app-library.html" data-nav="library"><svg viewBox="0 0 24 24"><path d="M4 5h5v14H4zM10 5h5v14h-5zM16 5h4v14h-4z"/></svg>Library</a>
+        <a href="app-marketplace.html" data-nav="marketplace"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="19" r="2"/><path d="m7 11 3-4m4 0 3 4"/></svg>Market</a>
+        <a href="app-builder.html" data-nav="builder"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Builder</a>
+        <a href="pilot.html" data-nav="pilot"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 21c.7-4.6 3-7 7-7s6.3 2.4 7 7"/></svg>Pilot</a>
+        <a href="docs.html" data-nav="docs"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg>Docs</a>
+        <a href="spec.html" data-nav="evals"><svg viewBox="0 0 24 24"><path d="M5 3v6m14-6v6M3 12h18"/></svg>Evals</a>
+      </nav>
+      <div class="pc-operator">Ma'at Lab<br>Operator <span class="pc-dot"></span></div>
+    </aside>
+    <div class="pc-shell">
+      <header class="pc-topbar">
+        <div class="pc-brand"><strong>Package library</strong><small>Honest catalog · no vaporware shelf</small></div>
+        <label class="pc-search"><input type="search" placeholder="Filter packages…" aria-label="Filter packages"></label>
+        <div class="pc-actions">
+          <a class="pc-btn" href="library.html">Public library</a>
+          <a class="pc-btn primary" href="pilot.html">Try pilot →</a>
+        </div>
+      </header>
+      <main class="pc-main">
+        <p class="pc-note">Three real packages only. Category sidebar mirrors the contact sheet; counts are not invented.</p>
+        <div class="pc-split">
+          <aside class="pc-panel pc-filters" aria-label="Categories">
+            <h3>Categories</h3>
+            <button class="active" type="button">All</button>
+            <button type="button">Legal</button>
+            <button type="button">Education</button>
+            <button type="button">Research</button>
+            <button type="button">Operations</button>
+            <button type="button">Governance</button>
+          </aside>
+          <section class="pc-cards" aria-label="Packages">
+            <article class="pc-card">
+              <div class="meta"><span class="pc-tag free">Live pilot</span><span>v0.1</span></div>
+              <h3>Missed Lead Recovery</h3>
+              <p>Home-services recovery kit: capture, qualify, follow-up, handoff. Installable pilot.</p>
+              <a class="pc-btn primary" href="pilot.html">Open pilot</a>
+            </article>
+            <article class="pc-card">
+              <div class="meta"><span class="pc-tag">Prototype</span><span>v0.1</span></div>
+              <h3>Ma'at Initiation 42</h3>
+              <p>Initiation laws workflowware package for Ma'at-aligned practice.</p>
+              <a class="pc-btn" href="docs.html">Read docs</a>
+            </article>
+            <article class="pc-card">
+              <div class="meta"><span class="pc-tag">Prototype</span><span>v0.1</span></div>
+              <h3>Tehuti Guard Workflowware</h3>
+              <p>Guard decision surfaces packaged for agents — display and request, never self-approve.</p>
+              <a class="pc-btn" href="spec.html">See governance</a>
+            </article>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="assets/platform-shell.js"></script>
+</body>
+</html>

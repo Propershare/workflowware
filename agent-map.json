@@ -1,6 +1,6 @@
 {
   "name": "Workflowware",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "purpose": "A platform for discovering, installing, verifying, running, and handing off governed AI workflow packages.",
   "start_here": [
     "AGENTS.md",
@@ -64,17 +64,23 @@
     },
     "/app.html": {
       "file": "app.html",
-      "role": "platform_shell",
-      "primary_actions": [
-        "open_library",
-        "open_pilot",
-        "open_spec"
-      ],
-      "status": "active_build",
-      "toolkit": [
-        "assets/workflowware-ui.css",
-        "assets/icons.svg"
-      ]
+      "role": "platform_lab",
+      "status": "active_build"
+    },
+    "/app-library.html": {
+      "file": "app-library.html",
+      "role": "platform_library",
+      "status": "active_build"
+    },
+    "/app-marketplace.html": {
+      "file": "app-marketplace.html",
+      "role": "platform_marketplace",
+      "status": "active_build"
+    },
+    "/app-builder.html": {
+      "file": "app-builder.html",
+      "role": "platform_builder",
+      "status": "active_build"
     }
   },
   "core_entities": {
@@ -139,7 +145,8 @@
   },
   "design_system": {
     "public_site": "classic_lime_sora",
-    "platform_shell": "workflowware-ui.css",
+    "platform_shell": "platform-classic.css",
+    "contact_sheet": "visuals/assets-inbox/reference-platform-contact-sheet.png",
     "dense_dashboard_art": "parked_for_tehuti_lab_control"
   }
 }

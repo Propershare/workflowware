@@ -12,24 +12,32 @@
 
 | Surface | Role |
 |---------|------|
-| `index.html` (+ library/pilot/docs/spec) | Classic public site (restored from `de4ad65`) |
-| `app.html` | Platform shell using UI toolkit — new features land here |
-| `assets/workflowware-ui.css` + `icons.svg` | Application shell toolkit |
-| TCC handoff | `/mnt/data_drive/tehuti-control-center/docs/workflowware-dashboard-handoff/` |
+| `index.html` (+ library/pilot/docs/spec) | Classic public marketing site |
+| `app.html` | Lab workspace (spine, terminal, health, activity, quick actions) |
+| `app-library.html` | Package library cards + category rail |
+| `app-marketplace.html` | Marketplace list rows |
+| `app-builder.html` | Node canvas builder stub |
+| `assets/platform-classic.css` | Classic lime/navy platform shell |
+| Contact sheet ref | `visuals/assets-inbox/reference-platform-contact-sheet.png` |
+| TCC handoff (ivory/gold dashboard art) | `tehuti-control-center/docs/workflowware-dashboard-handoff/` |
 
 ## Done this turn
 
-- Restored classic homepage + library
-- Parked dashboard refs/cutouts for TCC
-- Added first toolkit page: `app.html`
+- Classic site restored
+- Platform panels built in **classic colors** from contact sheet layout
+- Honest metrics (unproven / no invented success %)
 
-## Next platform features (on toolkit)
+## Next
 
-1. Local install status JSON endpoint → `app.html` panel  
-2. Package cards fed from real registry (not invented counts)  
-3. Pilot launch from shell with honest capability states  
+1. Local `workflowware-ctl` status JSON into Lab terminal/health  
+2. Builder drag/connect  
+3. Wire marketplace only to real packages  
 
 ## Preview
 
-- Classic site: `http://127.0.0.1:8097/`  
-- Platform shell: `http://127.0.0.1:8097/app.html`  
+- Classic: `http://127.0.0.1:8097/`  
+- Lab: `http://127.0.0.1:8097/app.html`  
+- Library: `http://127.0.0.1:8097/app-library.html`  
+- Market: `http://127.0.0.1:8097/app-marketplace.html`  
+- Builder: `http://127.0.0.1:8097/app-builder.html`  
+

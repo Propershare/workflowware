@@ -3,142 +3,153 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Workflowware Platform</title>
-  <meta name="description" content="Workflowware application shell — discover, install, verify, and hand off agent-operable workflow packages.">
-  <meta name="maat-artifact" content="tehuti.workflowware.platform-shell">
+  <title>Lab — Workflowware Platform</title>
+  <meta name="description" content="Workflowware Lab workspace: agent spine, terminal, health, and quick actions.">
+  <meta name="maat-artifact" content="tehuti.workflowware.platform-lab">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/workflowware-ui.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/platform-classic.css">
   <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <style>
-    .ww-page-intro{padding:18px 8px 8px}
-    .ww-page-intro h1{font:800 36px/.95 Oswald;margin:0 0 8px;letter-spacing:-.02em}
-    .ww-page-intro p{margin:0;color:var(--muted);font-size:13px;max-width:52ch;line-height:1.45}
-    .ww-status-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
-    .ww-chip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border:1px solid var(--line);border-radius:999px;font-size:10px;font-weight:700;text-transform:uppercase;background:rgba(255,255,255,.45)}
-    .ww-chip.ok{border-color:#9dcea8;color:#1f6b38}
-    .ww-chip.warn{border-color:#d4b56a;color:#7a5a12}
-    .ww-feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:0 0 16px}
-    .ww-feature{padding:16px;min-height:140px;display:flex;flex-direction:column;gap:8px}
-    .ww-feature h2{margin:0;font:800 14px Manrope;text-transform:uppercase;letter-spacing:.04em}
-    .ww-feature p{margin:0;font-size:12px;color:var(--muted);line-height:1.45;flex:1}
-    .ww-feature .ww-button{align-self:flex-start;margin-top:auto}
-    .ww-main-pad{padding:0 16px 24px}
-    .ww-rail-link{font-size:7px}
-    @media(max-width:900px){.ww-feature-grid{grid-template-columns:1fr}}
-  </style>
 </head>
-<body>
-<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
-  <defs>
-    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V21h-6v-6H9v6H3z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
-    <symbol id="i-library" viewBox="0 0 24 24"><path d="M4 5h5v14H4zM10 5h5v14h-5zM16 5h4v14h-4z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
-    <symbol id="i-lab" viewBox="0 0 24 24"><path d="M9 3h6M10 3v5l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V3M8 14h8" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
-    <symbol id="i-evals" viewBox="0 0 24 24"><path d="M5 3v6m14-6v6M3 12h18M7 12v9m10-9v9M7 17h10" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
-    <symbol id="i-package" viewBox="0 0 24 24"><path d="m12 3 8 4-8 4-8-4zM4 7v10l8 4 8-4V7M12 11v10" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
-    <symbol id="i-docs" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7zM14 3v5h5M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
-    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M19 12l2-1-2-4-2 1a8 8 0 0 0-2-1l-.3-2H9.3L9 7a8 8 0 0 0-2 1L5 7l-2 4 2 1a8 8 0 0 0 0 2l-2 1 2 4 2-1a8 8 0 0 0 2 1l.3 2h5.4l.3-2a8 8 0 0 0 2-1l2 1 2-4-2-1a8 8 0 0 0 0-2z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
-  </defs>
-</svg>
-
-<div class="ww-app">
-  <aside class="ww-rail" aria-label="Platform navigation">
-    <a class="ww-mark" href="app.html" aria-label="Workflowware platform home">WW</a>
-    <nav class="ww-nav">
-      <a class="active" href="app.html"><svg viewBox="0 0 24 24"><use href="#i-home"/></svg><span class="ww-rail-link">Home</span></a>
-      <a href="library.html"><svg viewBox="0 0 24 24"><use href="#i-library"/></svg><span class="ww-rail-link">Library</span></a>
-      <a href="pilot.html"><svg viewBox="0 0 24 24"><use href="#i-lab"/></svg><span class="ww-rail-link">Pilot</span></a>
-      <a href="spec.html"><svg viewBox="0 0 24 24"><use href="#i-evals"/></svg><span class="ww-rail-link">Spec</span></a>
-      <a href="docs.html"><svg viewBox="0 0 24 24"><use href="#i-docs"/></svg><span class="ww-rail-link">Docs</span></a>
-      <a href="index.html"><svg viewBox="0 0 24 24"><use href="#i-package"/></svg><span class="ww-rail-link">Site</span></a>
-    </nav>
-    <div class="ww-operator">PLATFORM<br>SHELL <span style="color:var(--gold2)">●</span></div>
-  </aside>
-
-  <div class="ww-shell">
-    <header class="ww-topbar">
-      <div class="ww-brand">
-        <strong>WORKFLOWWARE</strong>
-        <small>Platform shell · toolkit build</small>
-      </div>
-      <nav class="ww-toplinks" aria-label="Secondary">
-        <a href="library.html">Library</a>
-        <a href="pilot.html">Pilot</a>
-        <a href="docs.html">Docs</a>
-        <a href="spec.html">Spec</a>
-        <a href="index.html">Marketing site</a>
+<body data-page="lab">
+  <div class="pc-app">
+    <aside class="pc-rail" aria-label="Platform navigation">
+      <a class="pc-mark" href="app.html" aria-label="Workflowware Lab">W</a>
+      <nav class="pc-nav">
+        <a href="index.html" data-nav="site" title="Marketing site">
+          <svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V21h-6v-6H9v6H3z"/></svg>Site
+        </a>
+        <a href="app.html" data-nav="lab">
+          <svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v5l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V3M8 14h8"/></svg>Lab
+        </a>
+        <a href="app-library.html" data-nav="library">
+          <svg viewBox="0 0 24 24"><path d="M4 5h5v14H4zM10 5h5v14h-5zM16 5h4v14h-4z"/></svg>Library
+        </a>
+        <a href="app-marketplace.html" data-nav="marketplace">
+          <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="19" r="2"/><path d="m7 11 3-4m4 0 3 4m0 2-3 4m-4 0-3-4"/></svg>Market
+        </a>
+        <a href="app-builder.html" data-nav="builder">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Builder
+        </a>
+        <a href="pilot.html" data-nav="pilot">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 21c.7-4.6 3-7 7-7s6.3 2.4 7 7"/></svg>Pilot
+        </a>
+        <a href="docs.html" data-nav="docs">
+          <svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg>Docs
+        </a>
+        <a href="spec.html" data-nav="evals">
+          <svg viewBox="0 0 24 24"><path d="M5 3v6m14-6v6M3 12h18M7 12v9m10-9v9"/></svg>Evals
+        </a>
       </nav>
-      <div class="ww-actions">
-        <a class="ww-button" href="https://github.com/Propershare/workflowware">GitHub</a>
-        <a class="ww-button dark" href="pilot.html">Launch pilot →</a>
-      </div>
-    </header>
+      <div class="pc-operator">Ma'at Lab<br>Operator <span class="pc-dot" aria-label="online"></span></div>
+    </aside>
 
-    <main class="ww-main ww-main-pad" id="main">
-      <section class="ww-page-intro">
-        <h1>Build the platform on the toolkit.</h1>
-        <p>
-          Public marketing stays on the classic site. This shell uses
-          <code>assets/workflowware-ui.css</code> + icon symbols so we can add real
-          Workflowware features without fighting homepage pixel art.
+    <div class="pc-shell">
+      <header class="pc-topbar">
+        <div class="pc-brand">
+          <strong>Workflowware Lab</strong>
+          <small>Live workspace · classic shell</small>
+        </div>
+        <label class="pc-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+          <input type="search" placeholder="Search workflows, agents, docs…" aria-label="Search platform">
+        </label>
+        <div class="pc-actions">
+          <a class="pc-btn" href="index.html">Marketing</a>
+          <a class="pc-btn lime" href="app-builder.html">Create workflow</a>
+          <a class="pc-btn primary" href="pilot.html">Launch pilot →</a>
+        </div>
+      </header>
+
+      <main class="pc-main" id="main">
+        <p class="pc-note">
+          Side panels and features follow the platform contact sheet.
+          Colors stay classic lime / navy. Metrics stay honest — Runtime not wired = unproven.
         </p>
-        <div class="ww-status-row">
-          <span class="ww-chip ok">Public site · classic restored</span>
-          <span class="ww-chip warn">Runtime · not wired</span>
-          <span class="ww-chip warn">Dense dashboard art → Tehuti Lab Control</span>
-        </div>
-      </section>
 
-      <section class="ww-feature-grid" aria-label="Next platform features">
-        <article class="ww-panel ww-feature">
-          <h2>Package library</h2>
-          <p>Browse honest package cards from the live catalog — one pilot, next packages, no vaporware shelf.</p>
-          <a class="ww-button dark" href="library.html" data-action="open_library">Open library</a>
-        </article>
-        <article class="ww-panel ww-feature">
-          <h2>Live pilot</h2>
-          <p>Run the missed-lead recovery kit path. Install + eval + human handoff stay first-class.</p>
-          <a class="ww-button dark" href="pilot.html" data-action="open_pilot">Open pilot</a>
-        </article>
-        <article class="ww-panel ww-feature">
-          <h2>Spec + install</h2>
-          <p>Contract for agents and humans. Next: surface local <code>workflowware-ctl</code> status in this shell.</p>
-          <a class="ww-button dark" href="spec.html" data-action="open_spec">Read spec</a>
-        </article>
-      </section>
+        <section class="pc-stats" aria-label="Lab status">
+          <article class="pc-stat unproven"><small>Agents online</small><strong>—</strong><span>Runtime not wired</span></article>
+          <article class="pc-stat unproven"><small>Workflows installed</small><strong>3</strong><span>Local packages (lab host)</span></article>
+          <article class="pc-stat unproven"><small>Evals run (24h)</small><strong>—</strong><span>No live feed</span></article>
+          <article class="pc-stat unproven"><small>Success rate</small><strong>—</strong><span>Do not invent %</span></article>
+        </section>
 
-      <section class="ww-panel" id="install-status" data-section="install-status">
-        <div class="ww-panel-head">
-          Local install status
-          <small>reads ~/.local/share/tehuti/workflowware when available</small>
+        <div class="pc-lab">
+          <div class="pc-center">
+            <section class="pc-panel pc-spine" aria-label="Live agent spine">
+              <div class="pc-panel-head">
+                Live agent spine
+                <small class="live">● Prototype diagram</small>
+              </div>
+              <div class="pc-spine-canvas">
+                <div class="pc-hub">
+                  <div>
+                    <b>Orchestrator</b>
+                    <small>v0 · unproven</small>
+                  </div>
+                </div>
+                <div class="pc-node n1"><div class="bubble"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 12h14"/></svg></div><strong>Planner</strong><span>stub</span></div>
+                <div class="pc-node n2"><div class="bubble"><svg viewBox="0 0 24 24"><path d="M5 3v6m14-6v6M3 12h18"/></svg></div><strong>Evaluator</strong><span>stub</span></div>
+                <div class="pc-node n3"><div class="bubble"><svg viewBox="0 0 24 24"><path d="m4 7 5 5-5 5M11 17h9"/></svg></div><strong>Executor</strong><span>stub</span></div>
+                <div class="pc-node n4"><div class="bubble"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v14c0 1.7 3.1 3 7 3s7-1.3 7-3V5"/></svg></div><strong>Memory</strong><span>stub</span></div>
+                <div class="pc-node n5"><div class="bubble"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg></div><strong>Retriever</strong><span>stub</span></div>
+              </div>
+            </section>
+
+            <section class="pc-panel pc-terminal" aria-label="Live terminal">
+              <div class="pc-panel-head">
+                Live terminal
+                <small class="live">● Local preview</small>
+              </div>
+              <pre id="pc-term">> workflowware platform shell
+> theme: classic lime / navy
+> packages: missed-lead-recovery, maat-initiation-42, tehuti-guard-workflowware
+> runtime: not wired — health metrics stay unproven
+> next: status JSON endpoint for this panel
+> you are in control_</pre>
+              <div class="pc-term-actions">
+                <a class="pc-btn lime" href="http://127.0.0.1:8040/lab" rel="noopener">Open command center</a>
+                <a class="pc-btn" href="docs.html" style="color:#fff;border-color:#697782">Docs</a>
+              </div>
+            </section>
+          </div>
+
+          <aside class="pc-side">
+            <section class="pc-panel" aria-label="System health">
+              <div class="pc-panel-head">System health <small>unproven</small></div>
+              <div class="pc-health-list">
+                <div class="pc-health-row"><i class="pc-pulse"></i><span>Agent spine</span><div class="pc-spark" aria-hidden="true"></div></div>
+                <div class="pc-health-row"><i class="pc-pulse"></i><span>Memory store</span><div class="pc-spark" aria-hidden="true"></div></div>
+                <div class="pc-health-row"><i class="pc-pulse"></i><span>Gateway</span><div class="pc-spark" aria-hidden="true"></div></div>
+                <div class="pc-health-row"><i class="pc-pulse"></i><span>Evaluator</span><div class="pc-spark" aria-hidden="true"></div></div>
+                <div class="pc-health-row"><i class="pc-pulse"></i><span>Vector DB</span><div class="pc-spark" aria-hidden="true"></div></div>
+              </div>
+            </section>
+
+            <section class="pc-panel" aria-label="Recent activity">
+              <div class="pc-panel-head">Recent activity <small>demo feed</small></div>
+              <div class="pc-activity">
+                <div class="pc-event"><i>⚖</i><div><strong>Missed Lead Recovery</strong><span>Installed locally</span></div><time>lab</time></div>
+                <div class="pc-event"><i>◇</i><div><strong>Ma'at Initiation 42</strong><span>Package present</span></div><time>lab</time></div>
+                <div class="pc-event"><i>⌘</i><div><strong>Tehuti Guard WW</strong><span>Prototype profile</span></div><time>lab</time></div>
+              </div>
+            </section>
+
+            <section class="pc-panel" aria-label="Quick actions">
+              <div class="pc-panel-head">Quick actions</div>
+              <div class="pc-quick">
+                <a class="pc-btn primary" href="app-builder.html">Create new workflow</a>
+                <a class="pc-btn" href="app-library.html">Browse library</a>
+                <a class="pc-btn" href="app-marketplace.html">Open marketplace</a>
+                <a class="pc-btn" href="pilot.html">Run live pilot</a>
+              </div>
+            </section>
+          </aside>
         </div>
-        <pre id="ww-local-status" style="margin:0;padding:14px 16px;font:12px/1.55 'DM Mono',monospace;white-space:pre-wrap;color:var(--ink)">Loading local package registry…</pre>
-      </section>
-    </main>
+      </main>
+    </div>
   </div>
-</div>
-
-<script>
-(async function () {
-  const el = document.getElementById('ww-local-status');
-  // Browser cannot read the host path; show honest next step + known package names from docs.
-  el.textContent = [
-    'Local registry is host-side (workflowware-ctl).',
-    'This page does not invent Runtime metrics.',
-    '',
-    'On staydangerous:',
-    '  python3 /mnt/data_drive/Maat-runtime/scripts/workflowware-ctl.py status',
-    '  python3 /mnt/data_drive/Maat-runtime/scripts/workflowware-ctl.py list',
-    '',
-    'Known installed packages (last lab check):',
-    '  - missed-lead-recovery',
-    '  - maat-initiation-42',
-    '  - tehuti-guard-workflowware',
-    '',
-    'Next feature: wire a local status JSON endpoint into this panel.'
-  ].join('\n');
-})();
-</script>
+  <script src="assets/platform-shell.js"></script>
 </body>
 </html>
