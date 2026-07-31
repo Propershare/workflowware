@@ -1,114 +1,101 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Workflowware — Agent-operable software packages</title>
-  <meta name="description" content="Build, verify, and ship agent-operable workflows with rules, evals, approvals, and handoff built in.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-  <style>
-    :root{--paper:#f2eddf;--ink:#11100d;--gold:#b88a2d;--line:#cfc6b2;--muted:#665f52;--black:#11110f;--white:#fffdf7;--max:1240px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,system-ui,sans-serif}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}a{color:inherit}.mono{font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem}.topline{height:5px;background:var(--black)}
-    nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line);gap:24px}.brand{text-decoration:none;font-weight:800;font-size:1.1rem;display:flex;align-items:center;gap:10px}.mark{width:30px;height:30px;background:var(--black);color:var(--paper);display:grid;place-items:center;font-family:"DM Mono"}.links{display:flex;gap:28px;align-items:center}.links a{text-decoration:none;color:var(--muted);font-size:.9rem;font-weight:600}.links a:hover{color:var(--ink)}.nav-cta{background:var(--black)!important;color:var(--paper)!important;padding:12px 16px}
-    .hero{display:grid;grid-template-columns:1.15fr .85fr;min-height:680px;border-bottom:1px solid var(--line)}.hero-copy{padding:86px 7vw 72px 0;border-right:1px solid var(--line)}.kicker{display:flex;align-items:center;gap:12px;color:var(--muted);margin-bottom:26px}.kicker:before{content:"";width:34px;height:2px;background:var(--gold)}h1{font-family:"Playfair Display",serif;font-size:clamp(4rem,8vw,7.6rem);line-height:.86;letter-spacing:-.055em;margin:0 0 30px}h1 em{color:var(--gold)}.lede{font-size:1.18rem;line-height:1.7;max-width:610px;color:var(--muted)}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:15px 20px;font-weight:800;border:1px solid var(--black)}.btn.primary{background:var(--black);color:var(--paper)}.btn.secondary{background:transparent}.hero-panel{background:var(--black);color:var(--paper);padding:62px 44px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.hero-panel:after{content:"";position:absolute;width:420px;height:420px;border:1px solid #62563b;transform:rotate(45deg);right:-230px;bottom:-230px}.panel-label{color:#b9ae99}.stack{margin:42px 0;position:relative;z-index:1}.stack-row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid #35342f}.stack-row span:first-child{color:var(--gold)}.status{border:1px solid #635d50;padding:5px 8px;font-size:.62rem}.panel-note{font-family:"Playfair Display",serif;font-size:1.65rem;line-height:1.3;max-width:360px;position:relative;z-index:1}
-    .ticker{border-bottom:1px solid var(--line);padding:16px 0;overflow:hidden}.ticker-inner{display:flex;justify-content:space-between;gap:28px;color:var(--muted);white-space:nowrap}.section{padding:100px 0;border-bottom:1px solid var(--line)}.section-head{display:grid;grid-template-columns:.4fr 1fr;gap:40px;margin-bottom:54px}.section h2{font-family:"Playfair Display",serif;font-size:clamp(2.7rem,5vw,5rem);line-height:.98;letter-spacing:-.04em;margin:0}.section-intro{font-size:1.08rem;line-height:1.75;color:var(--muted);max-width:680px}
-    .steps{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}.step{padding:30px;min-height:250px;border-right:1px solid var(--line)}.step:last-child{border-right:0}.num{color:var(--gold);margin-bottom:70px}.step h3{font-size:1.2rem;margin:0 0 12px}.step p{color:var(--muted);line-height:1.6;font-size:.92rem}.dark{background:var(--black);color:var(--paper)}.dark .section-intro{color:#b9ae99}.packages{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{border:1px solid #3a3934;padding:28px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;transition:.2s}.card:hover{border-color:var(--gold);transform:translateY(-3px)}.card-top{display:flex;justify-content:space-between;color:#a89f8d}.card h3{font-family:"Playfair Display",serif;font-size:2rem;margin:24px 0 12px}.card p{color:#b9ae99;line-height:1.6}.tags{display:flex;gap:7px;flex-wrap:wrap}.tag{border:1px solid #4c493f;padding:6px 8px;font-size:.65rem;color:#d7cdbb}.arrow{font-size:1.4rem;color:var(--gold)}
-    .architecture{display:grid;grid-template-columns:repeat(5,1fr);align-items:stretch}.layer{padding:28px 20px;border:1px solid var(--line);margin-left:-1px;min-height:190px}.layer strong{display:block;margin:56px 0 8px}.layer:nth-child(odd){background:rgba(255,255,255,.25)}.manifest{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}.manifest-copy{padding:55px}.code{background:var(--black);color:#e7dfd0;padding:34px;overflow:auto;font-family:"DM Mono",monospace;font-size:.78rem;line-height:1.8}.gold{color:#d5a94a}
-    .final{padding:110px 0;text-align:center;background:var(--gold);color:var(--black)}.final h2{font-family:"Playfair Display",serif;font-size:clamp(3rem,7vw,6.5rem);line-height:.95;margin:0 auto 28px;max-width:900px}.final .btn{background:var(--black);color:var(--paper)}footer{background:var(--black);color:var(--paper);padding:50px 0}.footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px}.footer-grid h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:#8e877a}.footer-grid a{display:block;text-decoration:none;color:#c9c0af;margin:10px 0;font-size:.9rem}.copyright{border-top:1px solid #34332e;margin-top:42px;padding-top:20px;color:#817b70;font-size:.78rem}
-    @media(max-width:900px){.links a:not(.nav-cta){display:none}.hero{grid-template-columns:1fr}.hero-copy{border-right:0;padding-right:0}.hero-panel{min-height:520px}.section-head{grid-template-columns:1fr}.steps,.packages,.architecture{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.manifest{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){.wrap{width:min(calc(100% - 28px),var(--max))}.hero-copy{padding-top:60px}.hero-panel{padding:42px 24px}.steps,.packages,.architecture,.footer-grid{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--line)}.layer{margin-top:-1px}.section{padding:72px 0}h1{font-size:3.7rem}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workflowware — Build. Verify. Deploy.</title>
+<meta name="description" content="Workflowware packages agent-operable workflows with rules, evaluations, approvals, memory, and human handoff.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f3efe6;--paper2:#ebe5d9;--ink:#0b1116;--navy:#09131c;--navy2:#0d1b27;--gold:#bd8625;--gold2:#d9aa4a;--line:#cec6b8;--muted:#6f6a62;--green:#52c27a;--red:#d45d5d;--shadow:0 16px 45px rgba(15,18,20,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-size:14px}a{color:inherit}.app{min-height:100vh;display:grid;grid-template-columns:92px 1fr}.rail{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#0a1520,#071019);color:#fff;border-right:1px solid #24313c;display:flex;flex-direction:column;z-index:20}.rail-logo{height:92px;display:grid;place-items:center;border-bottom:1px solid #24313c;color:var(--gold2);font:700 30px Oswald}.rail nav{display:flex;flex-direction:column}.rail a{height:78px;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-left:4px solid transparent;color:#d9dde0;font-size:9px;letter-spacing:.05em;text-transform:uppercase}.rail a:hover,.rail a.active{background:rgba(255,255,255,.06);border-left-color:var(--gold);color:var(--gold2)}.rail .ico{font-size:22px;line-height:1}.rail-bottom{margin-top:auto;padding:20px 8px;text-align:center;border-top:1px solid #24313c;font-size:9px;color:#b7c0c7}.operator{width:54px;height:54px;border-radius:50%;margin:0 auto 9px;background:radial-gradient(circle at 50% 35%,#d7a84b 0 18%,#1a2730 19% 40%,#bd8625 41% 44%,#071019 45%);border:1px solid #6d5121}.online{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-left:4px}
+.shell{min-width:0}.topbar{height:72px;padding:0 24px;display:grid;grid-template-columns:240px 1fr auto;align-items:center;gap:22px;border-bottom:1px solid var(--line);background:rgba(243,239,230,.96);position:sticky;top:0;z-index:15;backdrop-filter:blur(18px)}.brand strong{display:block;font:700 21px Oswald;letter-spacing:.08em}.brand span{font-size:9px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}.toplinks{display:flex;align-items:center;justify-content:center;gap:30px}.toplinks a{text-decoration:none;font-size:10px;font-weight:800;text-transform:uppercase}.actions{display:flex;align-items:center;gap:12px}.search{width:250px;height:36px;border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;padding:0 12px;background:rgba(255,255,255,.35);color:var(--muted)}.search input{border:0;outline:0;background:transparent;width:100%;font:11px Manrope;padding-left:8px}.btn{height:38px;padding:0 20px;border:1px solid var(--ink);border-radius:5px;background:transparent;font-weight:800;font-size:10px;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;cursor:pointer}.btn.dark{background:var(--navy);color:#fff;border-color:var(--navy)}.btn.gold{background:var(--gold);color:#fff;border-color:var(--gold)}
+.main{padding:18px 18px 0}.dashboard{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}.left,.right{min-width:0}.hero{height:435px;display:grid;grid-template-columns:47% 53%;position:relative;overflow:hidden}.hero-copy{padding:24px 10px 10px 32px;z-index:2}.hero h1{font:700 clamp(54px,5vw,82px)/.82 Oswald;margin:8px 0 24px;letter-spacing:-.035em}.hero h1 span{color:var(--gold)}.hero .lead{font-size:18px;line-height:1.35;max-width:330px;margin-bottom:20px}.hero-actions{display:flex;gap:12px}.micro{margin-top:25px;font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.trust-row{display:flex;gap:42px;margin-top:16px}.trust{display:grid;place-items:center;gap:7px;font-size:8px;text-transform:uppercase;font-weight:800}.trust b{font-size:22px;color:var(--gold);font-weight:400}.portrait{position:relative}.portrait:before{content:"";position:absolute;width:250px;height:250px;border-radius:50%;background:var(--gold);left:18px;top:104px}.portrait:after{content:"";position:absolute;inset:12px;background-image:linear-gradient(rgba(11,17,22,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(11,17,22,.08) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to right,transparent,#000 18%,#000)}.queen{position:absolute;z-index:2;right:2px;bottom:-4px;width:360px;height:430px}.queen svg{width:100%;height:100%;filter:drop-shadow(0 12px 20px rgba(0,0,0,.18))}.floating{position:absolute;z-index:3;width:12px;height:12px;background:var(--ink)}.f1{left:38px;top:42px}.f2{right:35px;top:145px;background:var(--gold)}.f3{left:96px;bottom:32px;background:var(--gold)}
+.panel{border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.26);box-shadow:0 1px 0 rgba(255,255,255,.6) inset}.panel-head{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--line);font-weight:800;font-size:11px;text-transform:uppercase}.panel-head small{font-weight:500;text-transform:none;color:var(--muted)}.topgrid{display:grid;grid-template-columns:1.05fr 1fr;gap:12px}.terminal{height:190px;background:linear-gradient(145deg,#0c1823,#071019);color:#eef3f5;border-color:#182b3a}.terminal .panel-head{border-color:#243746}.terminal pre{margin:0;padding:15px 18px;font:11px/1.65 DM Mono;color:#f4f4ee}.live{color:var(--green)}.terminal .command{margin:0 18px;height:34px;border:1px solid #56616a;border-radius:5px;display:flex;align-items:center;padding:0 12px;font-size:10px;font-weight:800}.health{height:190px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);height:112px}.metric{padding:14px 12px;border-right:1px solid var(--line)}.metric:last-child{border-right:0}.metric small{display:block;font-size:8px;text-transform:uppercase}.metric strong{display:block;font:700 24px Oswald;margin:8px 0}.metric span{font-size:9px;color:var(--muted)}.statusbar{height:33px;border-top:1px solid var(--line);display:flex;align-items:center;padding:0 15px;font-size:9px;font-weight:800}.middlegrid{display:grid;grid-template-columns:.92fr 1.08fr;gap:12px;margin-top:12px}.activity,.quick{height:230px}.activity-list{padding:8px 16px}.event{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(206,198,184,.6)}.event i{width:22px;height:22px;border-radius:4px;border:1px solid var(--gold);display:grid;place-items:center;font-style:normal;color:var(--gold)}.event strong{display:block;font-size:10px}.event span,.event time{font-size:8px;color:var(--muted)}.quick-body{display:grid;grid-template-columns:1fr 140px;height:185px}.steps{padding:13px 15px}.step{display:flex;align-items:center;gap:10px;margin:11px 0;font-size:9px}.step b{width:18px;height:18px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center}.stackart{position:relative;display:grid;place-items:center}.stackart .layer{position:absolute;width:82px;height:48px;background:#0c1720;border:1px solid #6a7278;transform:rotate(30deg) skewX(-25deg);box-shadow:0 8px 0 #09131c,0 9px 0 #bd8625}.stackart .l1{top:30px}.stackart .l2{top:65px}.stackart .l3{top:100px}.featured{height:182px;margin-top:12px;background:linear-gradient(115deg,#0b1822,#08111a);color:white;border-color:#152936;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}.featured-copy{padding:20px}.featured-copy h2{margin:8px 0;font-size:18px}.featured-copy p{color:#c7cdd1;font-size:10px;line-height:1.5;max-width:320px}.tags{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.tag{border:1px solid #4b5963;border-radius:3px;padding:4px 7px;font-size:8px}.cube{position:relative;display:grid;place-items:center}.cube .sq{position:absolute;width:90px;height:65px;border:1px solid var(--gold);transform:rotate(30deg) skewX(-25deg);background:rgba(189,134,37,.08)}.cube .s1{top:24px}.cube .s2{top:54px}.cube .s3{top:84px}.cube .s4{top:114px}.cube:after{content:"⚖";position:absolute;font-size:34px;color:var(--gold);top:54px}
+.packages{margin-top:12px;height:180px;padding:0 14px 12px}.section-title{height:40px;display:flex;align-items:center;justify-content:space-between;font-weight:800;font-size:11px;text-transform:uppercase}.package-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.pkg{height:122px;border:1px solid var(--line);border-radius:7px;padding:13px 10px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,rgba(255,255,255,.45),rgba(255,255,255,.1));transition:.2s}.pkg:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--gold)}.pkg b{font-size:24px;color:var(--gold);font-weight:400}.pkg strong{font-size:9px;text-transform:uppercase}.pkg span{font-size:8px;color:var(--muted);line-height:1.35}.legal{background:#f3eadc}.education{background:#e4eee5}.research{background:#e9e1ed}.trucking{background:#e2e7ee}.healthc{background:#f0e1e2}.creative{background:#f5e6d8}
+.bottomgrid{display:grid;grid-template-columns:1.08fr .92fr;gap:12px;margin-top:12px}.ecosystem{height:166px;padding:0 15px}.flow{display:grid;grid-template-columns:repeat(6,1fr);align-items:center;height:115px}.node{text-align:center;position:relative}.node:not(:last-child):after{content:"→";position:absolute;right:-8px;top:15px;color:var(--muted)}.node b{display:block;font-size:27px;font-weight:400;margin-bottom:8px}.node strong{display:block;font-size:8px;text-transform:uppercase}.node span{font-size:7px;color:var(--muted);line-height:1.3;display:block;margin-top:7px}.community{height:166px;display:grid;grid-template-columns:1.15fr .85fr}.quote{padding:15px 20px;border-right:1px solid var(--line)}.quote p{font-size:12px;line-height:1.6;margin:12px 0}.author{display:flex;align-items:center;gap:9px;font-size:9px}.avatar{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 50% 35%,#d7a84b 0 18%,#172733 19% 44%,#bd8625 45% 50%,#09131c 51%)}.leaders{padding:12px 18px}.leader{display:grid;grid-template-columns:18px 1fr auto;gap:7px;font-size:8px;margin:7px 0}.leader b{color:var(--gold)}
+.footer{margin:14px -18px 0;background:linear-gradient(135deg,#0a151f,#071019);color:#d8dde1;padding:20px 32px 14px}.footer-grid{display:grid;grid-template-columns:1.1fr repeat(3,.8fr) 1.2fr 1.2fr;gap:28px}.footer h4{font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:#fff}.footer p,.footer a{font-size:8px;line-height:1.6;color:#b9c0c6;text-decoration:none;display:block}.footer-logo{font:700 40px Oswald;color:#fff}.subscribe{display:flex}.subscribe input{height:32px;background:#111e28;border:1px solid #394852;color:#fff;padding:0 10px;width:150px}.subscribe button{height:32px;border:0;background:var(--gold);color:#fff;font-size:8px;font-weight:800;padding:0 14px}.opensource{border:1px solid #7c5d20;border-radius:7px;padding:12px;text-align:center}.copyright{border-top:1px solid #30404c;margin-top:15px;padding-top:10px;display:flex;justify-content:space-between;font-size:7px;color:#8d999f}
+@media(max-width:1280px){.toplinks{gap:16px}.search{display:none}.dashboard{grid-template-columns:1fr}.hero{height:420px}.right{display:grid;grid-template-columns:1fr 1fr;gap:12px}.topgrid,.middlegrid{display:contents}.featured{grid-column:1/-1}.packages{height:auto}.package-grid{grid-template-columns:repeat(3,1fr)}.bottomgrid{grid-template-columns:1fr}.footer-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:800px){.app{grid-template-columns:1fr}.rail{display:none}.topbar{grid-template-columns:1fr auto;height:62px}.toplinks{display:none}.brand span{display:none}.actions .btn:not(.dark){display:none}.main{padding:10px}.dashboard{display:block}.hero{height:auto;grid-template-columns:1fr}.hero-copy{padding:28px 12px}.portrait{height:350px}.queen{left:50%;transform:translateX(-50%)}.right{display:block}.topgrid,.middlegrid{display:grid;grid-template-columns:1fr;margin-top:12px}.terminal,.health,.activity,.quick,.featured{height:auto;min-height:190px;margin-top:12px}.quick-body{min-height:180px}.package-grid{grid-template-columns:repeat(2,1fr)}.bottomgrid{grid-template-columns:1fr}.ecosystem,.community{height:auto}.flow{grid-template-columns:repeat(3,1fr);height:auto;gap:20px;padding:12px 0}.node:after{display:none}.community{grid-template-columns:1fr}.quote{border-right:0;border-bottom:1px solid var(--line)}.footer{margin-left:-10px;margin-right:-10px}.footer-grid{grid-template-columns:1fr 1fr}.copyright{display:block}.actions{gap:6px}.btn{padding:0 12px}}
+</style>
 </head>
 <body>
-<div class="topline"></div>
-<header class="wrap">
+<div class="app">
+<aside class="rail">
+  <div class="rail-logo">WW</div>
   <nav>
-    <a class="brand" href="index.html"><span class="mark">W</span>Workflowware</a>
-    <div class="links">
-      <a href="library.html">Library</a><a href="spec.html">Spec</a><a href="docs.html">Docs</a><a href="https://github.com/Propershare/workflowware">GitHub</a><a class="nav-cta" href="pilot.html">Launch Lab →</a>
-    </div>
+    <a class="active" href="index.html"><span class="ico">⌂</span>Home</a>
+    <a href="library.html"><span class="ico">⌘</span>Workflows</a>
+    <a href="pilot.html"><span class="ico">⬡</span>Agents</a>
+    <a href="spec.html"><span class="ico">⚭</span>Evals</a>
+    <a href="library.html"><span class="ico">＋</span>Installs</a>
+    <a href="docs.html"><span class="ico">▱</span>Memory</a>
+    <a href="#community"><span class="ico">♙</span>Community</a>
+    <a href="docs.html"><span class="ico">⚙</span>Settings</a>
   </nav>
+  <div class="rail-bottom"><div class="operator"></div>MA'AT LAB<br>OPERATOR <span class="online"></span></div>
+</aside>
+<div class="shell">
+<header class="topbar">
+  <div class="brand"><strong>WORKFLOWWARE</strong><span>Software packaged as agent-operable workflows</span></div>
+  <nav class="toplinks"><a href="#product">Product</a><a href="library.html">Library</a><a href="library.html">Marketplace</a><a href="docs.html">Docs</a><a href="#community">Community</a><a href="spec.html">About</a></nav>
+  <div class="actions"><label class="search">⌕<input placeholder="Search workflows, skills, docs..."></label><a class="btn" href="#">Sign in</a><a class="btn dark" href="pilot.html">Launch Lab ↗</a></div>
 </header>
-<main>
-  <section class="hero wrap">
+<main class="main" id="product">
+<div class="dashboard">
+<section class="left">
+  <div class="hero">
     <div class="hero-copy">
-      <div class="kicker mono">The operating package for real work</div>
-      <h1>Build.<br>Verify.<br><em>Handoff.</em></h1>
-      <p class="lede">Workflowware packages the job, rules, agent behavior, approvals, evals, and human handoff into one portable unit—built for agents, legible to people.</p>
-      <div class="actions"><a class="btn primary" href="library.html">Explore the library →</a><a class="btn secondary" href="spec.html">Read the spec</a></div>
+      <h1>BUILD.<br>VERIFY.<br><span>DEPLOY.</span></h1>
+      <p class="lead">Workflows that agents can run.<br>Humans can trust.</p>
+      <div class="hero-actions"><a class="btn dark" href="library.html">Browse library →</a><a class="btn" href="spec.html">See how it works →</a></div>
+      <div class="micro">Built for agents. Designed for humans.</div>
+      <div class="trust-row"><div class="trust"><b>⌘</b>Interoperable</div><div class="trust"><b>♢</b>Verifiable</div><div class="trust"><b>◇</b>Portable</div><div class="trust"><b>◯</b>Open standard</div></div>
     </div>
-    <aside class="hero-panel">
-      <div>
-        <div class="panel-label mono">Package anatomy / v0.1</div>
-        <div class="stack">
-          <div class="stack-row"><span class="mono">01</span><b>Job definition</b><span class="status mono">Declared</span></div>
-          <div class="stack-row"><span class="mono">02</span><b>Agent instructions</b><span class="status mono">Bounded</span></div>
-          <div class="stack-row"><span class="mono">03</span><b>Rules + approvals</b><span class="status mono">Enforced</span></div>
-          <div class="stack-row"><span class="mono">04</span><b>Evals + evidence</b><span class="status mono">Verified</span></div>
-          <div class="stack-row"><span class="mono">05</span><b>Human handoff</b><span class="status mono">Ready</span></div>
-        </div>
-      </div>
-      <p class="panel-note">Not another chatbot. A governed package for one job.</p>
-    </aside>
-  </section>
-  <div class="ticker"><div class="wrap ticker-inner mono"><span>Agent-native</span><span>Interoperable</span><span>Verifiable</span><span>Portable</span><span>Human-readable</span></div></div>
-
-  <section class="section wrap">
-    <div class="section-head"><div class="mono">How it moves</div><div><h2>From loose automation to accountable software.</h2><p class="section-intro">A Workflowware package carries the operational context an agent needs and the evidence a human needs to trust the result.</p></div></div>
-    <div class="steps">
-      <article class="step"><div class="num mono">01 / Define</div><h3>Name the job</h3><p>Scope one repeatable outcome, its inputs, boundaries, and finish condition.</p></article>
-      <article class="step"><div class="num mono">02 / Govern</div><h3>Bind the rules</h3><p>Declare permissions, approvals, escalation points, and prohibited behavior.</p></article>
-      <article class="step"><div class="num mono">03 / Verify</div><h3>Run the evals</h3><p>Test expected behavior and preserve the evidence behind every claim.</p></article>
-      <article class="step"><div class="num mono">04 / Ship</div><h3>Install and hand off</h3><p>Move the package between people, agents, models, and environments.</p></article>
-    </div>
-  </section>
-
-  <section class="section dark">
-    <div class="wrap">
-      <div class="section-head"><div class="mono">Open packages</div><div><h2>Start with a working unit.</h2><p class="section-intro">Install a package, inspect its contract, run its tests, and adapt it without losing the governance spine.</p></div></div>
-      <div class="packages">
-        <a class="card" href="pilot.html"><div><div class="card-top mono"><span>Operations</span><span>Free</span></div><h3>Missed Lead Recovery</h3><p>Capture, qualify, route, and follow up on missed business leads with human approval gates.</p></div><div><div class="tags"><span class="tag mono">Agent</span><span class="tag mono">Evals</span><span class="tag mono">Handoff</span></div><div class="arrow">↗</div></div></a>
-        <a class="card" href="library.html"><div><div class="card-top mono"><span>Research</span><span>Open</span></div><h3>Evidence Brief</h3><p>Turn source material into a bounded brief with claims, citations, uncertainty, and review.</p></div><div><div class="tags"><span class="tag mono">Research</span><span class="tag mono">Sources</span><span class="tag mono">Review</span></div><div class="arrow">↗</div></div></a>
-        <a class="card" href="library.html"><div><div class="card-top mono"><span>Governance</span><span>Open</span></div><h3>Policy Gate</h3><p>Evaluate a proposed action against declared rules before an agent is allowed to execute.</p></div><div><div class="tags"><span class="tag mono">Policy</span><span class="tag mono">Approval</span><span class="tag mono">Audit</span></div><div class="arrow">↗</div></div></a>
+    <div class="portrait">
+      <i class="floating f1"></i><i class="floating f2"></i><i class="floating f3"></i>
+      <div class="queen" aria-label="Afrofuturist Ma'at profile illustration">
+      <svg viewBox="0 0 360 430" role="img"><defs><linearGradient id="skin" x1="0" x2="1"><stop stop-color="#3a1f16"/><stop offset=".55" stop-color="#6c3a25"/><stop offset="1" stop-color="#21140f"/></linearGradient><linearGradient id="crown" x1="0" x2="1"><stop stop-color="#071019"/><stop offset=".55" stop-color="#172733"/><stop offset="1" stop-color="#050b10"/></linearGradient></defs><path fill="url(#crown)" stroke="#bd8625" stroke-width="2" d="M132 15Q214 0 278 59L295 212Q240 176 143 189Z"/><path fill="none" stroke="#bd8625" stroke-width="9" d="M139 61Q216 38 279 85M140 91Q221 65 284 112M141 120Q224 95 287 141M142 150Q225 123 291 169"/><path fill="#bd8625" d="M138 168Q221 143 293 190L286 216Q217 185 143 210Z"/><path fill="url(#skin)" d="M145 185Q160 157 211 165Q255 171 267 206Q274 230 258 252Q246 268 252 295Q260 326 298 381L155 430Q173 369 165 321Q157 277 132 248Q118 232 125 210Z"/><path fill="url(#skin)" d="M133 213Q99 228 91 254Q82 282 112 290Q139 294 158 272L178 250L168 210Z"/><path fill="#080b0d" d="M107 247Q128 235 155 241Q135 247 113 251Z"/><path fill="#d6a347" d="M111 260Q131 266 151 259Q132 274 111 263Z"/><path fill="#140c09" d="M145 221Q166 214 183 224Q164 222 149 228Z"/><circle cx="156" cy="229" r="3" fill="#d9aa4a"/><path fill="none" stroke="#bd8625" stroke-width="3" d="M180 236Q193 253 178 267M188 273Q210 281 228 271"/><path fill="none" stroke="#bd8625" stroke-width="4" d="M231 223Q252 247 234 275"/><circle cx="241" cy="274" r="19" fill="none" stroke="#bd8625" stroke-width="4"/><circle cx="241" cy="274" r="6" fill="#bd8625"/><path fill="#0b1116" stroke="#bd8625" stroke-width="2" d="M198 309Q257 301 291 348L313 430H148Q163 365 198 309Z"/><path fill="none" stroke="#bd8625" stroke-width="5" d="M176 346Q238 325 295 365M167 378Q235 355 305 394M159 411Q235 383 314 423"/><path fill="none" stroke="#bd8625" d="M153 41l122 108M149 73l137 111M144 106l143 109" opacity=".55"/></svg>
       </div>
     </div>
-  </section>
-
-  <section class="section wrap">
-    <div class="section-head"><div class="mono">The stack</div><div><h2>One package. Five trust layers.</h2></div></div>
-    <div class="architecture">
-      <div class="layer"><span class="mono">Layer 01</span><strong>Human trust surface</strong><small>Purpose, scope, owner</small></div>
-      <div class="layer"><span class="mono">Layer 02</span><strong>Workflow + agent specs</strong><small>Steps, tools, behavior</small></div>
-      <div class="layer"><span class="mono">Layer 03</span><strong>Approvals + policy</strong><small>Authority and limits</small></div>
-      <div class="layer"><span class="mono">Layer 04</span><strong>Evals + evidence</strong><small>Tests and receipts</small></div>
-      <div class="layer"><span class="mono">Layer 05</span><strong>Install + handoff</strong><small>Portable operation</small></div>
+  </div>
+  <section class="packages panel">
+    <div class="section-title">Explore workflow packages <small><a href="library.html">View all →</a></small></div>
+    <div class="package-grid">
+      <article class="pkg legal"><b>⚖</b><strong>Legal</strong><span>Draft motions, analyze cases, build defenses.<br><em>12 workflows</em></span></article>
+      <article class="pkg education"><b>⌂</b><strong>Education</strong><span>Curricula, tutoring, assessment engines.<br><em>9 workflows</em></span></article>
+      <article class="pkg research"><b>▤</b><strong>Research</strong><span>RAG pipelines, data analysis, citations.<br><em>14 workflows</em></span></article>
+      <article class="pkg trucking"><b>▣</b><strong>Trucking</strong><span>Load search, dispatch, compliance, IFTA.<br><em>8 workflows</em></span></article>
+      <article class="pkg healthc"><b>♡</b><strong>Health</strong><span>Patient intake, triage, records, follow-up.<br><em>7 workflows</em></span></article>
+      <article class="pkg creative"><b>↗</b><strong>Creative</strong><span>Content pipelines, TTS, media generation.<br><em>11 workflows</em></span></article>
     </div>
   </section>
-
-  <section class="section wrap">
-    <div class="manifest">
-      <div class="manifest-copy"><div class="mono">Readable by design</div><h2>A manifest is the front door.</h2><p class="section-intro">Every package declares what it does, who owns it, what it can access, how it is tested, and when a human must take over.</p><a class="btn secondary" href="docs.html">Open documentation →</a></div>
-      <pre class="code"><span class="gold">package</span>: missed-lead-recovery
-<span class="gold">version</span>: 0.1.0
-<span class="gold">owner</span>: operations
-<span class="gold">job</span>: recover qualified missed leads
-<span class="gold">agent</span>:
-  permissions: [read_inbox, draft_reply]
-  prohibited: [send_without_approval]
-<span class="gold">approval</span>:
-  required_before: send
-<span class="gold">evals</span>:
-  - qualification_accuracy
-  - policy_fidelity
-<span class="gold">handoff</span>:
-  route_to: human_operator</pre>
-    </div>
-  </section>
-
-  <section class="final"><div class="wrap"><div class="mono">Build the operating package</div><h2>Make the work portable. Keep the trust intact.</h2><a class="btn" href="pilot.html">Enter the Launch Lab →</a></div></section>
+</section>
+<section class="right">
+  <div class="topgrid">
+    <section class="terminal panel"><div class="panel-head">Live Lab <small class="live">● All systems operational</small></div><pre>&gt; Agent Spine connected
+&gt; Memory store online
+&gt; Evaluator ready
+&gt; Gateway listening on :8040
+&gt; You are in control_</pre><div class="command">⌁ &nbsp; OPEN COMMAND CENTER &nbsp; →</div></section>
+    <section class="health panel"><div class="panel-head">System Health <small>⌁</small></div><div class="metrics"><div class="metric"><small>Agents</small><strong>12</strong><span class="live">Online</span></div><div class="metric"><small>Workflows</small><strong>47</strong><span>Installed</span></div><div class="metric"><small>Evals run</small><strong>1,328</strong><span>This week</span></div><div class="metric"><small>Success rate</small><strong>93.7%</strong><span>Overall</span></div></div><div class="statusbar">⌁ &nbsp; VIEW STATUS</div></section>
+  </div>
+  <div class="middlegrid">
+    <section class="activity panel"><div class="panel-head">Recent activity</div><div class="activity-list"><div class="event"><i>♙</i><div><strong>Legal Motion Generator</strong><span>Installed</span></div><time>2m ago</time></div><div class="event"><i>◇</i><div><strong>MaatBench Full Tier</strong><span>Eval Completed</span></div><time>15m ago</time></div><div class="event"><i>⌘</i><div><strong>Hermes Agent v2</strong><span>Updated</span></div><time>1h ago</time></div><div class="event"><i>▤</i><div><strong>Evidence Analyzer</strong><span>Workflow deployed</span></div><time>3h ago</time></div></div></section>
+    <section class="quick panel"><div class="panel-head">Quick start</div><div class="quick-body"><div class="steps"><p style="font-size:9px;color:var(--muted)">Get up and running in minutes.</p><div class="step"><b>1</b>Choose a workflow</div><div class="step"><b>2</b>Install & configure</div><div class="step"><b>3</b>Run evals</div><div class="step"><b>4</b>Deploy with confidence</div><a class="btn dark" href="pilot.html">Start building →</a></div><div class="stackart"><i class="layer l1"></i><i class="layer l2"></i><i class="layer l3"></i></div></div></section>
+  </div>
+  <section class="featured panel"><div class="featured-copy"><small>FEATURED WORKFLOW</small><h2>Workflowware Legal Suite</h2><p>End-to-end litigation support for modern legal teams and solo operators.</p><div class="tags"><span class="tag">Litigation</span><span class="tag">Research</span><span class="tag">Drafting</span><span class="tag">Evals</span></div><a class="btn" style="color:white;border-color:#72808a" href="library.html">View workflow →</a></div><div class="cube"><i class="sq s1"></i><i class="sq s2"></i><i class="sq s3"></i><i class="sq s4"></i></div></section>
+</section>
+</div>
+<div class="bottomgrid">
+<section class="ecosystem panel"><div class="section-title">The Workflowware ecosystem</div><div class="flow"><div class="node"><b>✎</b><strong>Author</strong><span>Create workflows with our spec</span></div><div class="node"><b>◇</b><strong>Package</strong><span>Bundle rules, evals and instructions</span></div><div class="node"><b>◎</b><strong>Publish</strong><span>Share to library or marketplace</span></div><div class="node"><b>⇩</b><strong>Install</strong><span>Agents install with one command</span></div><div class="node"><b>♢</b><strong>Run & verify</strong><span>Built-in evals ensure quality</span></div><div class="node"><b>♙</b><strong>Handoff</strong><span>Deliver outputs ready for humans</span></div></div></section>
+<section class="community panel" id="community"><div class="quote"><div class="section-title">Community highlight</div><p>“Workflowware changed how I build. My agents execute with context, and the evals give me confidence every time.”</p><div class="author"><div class="avatar"></div><b>— KEMETIC_DEV<br><span style="color:var(--muted);font-weight:400">Workflow Author</span></b></div></div><div class="leaders"><div class="section-title">Top contributors</div><div class="leader"><b>1</b><span>Maat Lab</span><em>124</em></div><div class="leader"><b>2</b><span>Kmetic_Dev</span><em>98</em></div><div class="leader"><b>3</b><span>RBG Scholar</span><em>76</em></div><div class="leader"><b>4</b><span>DataLion</span><em>65</em></div><div class="leader"><b>5</b><span>FreeMinds Collective</span><em>54</em></div></div></section>
+</div>
+<footer class="footer"><div class="footer-grid"><div><div class="footer-logo">WW</div><p>An open standard for agent-operable workflows. Built on Ma'at. Governed by truth. Shared for humanity.</p></div><div><h4>Resources</h4><a href="docs.html">Documentation</a><a href="spec.html">Spec</a><a href="docs.html">Tutorials</a><a href="docs.html">API Reference</a></div><div><h4>Community</h4><a href="#community">Forum</a><a href="#community">Events</a><a href="#community">Blog</a><a href="#community">Discord</a></div><div><h4>Company</h4><a href="spec.html">About us</a><a href="spec.html">Partners</a><a href="spec.html">Careers</a><a href="mailto:hello@workflowware.org">Contact</a></div><div><h4>Stay connected</h4><p>Get updates on new workflows, releases, and events.</p><div class="subscribe"><input placeholder="Enter your email"><button>Subscribe</button></div></div><div class="opensource"><h4 style="color:var(--gold2)">Workflowware is open source</h4><p>Built in the open. For the people.</p><a class="btn" style="color:white;border-color:#697782" href="https://github.com/Propershare/workflowware">◉ View on GitHub</a></div></div><div class="copyright"><span>© 2026 Workflowware Project. All rights reserved.</span><span>Privacy Policy &nbsp;&nbsp; Terms of Service &nbsp;&nbsp; Code of Conduct</span></div></footer>
 </main>
-<footer><div class="wrap"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="mark">W</span>Workflowware</a><p style="color:#938c7f;max-width:330px;line-height:1.6">Software packaged as agent-operable workflows. Built at BlackLabRats and governed through the MAAT ecosystem.</p></div><div><h4>Discover</h4><a href="library.html">Library</a><a href="pilot.html">Launch Lab</a></div><div><h4>Learn</h4><a href="spec.html">Specification</a><a href="docs.html">Documentation</a></div><div><h4>Connect</h4><a href="https://github.com/Propershare/workflowware">GitHub</a><a href="mailto:hello@workflowware.org">Email</a><a href="https://maatecosystem.com">MAAT</a></div></div><div class="copyright mono">© 2026 Workflowware™ · Spec v0.1 · Built for agents. Designed for humans.</div></div></footer>
+</div>
+</div>
 </body>
 </html>
