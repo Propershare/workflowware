@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V21h-6v-6H9v6H3z"/></symbol>
+<symbol id="i-lab" viewBox="0 0 24 24"><path d="M9 3h6M10 3v5l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V3M8 14h8"/></symbol>
+<symbol id="i-library" viewBox="0 0 24 24"><path d="M4 5h5v14H4zM10 5h5v14h-5zM16 5h4v14h-4z"/></symbol>
+<symbol id="i-workflows" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="19" r="2"/><path d="m7 11 3-4m4 0 3 4m0 2-3 4m-4 0-3-4"/></symbol>
+<symbol id="i-agents" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 21c.7-4.6 3-7 7-7s6.3 2.4 7 7M4 8l-2 2 2 2m16-4 2 2-2 2"/></symbol>
+<symbol id="i-evals" viewBox="0 0 24 24"><path d="M5 3v6m14-6v6M3 12h18M7 12v9m10-9v9M7 17h10"/></symbol>
+<symbol id="i-memory" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v7c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 12v7c0 1.7 3.1 3 7 3s7-1.3 7-3v-7"/></symbol>
+<symbol id="i-installs" viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 19h16"/></symbol>
+<symbol id="i-analytics" viewBox="0 0 24 24"><path d="M4 20V10m6 10V4m6 16v-7m4 7V8"/></symbol>
+<symbol id="i-community" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c.5-4 2.5-6 6-6s5.5 2 6 6M14 15c3.4-.2 5.7 1.5 6.5 5"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12l2-1-2-4-2 1a8 8 0 0 0-2-1l-.3-2H9.3L9 7a8 8 0 0 0-2 1L5 7l-2 4 2 1a8 8 0 0 0 0 2l-2 1 2 4 2-1a8 8 0 0 0 2 1l.3 2h5.4l.3-2a8 8 0 0 0 2-1l2 1 2-4-2-1a8 8 0 0 0 0-2z"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 17h12l-1.5-2.5V10a4.5 4.5 0 0 0-9 0v4.5zM10 20h4"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.1 2.4c-.8.3-1.1.8-1.1 1.6M12 17h.01"/></symbol>
+<symbol id="i-legal" viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M7 7l-4 7h8zM17 7l-4 7h8zM5 21h14"/></symbol>
+<symbol id="i-education" viewBox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5zM6 12v6c4 2.5 8 2.5 12 0v-6M21 10v6"/></symbol>
+<symbol id="i-research" viewBox="0 0 24 24"><path d="M3 5c4-1.5 7-1 9 1.5V20c-2-2.5-5-3.5-9-2zM21 5c-4-1.5-7-1-9 1.5V20c2-2.5 5-3.5 9-2z"/></symbol>
+<symbol id="i-trucking" viewBox="0 0 24 24"><path d="M3 7h12v10H3zM15 10h4l2 3v4h-6z"/><circle cx="7" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></symbol>
+<symbol id="i-health" viewBox="0 0 24 24"><path d="M12 21S3 15 3 9c0-4 5-5.5 9-1 4-4.5 9-3 9 1 0 6-9 12-9 12zM6 13h4l1.5-3 2 6 1.5-3h3"/></symbol>
+<symbol id="i-creative" viewBox="0 0 24 24"><path d="m5 20 3-8L19 2l3 3-11 11zM8 12l4 4M5 20l5-2-3-3z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 7 3v5c0 4.5-3 7.5-7 10-4-2.5-7-5.5-7-10V6z"/></symbol>
+<symbol id="i-terminal" viewBox="0 0 24 24"><path d="m4 7 5 5-5 5M11 17h9"/></symbol>
+<symbol id="i-package" viewBox="0 0 24 24"><path d="m12 3 8 4-8 4-8-4zM4 7v10l8 4 8-4V7M12 11v10"/></symbol>
+</defs></svg>
