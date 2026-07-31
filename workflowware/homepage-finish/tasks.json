@@ -1,0 +1,138 @@
+{
+  "workflow_id": "workflowware-homepage-finish-v1",
+  "version": "1.0.0",
+  "status": "active",
+  "objective": "Finish the Workflowware homepage to the approved Afrofuturist dashboard reference with production assets, controlled layout, semantic navigation, and evidence-backed QA.",
+  "execution_model": {
+    "parallelism": 4,
+    "merge_order": ["A1", "A2", "L1", "S1", "Q1"],
+    "single_writer_files": ["index.html", "assets/v2-polish.css", "agent-map.json"],
+    "default_branch": "main",
+    "branch_prefix": "homepage-finish/"
+  },
+  "tasks": [
+    {
+      "id": "A1",
+      "title": "Complete brand and navigation asset set",
+      "owner_role": "asset_agent",
+      "priority": 1,
+      "depends_on": [],
+      "allowed_paths": ["assets/workflowware-logo.svg", "assets/icons/**", "assets/favicon.svg"],
+      "deliverables": [
+        "light and dark logo variants",
+        "favicon",
+        "8 navigation icons",
+        "6 package category icons",
+        "4 status/action icons"
+      ],
+      "acceptance": [
+        "no emoji dependency",
+        "consistent stroke language",
+        "works at 16px and 24px",
+        "uses currentColor where practical",
+        "all SVGs include title or aria-hidden guidance"
+      ],
+      "evidence": ["asset inventory", "screenshots or rendered contact sheet", "commit SHA"]
+    },
+    {
+      "id": "A2",
+      "title": "Complete homepage illustration set",
+      "owner_role": "asset_agent",
+      "priority": 1,
+      "depends_on": [],
+      "allowed_paths": ["assets/hero-queen.svg", "assets/workflow-stack.svg", "assets/package-cube.svg", "assets/agent-spine.svg"],
+      "deliverables": [
+        "final hero illustration",
+        "quick-start workflow stack",
+        "featured package cube",
+        "ecosystem agent spine"
+      ],
+      "acceptance": [
+        "same black ivory gold palette",
+        "no raster-only dependency",
+        "clean at desktop and mobile sizes",
+        "illustrations reinforce function, not decoration"
+      ],
+      "evidence": ["asset inventory", "rendered preview", "commit SHA"]
+    },
+    {
+      "id": "L1",
+      "title": "Lock desktop homepage grid",
+      "owner_role": "layout_agent",
+      "priority": 1,
+      "depends_on": ["A1", "A2"],
+      "allowed_paths": ["index.html", "assets/v2-polish.css"],
+      "deliverables": [
+        "wire external polish stylesheet",
+        "wire logo and illustration assets",
+        "align hero and right dashboard stack",
+        "align package row and bottom panels",
+        "remove remaining placeholder glyphs"
+      ],
+      "acceptance": [
+        "controlled at 1366px, 1440px, and 1536px",
+        "major panel edges align",
+        "no uncontrolled overflow",
+        "reference composition is visibly recognizable",
+        "no fake live controls"
+      ],
+      "evidence": ["three viewport screenshots", "before and after comparison", "commit SHA"]
+    },
+    {
+      "id": "S1",
+      "title": "Make homepage small-model navigable",
+      "owner_role": "semantic_agent",
+      "priority": 2,
+      "depends_on": ["L1"],
+      "allowed_paths": ["index.html", "agent-map.json", "workflowware/homepage-finish/**"],
+      "deliverables": [
+        "page JSON-LD manifest",
+        "semantic section ids",
+        "descriptive controls and links",
+        "machine-readable action inventory",
+        "truthful capability states"
+      ],
+      "acceptance": [
+        "a small model can identify page purpose without visual inference",
+        "every primary action has a stable label",
+        "no hover-only required action",
+        "page actions match agent-map.json"
+      ],
+      "evidence": ["agent navigation transcript", "manifest validation", "commit SHA"]
+    },
+    {
+      "id": "Q1",
+      "title": "Run visual and governance QA",
+      "owner_role": "qa_agent",
+      "priority": 1,
+      "depends_on": ["S1"],
+      "allowed_paths": ["workflowware/homepage-finish/reports/**", "docs/BUILD_STATUS.md"],
+      "deliverables": [
+        "visual gap report",
+        "broken-link report",
+        "mobile review",
+        "accessibility review",
+        "truthfulness audit"
+      ],
+      "acceptance": [
+        "all critical defects classified",
+        "remaining gaps stated plainly",
+        "homepage approved or rejected with reasons",
+        "final commit SHA recorded"
+      ],
+      "evidence": ["QA report", "checklist", "final decision"]
+    }
+  ],
+  "handoff_schema": {
+    "task_id": "string",
+    "status": "queued|claimed|in_progress|blocked|review|done",
+    "agent": "string",
+    "branch": "string",
+    "commit_sha": "string",
+    "files_changed": ["string"],
+    "visible_change": "string",
+    "evidence": ["string"],
+    "remaining_gaps": ["string"],
+    "next_task": "string"
+  }
+}
