@@ -1,0 +1,84 @@
+{
+  "name": "Workflowware",
+  "version": "0.2.0",
+  "purpose": "A platform for discovering, installing, verifying, running, and handing off governed AI workflow packages.",
+  "start_here": [
+    "AGENTS.md",
+    "agent-map.json",
+    "index.html",
+    "library.html",
+    "pilot.html",
+    "docs.html",
+    "spec.html"
+  ],
+  "routes": {
+    "/": {
+      "file": "index.html",
+      "role": "home_and_operating_overview",
+      "primary_actions": ["browse_library", "launch_lab", "read_spec"],
+      "status": "active_build"
+    },
+    "/library.html": {
+      "file": "library.html",
+      "role": "package_catalog",
+      "primary_actions": ["search_packages", "inspect_package", "open_pilot"],
+      "status": "needs_v2_alignment"
+    },
+    "/pilot.html": {
+      "file": "pilot.html",
+      "role": "launch_lab",
+      "primary_actions": ["run_workflow", "inspect_output", "review_handoff"],
+      "status": "existing"
+    },
+    "/docs.html": {
+      "file": "docs.html",
+      "role": "documentation",
+      "primary_actions": ["read_guides", "inspect_examples", "find_api_reference"],
+      "status": "existing"
+    },
+    "/spec.html": {
+      "file": "spec.html",
+      "role": "workflowware_specification",
+      "primary_actions": ["read_contract", "inspect_package_anatomy", "understand_governance"],
+      "status": "existing"
+    }
+  },
+  "core_entities": {
+    "package": {
+      "definition": "A portable operating unit for one job.",
+      "required_parts": ["job", "instructions", "rules", "approvals", "evals", "evidence", "handoff"]
+    },
+    "agent": {
+      "definition": "An execution role operating inside package constraints.",
+      "must_know": ["allowed_tools", "prohibited_actions", "approval_points", "success_condition"]
+    },
+    "eval": {
+      "definition": "A declared test producing evidence about package behavior."
+    },
+    "handoff": {
+      "definition": "The structured transfer of output, evidence, and unresolved items to a human or another agent."
+    }
+  },
+  "navigation_rules": [
+    "Prefer stable semantic labels over decorative text.",
+    "Every important action must be represented by a link, button, form control, or documented endpoint.",
+    "Do not require visual inference to understand page purpose.",
+    "Use descriptive ids, classes, headings, aria-labels, and link text.",
+    "Expose page purpose and available actions near the top of each document.",
+    "Keep route names and entity names consistent across UI, docs, manifests, and code.",
+    "Never hide required controls behind hover-only behavior.",
+    "All agent-triggered mutations require an explicit approval or policy check."
+  ],
+  "agent_contract": {
+    "read_order": ["AGENTS.md", "agent-map.json", "page source", "related docs"],
+    "before_action": ["identify_route", "identify_entity", "identify_allowed_action", "check_approval_requirement"],
+    "after_action": ["record_result", "record_evidence", "record_errors", "prepare_handoff"],
+    "truth_rule": "Never claim a page, workflow, package, metric, or capability is live unless the repository and runtime evidence support that claim."
+  },
+  "design_system": {
+    "colors": ["ivory", "matte_black", "deep_navy", "gold"],
+    "spacing_base_px": 8,
+    "visual_target": "dense_afrofuturist_application_platform",
+    "asset_paths": ["assets/hero-queen.svg", "assets/v2-polish.css"]
+  }
+}
