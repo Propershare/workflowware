@@ -1,6 +1,6 @@
 {
   "name": "Workflowware",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "purpose": "A platform for discovering, installing, verifying, running, and handing off governed AI workflow packages.",
   "start_here": [
     "AGENTS.md",
@@ -30,7 +30,9 @@
         "inspect_package",
         "open_pilot"
       ],
-      "status": "needs_v2_alignment"
+      "status": "needs_v2_alignment",
+      "min_tier": "pro",
+      "paywall": true
     },
     "/pilot.html": {
       "file": "pilot.html",
@@ -72,7 +74,8 @@
       "file": "app-library.html",
       "role": "platform_library",
       "status": "active_build",
-      "min_tier": "free"
+      "min_tier": "pro",
+      "paywall": true
     },
     "/app-marketplace.html": {
       "file": "app-marketplace.html",
@@ -171,12 +174,11 @@
       "marketing",
       "spec",
       "docs",
-      "public_library",
       "pilot",
-      "lab_preview",
-      "library_browse"
+      "lab_preview"
     ],
     "governed": [
+      "library",
       "builder",
       "marketplace",
       "lab_full",

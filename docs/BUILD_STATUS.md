@@ -31,8 +31,8 @@
 
 | Layer | Truth |
 |-------|--------|
-| Open | Spec, docs, public library, pilot, Lab preview — no fee, no account theater |
-| Governed | Builder + marketplace install path + full Lab — scoped install via hello@; not self-serve checkout |
+| Open | Spec, docs, pilot, Lab preview — no fee |
+| Governed | Library + Builder + Marketplace + full Lab — scoped install via hello@ |
 | Local override | Lab hostname only — development, not a SKU |
 
 Public page: `pricing.html` (Access). Gate: `assets/ww-entitlements.js`.

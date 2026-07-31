@@ -10,7 +10,8 @@
   const DEFAULT_ENTITLEMENTS = {
     routes: {
       'app.html': { min_tier: 'free', mode: 'preview_on_free' },
-      'app-library.html': { min_tier: 'free', mode: 'browse_on_free' },
+      'app-library.html': { min_tier: 'pro' },
+      'library.html': { min_tier: 'pro' },
       'app-marketplace.html': { min_tier: 'pro' },
       'app-builder.html': { min_tier: 'pro' }
     },
