@@ -2,677 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Workflowware™ — Software packaged as agent-operable workflows</title>
-  <meta name="description" content="Workflowware is the operating package for real work: workflow specs, agent behavior, approvals, evals, and handoff — portable for humans and agents.">
-  <meta name="maat-artifact" content="tehuti.workflowware.public-site">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Workflowware — Agent-operable software packages</title>
+  <meta name="description" content="Build, verify, and ship agent-operable workflows with rules, evals, approvals, and handoff built in.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #eef1f4;
-      --paper: #ffffff;
-      --ink: #10141c;
-      --muted: #5c6775;
-      --line: #d7dde5;
-      --navy: #121826;
-      --lime: #c8f542;
-      --lime-deep: #a8d12a;
-      --blue-soft: #c9d7f0;
-      --max: 1180px;
-      --ease: cubic-bezier(.22, 1, .36, 1);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      font-family: "Sora", system-ui, sans-serif;
-      background:
-        radial-gradient(circle at 12% 18%, rgba(200, 245, 66, 0.12), transparent 28%),
-        radial-gradient(circle at 85% 20%, rgba(170, 196, 240, 0.28), transparent 34%),
-        var(--bg);
-      min-height: 100vh;
-    }
-    a { color: inherit; }
-    .skip {
-      position: absolute; left: -999px;
-    }
-    .skip:focus {
-      left: 12px; top: 12px; z-index: 40;
-      background: #fff; padding: 8px 12px;
-    }
-
-    .shell {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* ——— Nav ——— */
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1.15rem 0 0.75rem;
-    }
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: -0.03em;
-    }
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      background: var(--navy);
-      color: #fff;
-      border-radius: 9px;
-      position: relative;
-      overflow: hidden;
-      font-weight: 800;
-      font-size: 1.05rem;
-    }
-    .logo-mark::after {
-      content: "";
-      position: absolute;
-      width: 18px;
-      height: 3px;
-      background: var(--lime);
-      transform: rotate(-38deg);
-      bottom: 9px;
-      right: 4px;
-    }
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.15rem;
-      align-items: center;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.92rem;
-      font-weight: 500;
-      position: relative;
-      padding-top: 0.35rem;
-    }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-links a.is-active { color: var(--ink); font-weight: 600; }
-    .nav-links a.is-active::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 6px;
-      height: 6px;
-      margin-left: -3px;
-      border-radius: 50%;
-      background: var(--lime-deep);
-    }
-
-    /* ——— Hero ——— */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-      gap: 2.5rem 3rem;
-      align-items: center;
-      padding: 2.25rem 0 2rem;
-      min-height: calc(100vh - 8.5rem);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: rgba(255, 255, 255, 0.75);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0.4rem 0.8rem;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin: 0 0 1.25rem;
-    }
-    .eyebrow .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--navy);
-    }
-
-    .headline {
-      margin: 0 0 1.1rem;
-      font-size: clamp(2.35rem, 5.2vw, 3.85rem);
-      line-height: 1.08;
-      letter-spacing: -0.045em;
-      font-weight: 800;
-      max-width: 11ch;
-      padding-bottom: 0.08em;
-    }
-    .headline .mark {
-      position: relative;
-      display: inline-block;
-      white-space: nowrap;
-    }
-    .headline .mark::after {
-      content: "";
-      position: absolute;
-      left: -2%;
-      right: -2%;
-      bottom: 0.08em;
-      height: 0.18em;
-      background: var(--lime);
-      border-radius: 2px;
-      transform: rotate(-1.5deg);
-      z-index: -1;
-    }
-
-    .support {
-      margin: 0 0 1.6rem;
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.55;
-      max-width: 34ch;
-      font-weight: 400;
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.75rem;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      text-decoration: none;
-      border-radius: 12px;
-      padding: 0.9rem 1.15rem;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border: 1.5px solid transparent;
-      transition: transform 0.2s var(--ease), background 0.2s var(--ease);
-    }
-    .btn svg { width: 16px; height: 16px; flex: 0 0 auto; }
-    .btn.primary {
-      background: var(--navy);
-      color: var(--lime);
-    }
-    .btn.primary:hover { transform: translateY(-2px); }
-    .btn.secondary {
-      background: var(--paper);
-      color: var(--ink);
-      border-color: var(--line);
-    }
-    .btn.secondary:hover {
-      transform: translateY(-2px);
-      border-color: #b7c0cc;
-    }
-
-    .traits {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.65rem 0;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 500;
-    }
-    .traits span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0 0.85rem;
-    }
-    .traits span:first-child { padding-left: 0; }
-    .traits span + span {
-      border-left: 1px solid #c9d1db;
-    }
-    .traits svg {
-      width: 15px;
-      height: 15px;
-      opacity: 0.8;
-    }
-
-    /* ——— Stack visual ——— */
-    .hero-visual {
-      position: relative;
-      min-height: 520px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-    }
-    .circuit {
-      position: absolute;
-      inset: 8% 4% 12% 8%;
-      background-image:
-        radial-gradient(circle at 20% 30%, #9eb6e0 1.5px, transparent 1.6px),
-        radial-gradient(circle at 70% 55%, #9eb6e0 1.5px, transparent 1.6px),
-        radial-gradient(circle at 45% 75%, #9eb6e0 1.5px, transparent 1.6px),
-        linear-gradient(115deg, transparent 48%, rgba(150, 175, 210, 0.45) 48.5%, transparent 49%),
-        linear-gradient(70deg, transparent 40%, rgba(150, 175, 210, 0.35) 40.5%, transparent 41%),
-        linear-gradient(20deg, transparent 60%, rgba(150, 175, 210, 0.3) 60.5%, transparent 61%);
-      opacity: 0.55;
-      pointer-events: none;
-    }
-
-    .stack {
-      position: relative;
-      width: min(100%, 380px);
-      perspective: 900px;
-      transform-style: preserve-3d;
-    }
-    .layer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      background: var(--paper);
-      border: 1px solid #e2e8f0;
-      border-left: 5px solid var(--blue-soft);
-      border-radius: 14px;
-      padding: 1rem 1.05rem;
-      margin-bottom: 0.7rem;
-      box-shadow: 0 10px 24px rgba(16, 20, 28, 0.08);
-      transform: rotateY(-18deg) rotateX(4deg) translateZ(0);
-      animation: floatIn 0.7s var(--ease) both;
-    }
-    .layer:nth-child(1) { animation-delay: 0.05s; }
-    .layer:nth-child(2) { animation-delay: 0.12s; transform: rotateY(-18deg) rotateX(4deg) translateX(10px); }
-    .layer:nth-child(3) { animation-delay: 0.19s; transform: rotateY(-18deg) rotateX(4deg) translateX(20px); }
-    .layer:nth-child(4) {
-      animation-delay: 0.26s;
-      background: var(--navy);
-      color: #fff;
-      border-color: #1d2638;
-      border-left-color: #3b4d73;
-      transform: rotateY(-18deg) rotateX(4deg) translateX(30px);
-    }
-    .layer:nth-child(5) {
-      animation-delay: 0.33s;
-      background: var(--lime);
-      border-color: #b6e038;
-      border-left-color: #9ccc20;
-      color: var(--navy);
-      transform: rotateY(-18deg) rotateX(4deg) translateX(40px);
-      box-shadow: 0 14px 28px rgba(168, 209, 42, 0.28);
-    }
-    .layer .meta { min-width: 0; }
-    .layer .k {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0.65;
-      margin-bottom: 0.2rem;
-    }
-    .layer .t {
-      font-size: 0.98rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-    }
-    .layer .ico {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
-      display: grid;
-      place-items: center;
-      background: rgba(16, 20, 28, 0.05);
-      flex: 0 0 auto;
-    }
-    .layer:nth-child(4) .ico { background: rgba(255, 255, 255, 0.08); }
-    .layer:nth-child(5) .ico { background: rgba(16, 20, 28, 0.08); }
-    .layer .ico svg { width: 18px; height: 18px; }
-
-    @keyframes floatIn {
-      from { opacity: 0; filter: blur(2px); }
-      to { opacity: 1; filter: none; }
-    }
-
-    /* ——— Proof bar ——— */
-    .proof {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem 1.75rem;
-      margin: 0 0 2.5rem;
-      padding: 1rem 1.2rem;
-      background: rgba(255, 255, 255, 0.65);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-    }
-    .proof .label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    .proof-logos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem 0.75rem;
-      align-items: center;
-    }
-    .proof-logos a {
-      font-weight: 600;
-      font-size: 0.88rem;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      text-decoration: none;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0.4rem 0.75rem;
-      transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
-    }
-    .proof-logos a:hover {
-      border-color: #b7c0cc;
-      transform: translateY(-1px);
-    }
-    .proof-logos a code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-
-    /* ——— Lower sections (same system) ——— */
-    section.block {
-      padding: 3.5rem 0;
-      border-top: 1px solid var(--line);
-    }
-    .sec-kicker {
-      margin: 0 0 0.55rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #6b7280;
-    }
-    section.block h2 {
-      margin: 0 0 0.75rem;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      letter-spacing: -0.035em;
-      line-height: 1.15;
-      max-width: 18ch;
-    }
-    .sec-lead {
-      margin: 0 0 1.5rem;
-      color: var(--muted);
-      max-width: 42ch;
-      line-height: 1.55;
-    }
-    .quote {
-      margin: 0;
-      padding: 0.15rem 0 0.15rem 1rem;
-      border-left: 3px solid var(--lime-deep);
-      font-weight: 700;
-      font-size: 1.25rem;
-      letter-spacing: -0.03em;
-      line-height: 1.35;
-      max-width: 28ch;
-    }
-    .anatomy { border-top: 1px solid var(--line); }
-    .anatomy ul { list-style: none; margin: 0; padding: 0; }
-    .anatomy li {
-      display: grid;
-      grid-template-columns: 10rem 1fr;
-      gap: 1rem;
-      padding: 0.95rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .anatomy .name { font-weight: 700; letter-spacing: -0.02em; }
-    .anatomy .desc { margin: 0; color: var(--muted); }
-
-    .pilot-band {
-      background: var(--navy);
-      color: #fff;
-      border-radius: 18px;
-      padding: 2.25rem 1.5rem;
-      margin: 0.5rem 0 1rem;
-    }
-    .pilot-band .sec-kicker { color: var(--lime); }
-    .pilot-band h2 { color: #fff; }
-    .pilot-band .sec-lead { color: rgba(255, 255, 255, 0.72); }
-    .pilot-band .btn.primary {
-      background: var(--lime);
-      color: var(--navy);
-    }
-    .pilot-band .btn.secondary {
-      background: transparent;
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.28);
-    }
-
-    .cards {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-    .cards a {
-      text-decoration: none;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 1.1rem 1.15rem;
-      transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
-    }
-    .cards a:hover {
-      border-color: #b7c0cc;
-      transform: translateY(-2px);
-    }
-    .cards h3 {
-      margin: 0 0 0.35rem;
-      font-size: 1rem;
-      letter-spacing: -0.02em;
-    }
-    .cards p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.45;
-    }
-
-    footer.site {
-      border-top: 1px solid var(--line);
-      padding: 1.75rem 0 2.75rem;
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-    footer.site strong {
-      display: block;
-      color: var(--ink);
-      margin-bottom: 0.35rem;
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        gap: 1.75rem;
-        padding-top: 1.25rem;
-      }
-      .headline { max-width: 12ch; }
-      .hero-visual { min-height: 420px; }
-      .layer,
-      .layer:nth-child(2),
-      .layer:nth-child(3),
-      .layer:nth-child(4),
-      .layer:nth-child(5) {
-        transform: none;
-      }
-      .anatomy li { grid-template-columns: 1fr; gap: 0.2rem; }
-    }
-
-    @media (max-width: 640px) {
-      .nav { align-items: flex-start; flex-direction: column; }
-      .traits span + span { border-left: 0; padding-left: 0; }
-      .traits { gap: 0.55rem 1rem; }
-      .proof { flex-direction: column; align-items: flex-start; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .layer { animation: none !important; opacity: 1 !important; }
-    }
+    :root{--paper:#f2eddf;--ink:#11100d;--gold:#b88a2d;--line:#cfc6b2;--muted:#665f52;--black:#11110f;--white:#fffdf7;--max:1240px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,system-ui,sans-serif}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}a{color:inherit}.mono{font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem}.topline{height:5px;background:var(--black)}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line);gap:24px}.brand{text-decoration:none;font-weight:800;font-size:1.1rem;display:flex;align-items:center;gap:10px}.mark{width:30px;height:30px;background:var(--black);color:var(--paper);display:grid;place-items:center;font-family:"DM Mono"}.links{display:flex;gap:28px;align-items:center}.links a{text-decoration:none;color:var(--muted);font-size:.9rem;font-weight:600}.links a:hover{color:var(--ink)}.nav-cta{background:var(--black)!important;color:var(--paper)!important;padding:12px 16px}
+    .hero{display:grid;grid-template-columns:1.15fr .85fr;min-height:680px;border-bottom:1px solid var(--line)}.hero-copy{padding:86px 7vw 72px 0;border-right:1px solid var(--line)}.kicker{display:flex;align-items:center;gap:12px;color:var(--muted);margin-bottom:26px}.kicker:before{content:"";width:34px;height:2px;background:var(--gold)}h1{font-family:"Playfair Display",serif;font-size:clamp(4rem,8vw,7.6rem);line-height:.86;letter-spacing:-.055em;margin:0 0 30px}h1 em{color:var(--gold)}.lede{font-size:1.18rem;line-height:1.7;max-width:610px;color:var(--muted)}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:15px 20px;font-weight:800;border:1px solid var(--black)}.btn.primary{background:var(--black);color:var(--paper)}.btn.secondary{background:transparent}.hero-panel{background:var(--black);color:var(--paper);padding:62px 44px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.hero-panel:after{content:"";position:absolute;width:420px;height:420px;border:1px solid #62563b;transform:rotate(45deg);right:-230px;bottom:-230px}.panel-label{color:#b9ae99}.stack{margin:42px 0;position:relative;z-index:1}.stack-row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid #35342f}.stack-row span:first-child{color:var(--gold)}.status{border:1px solid #635d50;padding:5px 8px;font-size:.62rem}.panel-note{font-family:"Playfair Display",serif;font-size:1.65rem;line-height:1.3;max-width:360px;position:relative;z-index:1}
+    .ticker{border-bottom:1px solid var(--line);padding:16px 0;overflow:hidden}.ticker-inner{display:flex;justify-content:space-between;gap:28px;color:var(--muted);white-space:nowrap}.section{padding:100px 0;border-bottom:1px solid var(--line)}.section-head{display:grid;grid-template-columns:.4fr 1fr;gap:40px;margin-bottom:54px}.section h2{font-family:"Playfair Display",serif;font-size:clamp(2.7rem,5vw,5rem);line-height:.98;letter-spacing:-.04em;margin:0}.section-intro{font-size:1.08rem;line-height:1.75;color:var(--muted);max-width:680px}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}.step{padding:30px;min-height:250px;border-right:1px solid var(--line)}.step:last-child{border-right:0}.num{color:var(--gold);margin-bottom:70px}.step h3{font-size:1.2rem;margin:0 0 12px}.step p{color:var(--muted);line-height:1.6;font-size:.92rem}.dark{background:var(--black);color:var(--paper)}.dark .section-intro{color:#b9ae99}.packages{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{border:1px solid #3a3934;padding:28px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;transition:.2s}.card:hover{border-color:var(--gold);transform:translateY(-3px)}.card-top{display:flex;justify-content:space-between;color:#a89f8d}.card h3{font-family:"Playfair Display",serif;font-size:2rem;margin:24px 0 12px}.card p{color:#b9ae99;line-height:1.6}.tags{display:flex;gap:7px;flex-wrap:wrap}.tag{border:1px solid #4c493f;padding:6px 8px;font-size:.65rem;color:#d7cdbb}.arrow{font-size:1.4rem;color:var(--gold)}
+    .architecture{display:grid;grid-template-columns:repeat(5,1fr);align-items:stretch}.layer{padding:28px 20px;border:1px solid var(--line);margin-left:-1px;min-height:190px}.layer strong{display:block;margin:56px 0 8px}.layer:nth-child(odd){background:rgba(255,255,255,.25)}.manifest{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}.manifest-copy{padding:55px}.code{background:var(--black);color:#e7dfd0;padding:34px;overflow:auto;font-family:"DM Mono",monospace;font-size:.78rem;line-height:1.8}.gold{color:#d5a94a}
+    .final{padding:110px 0;text-align:center;background:var(--gold);color:var(--black)}.final h2{font-family:"Playfair Display",serif;font-size:clamp(3rem,7vw,6.5rem);line-height:.95;margin:0 auto 28px;max-width:900px}.final .btn{background:var(--black);color:var(--paper)}footer{background:var(--black);color:var(--paper);padding:50px 0}.footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px}.footer-grid h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:#8e877a}.footer-grid a{display:block;text-decoration:none;color:#c9c0af;margin:10px 0;font-size:.9rem}.copyright{border-top:1px solid #34332e;margin-top:42px;padding-top:20px;color:#817b70;font-size:.78rem}
+    @media(max-width:900px){.links a:not(.nav-cta){display:none}.hero{grid-template-columns:1fr}.hero-copy{border-right:0;padding-right:0}.hero-panel{min-height:520px}.section-head{grid-template-columns:1fr}.steps,.packages,.architecture{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.manifest{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.wrap{width:min(calc(100% - 28px),var(--max))}.hero-copy{padding-top:60px}.hero-panel{padding:42px 24px}.steps,.packages,.architecture,.footer-grid{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--line)}.layer{margin-top:-1px}.section{padding:72px 0}h1{font-size:3.7rem}}
   </style>
-  <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-
-  <div class="shell">
-    <nav class="nav" aria-label="Primary">
-      <a class="logo" href="index.html">
-        <span class="logo-mark" aria-hidden="true">W</span>
-        <span>Workflowware</span>
-      </a>
-      <div class="nav-links">
-        <a href="spec.html">Spec</a>
-        <a href="library.html">Library</a>
-        <a href="pilot.html">Pilot</a>
-        <a href="docs.html">Docs</a>
-        <a href="https://maatecosystem.com/">MAAT</a>
-        <a href="https://github.com/Propershare/workflowware">GitHub</a>
-      </div>
-    </nav>
-
-    <header class="hero" id="main">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Built for agents. Designed for humans.</p>
-        <h1 class="headline">
-          Software packaged as
-          <span class="mark">agent-operable</span>
-          workflows.
-        </h1>
-      <p class="maat-bridge"><strong>MAAT is the governance layer. Workflowware is what you install.</strong> Governance doctrine: <a href="https://maatecosystem.com/">maatecosystem.com</a> · machine summary: <a href="https://maatecosystem.com/llms.txt">llms.txt</a>.</p>
-        <p class="support">The job, the rules, the evals, and the handoff — portable for humans and agents.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="pilot.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 10-14h-7l0-6z"/></svg>
-            Test the pilot
-            <span aria-hidden="true">→</span>
-          </a>
-          <a class="btn secondary" href="spec.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3z"/><path d="M14 3v5h5"/></svg>
-            Read the spec
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-        <div class="traits" aria-label="Product traits">
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 19c1.5-3 4-4.5 7-4.5S17.5 16 19 19"/></svg>
-            Agent-native
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 7h8M8 12h8M8 17h5"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg>
-            Interoperable
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-            Verifiable
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="7" width="13" height="10" rx="2"/><path d="M16 10h3l2 2v5h-5"/></svg>
-            Portable
-          </span>
-        </div>
-      </div>
-
-      <div class="hero-visual" aria-hidden="true">
-        <div class="circuit"></div>
+<div class="topline"></div>
+<header class="wrap">
+  <nav>
+    <a class="brand" href="index.html"><span class="mark">W</span>Workflowware</a>
+    <div class="links">
+      <a href="library.html">Library</a><a href="spec.html">Spec</a><a href="docs.html">Docs</a><a href="https://github.com/Propershare/workflowware">GitHub</a><a class="nav-cta" href="pilot.html">Launch Lab →</a>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <div class="kicker mono">The operating package for real work</div>
+      <h1>Build.<br>Verify.<br><em>Handoff.</em></h1>
+      <p class="lede">Workflowware packages the job, rules, agent behavior, approvals, evals, and human handoff into one portable unit—built for agents, legible to people.</p>
+      <div class="actions"><a class="btn primary" href="library.html">Explore the library →</a><a class="btn secondary" href="spec.html">Read the spec</a></div>
+    </div>
+    <aside class="hero-panel">
+      <div>
+        <div class="panel-label mono">Package anatomy / v0.1</div>
         <div class="stack">
-          <div class="layer">
-            <div class="meta"><div class="k">Layer 01</div><div class="t">Human trust surface</div></div>
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="2.5"/><circle cx="16" cy="9" r="2"/><path d="M4.5 18c.8-2.4 2.5-3.5 4.5-3.5s3.5 1 4.3 3"/><path d="M14 14.5c1.4 0 2.7.6 3.5 2.5"/></svg></div>
-          </div>
-          <div class="layer">
-            <div class="meta"><div class="k">Layer 02</div><div class="t">Workflow + agent specs</div></div>
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4h6l4 4v12H8V4z"/><path d="M14 4v4h4"/><path d="M10 12h2.5M10 15h4"/></svg></div>
-          </div>
-          <div class="layer">
-            <div class="meta"><div class="k">Layer 03</div><div class="t">Approvals + evals</div></div>
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          </div>
-          <div class="layer">
-            <div class="meta"><div class="k">Layer 04</div><div class="t">Install + handoff</div></div>
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v10"/><path d="M8 10l4 4 4-4"/><path d="M5 18h14"/></svg></div>
-          </div>
-          <div class="layer">
-            <div class="meta"><div class="k">Unit</div><div class="t">The operating package</div></div>
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div>
-          </div>
+          <div class="stack-row"><span class="mono">01</span><b>Job definition</b><span class="status mono">Declared</span></div>
+          <div class="stack-row"><span class="mono">02</span><b>Agent instructions</b><span class="status mono">Bounded</span></div>
+          <div class="stack-row"><span class="mono">03</span><b>Rules + approvals</b><span class="status mono">Enforced</span></div>
+          <div class="stack-row"><span class="mono">04</span><b>Evals + evidence</b><span class="status mono">Verified</span></div>
+          <div class="stack-row"><span class="mono">05</span><b>Human handoff</b><span class="status mono">Ready</span></div>
         </div>
       </div>
-    </header>
+      <p class="panel-note">Not another chatbot. A governed package for one job.</p>
+    </aside>
+  </section>
+  <div class="ticker"><div class="wrap ticker-inner mono"><span>Agent-native</span><span>Interoperable</span><span>Verifiable</span><span>Portable</span><span>Human-readable</span></div></div>
 
-    <div class="proof">
-      <div class="label">Open repos</div>
-      <div class="proof-logos" aria-label="Public GitHub repositories">
-        <a href="https://github.com/Propershare/workflowware"><code>workflowware</code></a>
-        <a href="https://github.com/Propershare/hermes-agent"><code>hermes-agent</code></a>
-        <a href="https://github.com/Propershare/maat-ecosystem"><code>maat-ecosystem</code></a>
-        <a href="https://github.com/Propershare/tehuti-guard"><code>tehuti-guard</code></a>
-        <a href="https://github.com/Propershare/maatbenchmark"><code>maatbenchmark</code></a>
+  <section class="section wrap">
+    <div class="section-head"><div class="mono">How it moves</div><div><h2>From loose automation to accountable software.</h2><p class="section-intro">A Workflowware package carries the operational context an agent needs and the evidence a human needs to trust the result.</p></div></div>
+    <div class="steps">
+      <article class="step"><div class="num mono">01 / Define</div><h3>Name the job</h3><p>Scope one repeatable outcome, its inputs, boundaries, and finish condition.</p></article>
+      <article class="step"><div class="num mono">02 / Govern</div><h3>Bind the rules</h3><p>Declare permissions, approvals, escalation points, and prohibited behavior.</p></article>
+      <article class="step"><div class="num mono">03 / Verify</div><h3>Run the evals</h3><p>Test expected behavior and preserve the evidence behind every claim.</p></article>
+      <article class="step"><div class="num mono">04 / Ship</div><h3>Install and hand off</h3><p>Move the package between people, agents, models, and environments.</p></article>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="wrap">
+      <div class="section-head"><div class="mono">Open packages</div><div><h2>Start with a working unit.</h2><p class="section-intro">Install a package, inspect its contract, run its tests, and adapt it without losing the governance spine.</p></div></div>
+      <div class="packages">
+        <a class="card" href="pilot.html"><div><div class="card-top mono"><span>Operations</span><span>Free</span></div><h3>Missed Lead Recovery</h3><p>Capture, qualify, route, and follow up on missed business leads with human approval gates.</p></div><div><div class="tags"><span class="tag mono">Agent</span><span class="tag mono">Evals</span><span class="tag mono">Handoff</span></div><div class="arrow">↗</div></div></a>
+        <a class="card" href="library.html"><div><div class="card-top mono"><span>Research</span><span>Open</span></div><h3>Evidence Brief</h3><p>Turn source material into a bounded brief with claims, citations, uncertainty, and review.</p></div><div><div class="tags"><span class="tag mono">Research</span><span class="tag mono">Sources</span><span class="tag mono">Review</span></div><div class="arrow">↗</div></div></a>
+        <a class="card" href="library.html"><div><div class="card-top mono"><span>Governance</span><span>Open</span></div><h3>Policy Gate</h3><p>Evaluate a proposed action against declared rules before an agent is allowed to execute.</p></div><div><div class="tags"><span class="tag mono">Policy</span><span class="tag mono">Approval</span><span class="tag mono">Audit</span></div><div class="arrow">↗</div></div></a>
       </div>
     </div>
+  </section>
 
-    <section class="block" aria-labelledby="what-title">
-      <p class="sec-kicker">What this is</p>
-      <h2 id="what-title">A package for one job — not another chatbot.</h2>
-      <p class="sec-lead">Workflowware is a folder of instructions, rules, test cases, and handoff notes so a human and an AI agent can run the same job the same way. Swap the model if you want. The job definition stays.</p>
-      <div class="cta-row">
-        <a class="btn secondary" href="spec.html">See what’s inside a package →</a>
-        <a class="btn secondary" href="library.html">See jobs we package</a>
-      </div>
-    </section>
-
-    <div class="pilot-band" id="pilot">
-      <p class="sec-kicker">Open pilot</p>
-      <h2>Missed Lead Recovery</h2>
-      <p class="sec-lead">First public kit for home-service businesses. Sample data first — no live inbox, no secrets, no unattended send.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="pilot.html">Open pilot page →</a>
-        <a class="btn secondary" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">Download tester ZIP</a>
-        <a class="btn secondary" href="mailto:hello@workflowware.org?subject=Missed%20Lead%20guided%20pilot">Email for guided pilot</a>
-      </div>
+  <section class="section wrap">
+    <div class="section-head"><div class="mono">The stack</div><div><h2>One package. Five trust layers.</h2></div></div>
+    <div class="architecture">
+      <div class="layer"><span class="mono">Layer 01</span><strong>Human trust surface</strong><small>Purpose, scope, owner</small></div>
+      <div class="layer"><span class="mono">Layer 02</span><strong>Workflow + agent specs</strong><small>Steps, tools, behavior</small></div>
+      <div class="layer"><span class="mono">Layer 03</span><strong>Approvals + policy</strong><small>Authority and limits</small></div>
+      <div class="layer"><span class="mono">Layer 04</span><strong>Evals + evidence</strong><small>Tests and receipts</small></div>
+      <div class="layer"><span class="mono">Layer 05</span><strong>Install + handoff</strong><small>Portable operation</small></div>
     </div>
+  </section>
 
-    <section class="block" aria-labelledby="start-title">
-      <p class="sec-kicker">Start here</p>
-      <h2 id="start-title">Pick a door.</h2>
-      <p class="sec-lead">Try the pilot, skim the docs, or ask us to package a job for you.</p>
-      <div class="cards">
-        <a href="pilot.html"><h3>Pilot</h3><p>Test Missed Lead Recovery with sample data.</p></a>
-        <a href="docs.html"><h3>Docs</h3><p>Short map for customers and agents.</p></a>
-        <a href="library.html"><h3>Library</h3><p>Jobs we can build: scholarship, security training, ops, and more.</p></a>
-        <a href="spec.html"><h3>Spec</h3><p>The package standard — files and required layers.</p></a>
-      </div>
-    </section>
+  <section class="section wrap">
+    <div class="manifest">
+      <div class="manifest-copy"><div class="mono">Readable by design</div><h2>A manifest is the front door.</h2><p class="section-intro">Every package declares what it does, who owns it, what it can access, how it is tested, and when a human must take over.</p><a class="btn secondary" href="docs.html">Open documentation →</a></div>
+      <pre class="code"><span class="gold">package</span>: missed-lead-recovery
+<span class="gold">version</span>: 0.1.0
+<span class="gold">owner</span>: operations
+<span class="gold">job</span>: recover qualified missed leads
+<span class="gold">agent</span>:
+  permissions: [read_inbox, draft_reply]
+  prohibited: [send_without_approval]
+<span class="gold">approval</span>:
+  required_before: send
+<span class="gold">evals</span>:
+  - qualification_accuracy
+  - policy_fidelity
+<span class="gold">handoff</span>:
+  route_to: human_operator</pre>
+    </div>
+  </section>
 
-    <footer class="site">
-      <strong>Workflowware™</strong>
-      Unregistered mark — use ™, not ®, until filing is funded. Domain: workflowware.org · Maintained by BlackLabRats / propershare · Spec v0.1
-      <p style="margin-top:0.75rem">Governed by <a href="https://maatecosystem.com/">MAAT</a> (<a href="https://maatecosystem.com/llms.txt">llms.txt</a>). Email <a href="mailto:hello@workflowware.org">hello@workflowware.org</a> — GitHub Issues optional for builders.</p>
-    <section class="contact-cta" style="padding:2rem 1.25rem;max-width:720px;margin:0 auto">
-      <h2>Talk to a human</h2>
-      <p>Business owners: you do not need a GitHub account. Email <a href="mailto:hello@workflowware.org">hello@workflowware.org</a> (or Imhotep via Tehuti Lab) for the Missed Lead pilot and custom kits.</p>
-    </section>
-</footer>
-  </div>
+  <section class="final"><div class="wrap"><div class="mono">Build the operating package</div><h2>Make the work portable. Keep the trust intact.</h2><a class="btn" href="pilot.html">Enter the Launch Lab →</a></div></section>
+</main>
+<footer><div class="wrap"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="mark">W</span>Workflowware</a><p style="color:#938c7f;max-width:330px;line-height:1.6">Software packaged as agent-operable workflows. Built at BlackLabRats and governed through the MAAT ecosystem.</p></div><div><h4>Discover</h4><a href="library.html">Library</a><a href="pilot.html">Launch Lab</a></div><div><h4>Learn</h4><a href="spec.html">Specification</a><a href="docs.html">Documentation</a></div><div><h4>Connect</h4><a href="https://github.com/Propershare/workflowware">GitHub</a><a href="mailto:hello@workflowware.org">Email</a><a href="https://maatecosystem.com">MAAT</a></div></div><div class="copyright mono">© 2026 Workflowware™ · Spec v0.1 · Built for agents. Designed for humans.</div></div></footer>
 </body>
 </html>
