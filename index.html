@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="assets/motion/maat-motion.js" defer></script>
   <style>
     :root {
       --bg: #eef1f4;
@@ -156,7 +157,7 @@
       line-height: 1.08;
       letter-spacing: -0.045em;
       font-weight: 800;
-      max-width: 11ch;
+      max-width: 12.5ch;
       padding-bottom: 0.08em;
     }
     .headline .mark {
@@ -191,6 +192,49 @@
       flex-wrap: wrap;
       gap: 0.75rem;
       margin-bottom: 1.75rem;
+    }
+    .bay-dirs {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line);
+      max-width: 28rem;
+      margin: 0 0 0.25rem;
+    }
+    .bay-dir {
+      display: grid;
+      grid-template-columns: 1.5rem 5.5rem 1fr;
+      gap: 0.65rem;
+      align-items: baseline;
+      padding: 0.95rem 0.35rem;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      color: inherit;
+      border-radius: 8px;
+    }
+    .bay-dir:hover {
+      background: rgba(200, 245, 66, 0.18);
+      text-decoration: none;
+    }
+    .bay-dir-arrow {
+      color: var(--lime-deep);
+      font-weight: 700;
+    }
+    .bay-dir-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .bay-dir-name {
+      font-size: 1.12rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .bay-dir-secondary .bay-dir-name {
+      font-weight: 550;
+      color: var(--muted);
     }
     .btn {
       display: inline-flex;
@@ -526,6 +570,15 @@
     @media (prefers-reduced-motion: reduce) {
       .layer { animation: none !important; opacity: 1 !important; }
     }
+
+    /* maat-motion helpers */
+    .headline .mark [data-maat-proximity],
+    .headline .mark[data-maat-proximity] span {
+      display: inline-block;
+    }
+    .bay-dir, .layer, .traits span {
+      will-change: transform;
+    }
   </style>
   <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
@@ -551,49 +604,58 @@
       </div>
     </nav>
 
-    <header class="hero" id="main">
+    <header class="hero" id="main" data-maat-spotlight>
       <div class="hero-copy">
-        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Built for agents. Designed for humans.</p>
-        <h1 class="headline">
+        <p class="eyebrow" data-maat-reveal data-delay="40">
+          <span class="dot" aria-hidden="true"></span> Built for agents. Designed for humans.
+        </p>
+        <h1 class="headline" data-maat-reveal data-delay="80">
           Software packaged as
-          <span class="mark">agent-operable</span>
+          <span class="mark" data-maat-proximity data-radius="160" data-rest="700" data-peak="900">agent-operable</span>
           workflows.
         </h1>
-        <p class="support">The job, the rules, the evals, and the handoff — portable for humans and agents.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="pilot.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 10-14h-7l0-6z"/></svg>
-            Test the pilot
-            <span aria-hidden="true">→</span>
+        <p class="support" data-maat-reveal data-delay="140">
+          The job, the rules, the evals, and the handoff — portable for humans and agents.
+        </p>
+        <nav class="bay-dirs" aria-label="Primary directions">
+          <a class="bay-dir" href="pilot.html" data-maat-magnetic data-tilt="5" data-maat-reveal data-delay="180">
+            <span class="bay-dir-arrow" aria-hidden="true">→</span>
+            <span class="bay-dir-label">Try</span>
+            <span class="bay-dir-name">Test the pilot</span>
           </a>
-          <a class="btn secondary" href="spec.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3z"/><path d="M14 3v5h5"/></svg>
-            Read the spec
-            <span aria-hidden="true">→</span>
+          <a class="bay-dir" href="spec.html" data-maat-magnetic data-tilt="5" data-maat-reveal data-delay="230">
+            <span class="bay-dir-arrow" aria-hidden="true">→</span>
+            <span class="bay-dir-label">Read</span>
+            <span class="bay-dir-name">Package spec</span>
           </a>
-        </div>
+          <a class="bay-dir bay-dir-secondary" href="library.html" data-maat-magnetic data-tilt="4" data-maat-reveal data-delay="280">
+            <span class="bay-dir-arrow" aria-hidden="true">→</span>
+            <span class="bay-dir-label">Browse</span>
+            <span class="bay-dir-name">Job library</span>
+          </a>
+        </nav>
       </div>
 
       <div class="hero-visual" aria-hidden="true">
         <div class="circuit"></div>
         <div class="stack">
-          <div class="layer">
+          <div class="layer" data-maat-magnetic data-tilt="7" data-maat-reveal data-delay="120">
             <div class="meta"><div class="k">Layer 01</div><div class="t">Human trust surface</div></div>
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="2.5"/><circle cx="16" cy="9" r="2"/><path d="M4.5 18c.8-2.4 2.5-3.5 4.5-3.5s3.5 1 4.3 3"/><path d="M14 14.5c1.4 0 2.7.6 3.5 2.5"/></svg></div>
           </div>
-          <div class="layer">
+          <div class="layer" data-maat-magnetic data-tilt="7" data-maat-reveal data-delay="180">
             <div class="meta"><div class="k">Layer 02</div><div class="t">Workflow + agent specs</div></div>
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4h6l4 4v12H8V4z"/><path d="M14 4v4h4"/><path d="M10 12h2.5M10 15h4"/></svg></div>
           </div>
-          <div class="layer">
+          <div class="layer" data-maat-magnetic data-tilt="7" data-maat-reveal data-delay="240">
             <div class="meta"><div class="k">Layer 03</div><div class="t">Approvals + evals</div></div>
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
           </div>
-          <div class="layer">
+          <div class="layer" data-maat-magnetic data-tilt="7" data-maat-reveal data-delay="300">
             <div class="meta"><div class="k">Layer 04</div><div class="t">Install + handoff</div></div>
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v10"/><path d="M8 10l4 4 4-4"/><path d="M5 18h14"/></svg></div>
           </div>
-          <div class="layer">
+          <div class="layer" data-maat-magnetic data-tilt="8" data-maat-reveal data-delay="360">
             <div class="meta"><div class="k">Unit</div><div class="t">The operating package</div></div>
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div>
           </div>
@@ -612,57 +674,45 @@
       </div>
     </div>
 
-    <section class="block" aria-labelledby="what-title">
+    <section class="block" aria-labelledby="what-title" data-maat-reveal>
       <p class="sec-kicker">What this is</p>
       <h2 id="what-title">A package for one job — not another chatbot.</h2>
       <p class="sec-lead">Workflowware is a folder of instructions, rules, test cases, and handoff notes so a human and an AI agent can run the same job the same way. Swap the model if you want. The job definition stays.</p>
       <p class="sec-lead" style="margin-top:0.85rem">MAAT is the governance layer. Workflowware is what you install. Doctrine: <a href="https://maatecosystem.com/">maatecosystem.com</a> · <a href="https://maatecosystem.com/llms.txt">llms.txt</a>.</p>
       <div class="traits" aria-label="Product traits" style="margin:1.25rem 0 0">
-        <span>
+        <span data-maat-magnetic data-tilt="3">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 19c1.5-3 4-4.5 7-4.5S17.5 16 19 19"/></svg>
           Agent-native
         </span>
-        <span>
+        <span data-maat-magnetic data-tilt="3">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 7h8M8 12h8M8 17h5"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg>
           Interoperable
         </span>
-        <span>
+        <span data-maat-magnetic data-tilt="3">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
           Verifiable
         </span>
-        <span>
+        <span data-maat-magnetic data-tilt="3">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="7" width="13" height="10" rx="2"/><path d="M16 10h3l2 2v5h-5"/></svg>
           Portable
         </span>
       </div>
       <div class="cta-row">
         <a class="btn secondary" href="spec.html">See what’s inside a package →</a>
-        <a class="btn secondary" href="library.html">See jobs we package</a>
+        <a class="btn secondary" href="docs.html">Read the docs →</a>
       </div>
     </section>
 
-    <div class="pilot-band" id="pilot">
+    <div class="pilot-band" id="pilot" data-maat-reveal>
       <p class="sec-kicker">Open pilot</p>
-      <h2>Missed Lead Recovery</h2>
+      <h2 data-maat-proximity data-radius="180" data-rest="700" data-peak="850">Missed Lead Recovery</h2>
       <p class="sec-lead">First public kit for home-service businesses. Sample data first — no live inbox, no secrets, no unattended send.</p>
       <div class="cta-row">
-        <a class="btn primary" href="pilot.html">Open pilot page →</a>
+        <a class="btn primary" href="pilot.html" data-maat-magnetic data-tilt="4">Open pilot page →</a>
         <a class="btn secondary" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">Download tester ZIP</a>
         <a class="btn secondary" href="mailto:hello@workflowware.org?subject=Missed%20Lead%20guided%20pilot">Email for guided pilot</a>
       </div>
     </div>
-
-    <section class="block" aria-labelledby="start-title">
-      <p class="sec-kicker">Start here</p>
-      <h2 id="start-title">Pick a door.</h2>
-      <p class="sec-lead">Try the pilot, skim the docs, or ask us to package a job for you.</p>
-      <div class="cards">
-        <a href="pilot.html"><h3>Pilot</h3><p>Test Missed Lead Recovery with sample data.</p></a>
-        <a href="docs.html"><h3>Docs</h3><p>Short map for customers and agents.</p></a>
-        <a href="library.html"><h3>Library</h3><p>Jobs we can build: scholarship, security training, ops, and more.</p></a>
-        <a href="spec.html"><h3>Spec</h3><p>The package standard — files and required layers.</p></a>
-      </div>
-    </section>
 
     <footer class="site">
       <strong>Workflowware™</strong>
