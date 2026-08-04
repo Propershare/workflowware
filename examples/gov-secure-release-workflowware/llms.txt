@@ -1,0 +1,24 @@
+# llms.txt — Gov Secure Release Workflowware
+
+```
+package: gov.secure-release.v0.1
+status: draft
+snapshot_date: 2026-08-04
+stale_after_days: 90
+human_site: https://workflowware.org/library.html
+repo_path: examples/gov-secure-release-workflowware/
+
+job: Assemble SBOM + VEX notes + provenance checklist + SSDF map + unsigned release receipt for public-sector buyers.
+not_job: FedRAMP authz, CMMC cert, ATO, legal advice, auto-sign, auto-deploy.
+
+policy_truths_as_of_2026-08-04:
+- OMB M-26-05 (2026-01-23) rescinds M-22-18 and M-23-16 government-wide attestation mandate; agencies use risk-based assurance; may still request attestation form and/or SBOM.
+- NIST SP 800-218 SSDF remains a core voluntary/reference practice set agencies may require.
+- FedRAMP Rev5 machine-readable packages: see Notice 0009 (2026-03-25) and CR26; verify deadlines on fedramp.gov before advising.
+- CMMC remains DoD/CUI contractor posture — separate from civilian agency ATO/FedRAMP.
+- EO 14028 era supply-chain themes remain relevant as practice, not as "M-22-18 still mandated."
+
+read_first: AGENTS.md, approval-rules.md, workflow-spec.md, agent-spec.md, policy/CURRENT-POLICY.md
+outputs: triage, artifact_gap_list, approval_questions, next_action, uncertainty, policy_snapshot_date, policy_stale_risk
+no_go: invent_sbom, invent_cve_status, invent_signature, claim_authorization, skip_human_gate
+```

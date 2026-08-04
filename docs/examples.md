@@ -30,6 +30,7 @@ The research/naming dossier that checks early prior art, maps adjacent platforms
 
 ## Future examples
 
+- Gov Secure Release Workflowware (draft package now in `examples/gov-secure-release-workflowware/`)
 - Property Management Maintenance Triage Kit
 - Med Spa Missed Appointment Recovery Kit
 - Local History Research Production Kit

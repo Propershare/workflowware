@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://workflowware.org/schemas/gov-secure-release-receipt.v0.1.json",
+  "title": "GovSecureReleaseReceipt",
+  "type": "object",
+  "required": [
+    "package_id",
+    "policy_snapshot_date",
+    "policy_stale_risk",
+    "product",
+    "artifacts",
+    "unsigned"
+  ],
+  "properties": {
+    "package_id": { "const": "gov.secure-release.v0.1" },
+    "policy_snapshot_date": { "type": "string", "format": "date" },
+    "policy_stale_risk": { "enum": ["fresh", "aging", "stale"] },
+    "product": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "release_type": {
+          "enum": ["library", "binary", "container", "saas-runtime"]
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "sbom": { "enum": ["missing", "attached", "incomplete"] },
+        "vex": { "enum": ["missing", "attached", "incomplete"] },
+        "provenance": { "enum": ["missing", "attached", "incomplete"] },
+        "ssdf_map": { "enum": ["missing", "attached", "incomplete"] }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "no_gos_triggered": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "unsigned": { "type": "boolean", "const": true },
+    "human_signature": {
+      "type": "null",
+      "description": "Must remain null in agent drafts"
+    }
+  }
+}

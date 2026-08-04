@@ -1,7 +1,8 @@
 # Downloads
 
-Current tester package:
+Current packages:
 
-- [`missed-lead-recovery-workflowware-v0.1.zip`](missed-lead-recovery-workflowware-v0.1.zip)
+- [`missed-lead-recovery-workflowware-v0.1.zip`](missed-lead-recovery-workflowware-v0.1.zip) — live pilot
+- [`gov-secure-release-workflowware-v0.1.zip`](gov-secure-release-workflowware-v0.1.zip) — draft assurance pack (policy snapshot 2026-08-04)
 
-Use fake or anonymized sample data first. Do not submit passwords, API keys, browser cookies, payment data, live inbox access, or full customer lists.
+Use sample or fake data first. Do not submit passwords, API keys, signing private keys, browser cookies, payment data, or production credentials.

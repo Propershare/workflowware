@@ -1,0 +1,51 @@
+{
+  "schema": "workflowware.manifest.v0.1",
+  "id": "gov.secure-release.v0.1",
+  "title": "Gov Secure Release Workflowware",
+  "status": "draft-package",
+  "snapshot_date": "2026-08-04",
+  "stale_after_days": 90,
+  "audience": [
+    "public-sector software vendors",
+    "SaaS security leads",
+    "consultants",
+    "AI-agent operators"
+  ],
+  "requires_secrets": false,
+  "phone_ok_for": [
+    "reading",
+    "approval",
+    "feedback"
+  ],
+  "computer_best_for": [
+    "SBOM inspection",
+    "eval runs",
+    "CI artifact attachment"
+  ],
+  "policy_refs": [
+    "OMB M-26-05 (2026-01-23)",
+    "FedRAMP Notice 0009 (2026-03-25)",
+    "NIST SP 800-218",
+    "CMMC (DoD/CUI — out of pack scope for certification)"
+  ],
+  "files": [
+    "README.md",
+    "AGENTS.md",
+    "llms.txt",
+    "workflow-spec.md",
+    "agent-spec.md",
+    "approval-rules.md",
+    "install-guide.md",
+    "agent-handoff.md",
+    "artifact-manifest.json",
+    "policy/CURRENT-POLICY.md",
+    "policy/SOURCE-LEDGER.md",
+    "evals/eval-template.csv",
+    "templates/sbom-minimum-checklist.md",
+    "templates/release-receipt.md",
+    "templates/release-receipt.schema.json",
+    "templates/sample-release/README.md",
+    "templates/sample-release/sample.cdx.json",
+    "prompts/system-brief.md"
+  ]
+}
