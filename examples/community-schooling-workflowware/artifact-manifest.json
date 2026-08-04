@@ -1,0 +1,28 @@
+{
+  "schema": "workflowware.manifest.v0.1",
+  "id": "community.schooling.v0.1",
+  "title": "Community Schooling Workflowware",
+  "status": "living-draft",
+  "snapshot_date": "2026-08-04",
+  "public_urls": [
+    "https://maatecosystem.com/#community"
+  ],
+  "audience": [
+    "MAAT private community",
+    "students",
+    "operators",
+    "community guides",
+    "AI agents"
+  ],
+  "requires_secrets": false,
+  "files": [
+    "README.md",
+    "AGENTS.md",
+    "llms.txt",
+    "workflow-spec.md",
+    "agent-spec.md",
+    "approval-rules.md",
+    "agent-handoff.md",
+    "artifact-manifest.json"
+  ]
+}

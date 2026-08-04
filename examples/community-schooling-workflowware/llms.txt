@@ -1,0 +1,15 @@
+# llms.txt — Community Schooling
+
+```
+package: community.schooling.v0.1
+status: living-draft
+snapshot_date: 2026-08-04
+public_page: https://maatecosystem.com/#community
+job: Orient community member → one Workflowware package → schooling portal → human help ask.
+not_job: paywall, membership product, compliance certification, library dump.
+default_package: missed-lead-recovery @ https://workflowware.org/pilot.html
+schooling: https://maatecosystem.com/#portal (sign-in)
+governance_home: https://maatecosystem.com/
+help_email: hello@workflowware.org
+read_first: AGENTS.md, approval-rules.md, workflow-spec.md
+```
