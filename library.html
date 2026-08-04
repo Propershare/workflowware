@@ -2,83 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Library — Workflowware</title>
-  <meta name="description" content="Browse installable Workflowware packages for operations, research, education, and governed agent work.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library — Workflowware™</title>
+  <meta name="description" content="One live pilot and two next packages. MAAT governs; Workflowware installs.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-  <style>
-    :root{--paper:#f2eddf;--ink:#11100d;--gold:#b88a2d;--line:#cfc6b2;--muted:#665f52;--black:#11110f;--white:#fffdf7;--max:1240px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,system-ui,sans-serif}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}a{color:inherit}.mono{font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;font-size:.7rem}.topline{height:5px;background:var(--black)}
-    nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line);gap:24px}.brand{text-decoration:none;font-weight:800;font-size:1.1rem;display:flex;align-items:center;gap:10px}.mark{width:30px;height:30px;background:var(--black);color:var(--paper);display:grid;place-items:center;font-family:"DM Mono"}.links{display:flex;gap:28px;align-items:center}.links a{text-decoration:none;color:var(--muted);font-size:.9rem;font-weight:600}.links a:hover,.links .active{color:var(--ink)}.nav-cta{background:var(--black)!important;color:var(--paper)!important;padding:12px 16px}
-    .hero{display:grid;grid-template-columns:.9fr 1.1fr;border-bottom:1px solid var(--line);min-height:420px}.hero-left{padding:80px 60px 70px 0;border-right:1px solid var(--line)}.hero-right{padding:80px 0 70px 60px;display:flex;flex-direction:column;justify-content:flex-end}.eyebrow{color:var(--muted);margin-bottom:24px}.eyebrow:before{content:"";display:inline-block;width:30px;height:2px;background:var(--gold);margin-right:10px;vertical-align:middle}h1{font-family:"Playfair Display",serif;font-size:clamp(4rem,7vw,7rem);line-height:.88;letter-spacing:-.055em;margin:0}.hero-right p{font-size:1.08rem;line-height:1.75;color:var(--muted);max-width:650px}.truth{margin-top:24px;padding-top:24px;border-top:1px solid var(--line);font-size:.86rem;color:var(--ink)!important}
-    .toolbar{display:grid;grid-template-columns:1.4fr auto;gap:20px;padding:24px 0;border-bottom:1px solid var(--line)}.search{border:1px solid var(--line);display:flex;align-items:center;background:rgba(255,255,255,.28)}.search input{width:100%;border:0;background:transparent;padding:16px 18px;font:inherit;outline:none}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:transparent;padding:12px 14px;font:600 .76rem Manrope;cursor:pointer}.filter.active,.filter:hover{background:var(--black);color:var(--paper);border-color:var(--black)}
-    .section{padding:78px 0;border-bottom:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}.section h2{font-family:"Playfair Display",serif;font-size:clamp(2.4rem,4vw,4.3rem);line-height:1;margin:8px 0 0;letter-spacing:-.04em}.section-note{max-width:470px;color:var(--muted);line-height:1.6}
-    .featured{display:grid;grid-template-columns:1.25fr .75fr;border:1px solid var(--line)}.featured-main{padding:44px;min-height:440px;display:flex;flex-direction:column;justify-content:space-between}.featured-side{background:var(--black);color:var(--paper);padding:38px;display:flex;flex-direction:column;justify-content:space-between}.status{display:inline-flex;align-items:center;gap:8px}.dot{width:8px;height:8px;border-radius:50%;background:#4abf76}.featured h3{font-family:"Playfair Display",serif;font-size:clamp(2.6rem,5vw,5rem);line-height:.95;margin:26px 0 18px;letter-spacing:-.04em}.description{font-size:1.05rem;line-height:1.7;color:var(--muted);max-width:700px}.meta{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:36px}.meta div{padding:18px 18px 0 0}.meta strong{display:block;margin-top:7px}.stack{margin-top:30px}.stack-row{padding:14px 0;border-bottom:1px solid #34332f;display:flex;justify-content:space-between;gap:20px}.stack-row span:last-child{color:#bbae96}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;text-decoration:none;border:1px solid var(--black);padding:14px 17px;font-weight:800}.btn.primary{background:var(--black);color:var(--paper)}.featured-side .btn{border-color:var(--gold);color:var(--paper)}
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.card{border:1px solid var(--line);padding:32px;min-height:360px;text-decoration:none;display:flex;flex-direction:column;justify-content:space-between;transition:.2s;background:rgba(255,255,255,.16)}.card:hover{transform:translateY(-3px);border-color:var(--gold);background:rgba(255,255,255,.32)}.card-top{display:flex;justify-content:space-between;color:var(--muted)}.card h3{font-family:"Playfair Display",serif;font-size:2.5rem;line-height:1;margin:46px 0 14px;letter-spacing:-.035em}.card p{color:var(--muted);line-height:1.65}.card-bottom{display:flex;justify-content:space-between;align-items:end;gap:20px}.tags{display:flex;flex-wrap:wrap;gap:7px}.tag{border:1px solid var(--line);padding:6px 8px}.arrow{font-size:1.5rem;color:var(--gold)}
-    .request{background:var(--black);color:var(--paper);padding:70px 0}.request-grid{display:grid;grid-template-columns:1fr .8fr;gap:70px;align-items:end}.request h2{font-family:"Playfair Display",serif;font-size:clamp(3rem,5vw,5.5rem);line-height:.95;margin:12px 0 20px}.request p{color:#bdb4a3;line-height:1.7}.request .btn{border-color:var(--gold);color:var(--paper)}footer{background:var(--black);color:var(--paper);padding:50px 0}.footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px}.footer-grid h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:#8e877a}.footer-grid a{display:block;text-decoration:none;color:#c9c0af;margin:10px 0;font-size:.9rem}.copyright{border-top:1px solid #34332e;margin-top:42px;padding-top:20px;color:#817b70;font-size:.78rem}
-    @media(max-width:900px){.links a:not(.nav-cta){display:none}.hero,.featured,.request-grid{grid-template-columns:1fr}.hero-left{border-right:0;padding-right:0}.hero-right{padding-left:0}.toolbar{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.footer-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){.wrap{width:min(calc(100% - 28px),var(--max))}.hero-left,.hero-right{padding-top:55px;padding-bottom:45px}.featured-main,.featured-side{padding:26px}.meta{grid-template-columns:1fr}.meta div{border-bottom:1px solid var(--line);padding-bottom:15px}.footer-grid{grid-template-columns:1fr}}
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 </head>
 <body>
-<div class="topline"></div>
-<header class="wrap">
-  <nav>
-    <a class="brand" href="index.html"><span class="mark">W</span>Workflowware</a>
-    <div class="links"><a class="active" href="library.html">Library</a><a href="spec.html">Spec</a><a href="docs.html">Docs</a><a href="https://github.com/Propershare/workflowware">GitHub</a><a class="nav-cta" href="pilot.html">Launch Lab →</a></div>
-  </nav>
-</header>
-<main>
-  <section class="hero wrap">
-    <div class="hero-left"><div class="eyebrow mono">Package library / public catalog</div><h1>Find the<br><em style="color:var(--gold)">working unit.</em></h1></div>
-    <div class="hero-right"><p>Browse governed workflow packages that declare the job, agent behavior, rules, approvals, evals, and human handoff before you install them.</p><p class="truth"><strong>Current catalog:</strong> one live pilot and two declared next packages. No fake inventory. No vaporware shelf.</p></div>
-  </section>
-
-  <div class="wrap toolbar">
-    <label class="search"><span style="padding-left:16px">⌕</span><input id="packageSearch" type="search" placeholder="Search packages, industries, or capabilities" aria-label="Search packages"></label>
-    <div class="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="live">Live</button><button class="filter" data-filter="research">Research</button><button class="filter" data-filter="education">Education</button></div>
-  </div>
-
-  <section class="section wrap package" data-category="live operations">
-    <div class="section-head"><div><div class="mono">Featured / live pilot</div><h2>Install something real.</h2></div><p class="section-note">The first public Workflowware package is a complete operating unit for recovering missed business leads without allowing autonomous sending.</p></div>
-    <article class="featured">
-      <div class="featured-main">
-        <div><div class="status mono"><span class="dot"></span>Live pilot · v0.1</div><h3>Missed Lead<br>Recovery</h3><p class="description">Turn missed calls, forms, and messages into triage notes, a qualified follow-up draft, and a human approval gate before anything is sent.</p></div>
-        <div><div class="meta"><div><span class="mono">Built for</span><strong>Local operators</strong></div><div><span class="mono">Risk class</span><strong>Human approval</strong></div><div><span class="mono">Access</span><strong>Free pilot</strong></div></div><div class="actions"><a class="btn primary" href="pilot.html">Open live pilot →</a><a class="btn" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">Download ZIP</a></div></div>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true">W</span><span>Workflowware</span></a>
+      <div class="nav-links">
+        <a href="spec.html">Spec</a>
+        <a class="is-active" href="library.html">Library</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="docs.html">Docs</a>
+        <a href="https://maatecosystem.com/">MAAT</a>
+        <a href="https://github.com/Propershare/workflowware">GitHub</a>
       </div>
-      <aside class="featured-side"><div><div class="mono" style="color:#a99e89">Inside the package</div><div class="stack"><div class="stack-row"><span>Workflow contract</span><span>Included</span></div><div class="stack-row"><span>Agent instructions</span><span>Included</span></div><div class="stack-row"><span>Approval gate</span><span>Required</span></div><div class="stack-row"><span>Evaluation suite</span><span>Included</span></div><div class="stack-row"><span>Human handoff</span><span>Declared</span></div></div></div><a class="btn" href="spec.html">Inspect package standard</a></aside>
-    </article>
-  </section>
+    </nav>
 
-  <section class="section wrap">
-    <div class="section-head"><div><div class="mono">Declared next packages</div><h2>Built in public. Scoped honestly.</h2></div><p class="section-note">These packages are next in the build queue. Each begins with a specific job and evidence boundary, not a vague promise.</p></div>
-    <div class="grid">
-      <a class="card package" data-category="research" href="mailto:hello@workflowware.org?subject=Chronology%20Research%20Kit">
-        <div><div class="card-top mono"><span>Research</span><span>Next package</span></div><h3>African Scientific Chronology</h3><p>Separate primary, archaeological, linguistic, secondary, and interpretive evidence; compare chronologies; record disagreement; block unsupported synthesis; output a citation-ready brief.</p></div>
-        <div class="card-bottom"><div class="tags"><span class="tag mono">Evidence</span><span class="tag mono">Citations</span><span class="tag mono">Review</span></div><span class="arrow">↗</span></div>
-      </a>
-      <a class="card package" data-category="education" href="mailto:hello@workflowware.org?subject=Kemetic%20Mathematics%20Kit">
-        <div><div class="card-top mono"><span>Education</span><span>Next package</span></div><h3>Kemetic Mathematics Teaching Kit</h3><p>Teach unit fractions, seked, area, volume, right-triangle relations, and truncated-pyramid calculations while separating source evidence from modern inference.</p></div>
-        <div class="card-bottom"><div class="tags"><span class="tag mono">Curriculum</span><span class="tag mono">Source-bound</span><span class="tag mono">Teaching</span></div><span class="arrow">↗</span></div>
-      </a>
+    <header class="page-hero" id="main">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Honest catalog</p>
+      <h1>One pilot. Two next. No fake menu.</h1>
+      <p class="maat-bridge"><strong>MAAT is the governance layer. Workflowware is what you install.</strong>
+        <a href="https://maatecosystem.com/">maatecosystem.com</a> ·
+        <a href="https://maatecosystem.com/llms.txt">llms.txt</a></p>
+      <p class="lead">Three packages only on this page. Everything else is custom after a scoped conversation — not a shelf of vaporware.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="pilot.html">Try the live pilot →</a>
+        <a class="btn secondary" href="mailto:hello@workflowware.org">Email hello@workflowware.org</a>
+      </div>
+    </header>
+
+    <section class="block">
+      <p class="sec-kicker">1 · Live</p>
+      <h2>Missed Lead Recovery</h2>
+      <div class="pkg-grid">
+        <article class="pkg">
+          <div class="status live">Live pilot</div>
+          <h3>Missed Lead Recovery</h3>
+          <p>Turn missed calls, forms, and messages into triage notes, a safe follow-up draft, and a human approval gate — before anything is sent.</p>
+          <p class="who">Home services · local operators · consultants</p>
+          <div class="cta-row">
+            <a class="btn secondary" href="pilot.html">Open pilot</a>
+            <a class="btn secondary" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">ZIP</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="sec-kicker">2 · Next</p>
+      <h2>African Scientific Chronology Research Kit</h2>
+      <div class="pkg-grid">
+        <article class="pkg">
+          <div class="status build">Next package</div>
+          <h3>Chronology Research Kit</h3>
+          <p>Governed research workflow: state a historical proposition; separate primary, secondary, archaeological, linguistic, and interpretive evidence; compare chronologies; record disagreement; block unsupported synthesis; produce a citation-ready brief.</p>
+          <p class="who">Researchers · educators · African-centered scholarship</p>
+          <div class="cta-row">
+            <a class="btn secondary" href="mailto:hello@workflowware.org?subject=Chronology%20Research%20Kit">Request scoped build</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="sec-kicker">3 · Next</p>
+      <h2>Kemetic Mathematics Teaching Kit</h2>
+      <div class="pkg-grid">
+        <article class="pkg">
+          <div class="status build">Next package</div>
+          <h3>Kemetic Mathematics Teaching Kit</h3>
+          <p>Teaching workflow for unit fractions, seked, right-triangle relations, area/volume procedures, and truncated-pyramid calculations — with a hard line between what a source demonstrates and what the teacher or agent infers.</p>
+          <p class="who">Teachers · tutors · curriculum labs</p>
+          <div class="cta-row">
+            <a class="btn secondary" href="mailto:hello@workflowware.org?subject=Kemetic%20Mathematics%20Kit">Request scoped build</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="band">
+      <p class="sec-kicker">Fulfillment</p>
+      <h2>Sample first. Scope second. Install third.</h2>
+      <p class="sec-lead">No GitHub account required for business owners. Custom work stays guided — approvals and evals before live systems.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:hello@workflowware.org">Email hello@workflowware.org</a>
+        <a class="btn secondary" href="spec.html">Read the package spec</a>
+      </div>
     </div>
-  </section>
 
-  <section class="request">
-    <div class="wrap request-grid"><div><div class="mono" style="color:#b69b61">Need a package that is not listed?</div><h2>Start with the job, not the chatbot.</h2><p>Tell us the repeatable job, who owns the decision, what the agent may access, and where a human must approve. We will scope the Workflowware package around that reality.</p></div><div><a class="btn" href="mailto:hello@workflowware.org?subject=Custom%20Workflowware%20Package">Request a scoped package →</a></div></div>
-  </section>
-</main>
-<footer><div class="wrap"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="mark">W</span>Workflowware</a><p style="color:#938c7f;max-width:330px;line-height:1.6">Software packaged as agent-operable workflows. Built at BlackLabRats and governed through the MAAT ecosystem.</p></div><div><h4>Discover</h4><a href="library.html">Library</a><a href="pilot.html">Launch Lab</a></div><div><h4>Learn</h4><a href="spec.html">Specification</a><a href="docs.html">Documentation</a></div><div><h4>Connect</h4><a href="https://github.com/Propershare/workflowware">GitHub</a><a href="mailto:hello@workflowware.org">Email</a><a href="https://maatecosystem.com">MAAT</a></div></div><div class="copyright mono">© 2026 Workflowware™ · Honest catalog · No fake menu.</div></div></footer>
-<script>
-  const search=document.getElementById('packageSearch');
-  const filters=[...document.querySelectorAll('.filter')];
-  const packages=[...document.querySelectorAll('.package')];
-  let active='all';
-  function apply(){const q=search.value.toLowerCase().trim();packages.forEach(el=>{const category=el.dataset.category||'';const hitText=el.innerText.toLowerCase().includes(q);const hitFilter=active==='all'||category.includes(active);el.style.display=hitText&&hitFilter?'':'none';});}
-  search.addEventListener('input',apply);
-  filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.remove('active'));btn.classList.add('active');active=btn.dataset.filter;apply();}));
-</script>
+    <footer class="site">
+      <strong>Workflowware™</strong>
+      One cooked dish on the menu — plus two we are building next
+    </footer>
+  </div>
 </body>
 </html>

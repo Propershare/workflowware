@@ -1,101 +1,683 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Workflowware — Build. Verify. Deploy.</title>
-<meta name="description" content="Workflowware packages agent-operable workflows with rules, evaluations, approvals, memory, and human handoff.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
-<style>
-:root{--paper:#f3efe6;--paper2:#ebe5d9;--ink:#0b1116;--navy:#09131c;--navy2:#0d1b27;--gold:#bd8625;--gold2:#d9aa4a;--line:#cec6b8;--muted:#6f6a62;--green:#52c27a;--red:#d45d5d;--shadow:0 16px 45px rgba(15,18,20,.10)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-size:14px}a{color:inherit}.app{min-height:100vh;display:grid;grid-template-columns:92px 1fr}.rail{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#0a1520,#071019);color:#fff;border-right:1px solid #24313c;display:flex;flex-direction:column;z-index:20}.rail-logo{height:92px;display:grid;place-items:center;border-bottom:1px solid #24313c;color:var(--gold2);font:700 30px Oswald}.rail nav{display:flex;flex-direction:column}.rail a{height:78px;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-left:4px solid transparent;color:#d9dde0;font-size:9px;letter-spacing:.05em;text-transform:uppercase}.rail a:hover,.rail a.active{background:rgba(255,255,255,.06);border-left-color:var(--gold);color:var(--gold2)}.rail .ico{font-size:22px;line-height:1}.rail-bottom{margin-top:auto;padding:20px 8px;text-align:center;border-top:1px solid #24313c;font-size:9px;color:#b7c0c7}.operator{width:54px;height:54px;border-radius:50%;margin:0 auto 9px;background:radial-gradient(circle at 50% 35%,#d7a84b 0 18%,#1a2730 19% 40%,#bd8625 41% 44%,#071019 45%);border:1px solid #6d5121}.online{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-left:4px}
-.shell{min-width:0}.topbar{height:72px;padding:0 24px;display:grid;grid-template-columns:240px 1fr auto;align-items:center;gap:22px;border-bottom:1px solid var(--line);background:rgba(243,239,230,.96);position:sticky;top:0;z-index:15;backdrop-filter:blur(18px)}.brand strong{display:block;font:700 21px Oswald;letter-spacing:.08em}.brand span{font-size:9px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}.toplinks{display:flex;align-items:center;justify-content:center;gap:30px}.toplinks a{text-decoration:none;font-size:10px;font-weight:800;text-transform:uppercase}.actions{display:flex;align-items:center;gap:12px}.search{width:250px;height:36px;border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;padding:0 12px;background:rgba(255,255,255,.35);color:var(--muted)}.search input{border:0;outline:0;background:transparent;width:100%;font:11px Manrope;padding-left:8px}.btn{height:38px;padding:0 20px;border:1px solid var(--ink);border-radius:5px;background:transparent;font-weight:800;font-size:10px;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;cursor:pointer}.btn.dark{background:var(--navy);color:#fff;border-color:var(--navy)}.btn.gold{background:var(--gold);color:#fff;border-color:var(--gold)}
-.main{padding:18px 18px 0}.dashboard{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}.left,.right{min-width:0}.hero{height:435px;display:grid;grid-template-columns:47% 53%;position:relative;overflow:hidden}.hero-copy{padding:24px 10px 10px 32px;z-index:2}.hero h1{font:700 clamp(54px,5vw,82px)/.82 Oswald;margin:8px 0 24px;letter-spacing:-.035em}.hero h1 span{color:var(--gold)}.hero .lead{font-size:18px;line-height:1.35;max-width:330px;margin-bottom:20px}.hero-actions{display:flex;gap:12px}.micro{margin-top:25px;font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.trust-row{display:flex;gap:42px;margin-top:16px}.trust{display:grid;place-items:center;gap:7px;font-size:8px;text-transform:uppercase;font-weight:800}.trust b{font-size:22px;color:var(--gold);font-weight:400}.portrait{position:relative}.portrait:before{content:"";position:absolute;width:250px;height:250px;border-radius:50%;background:var(--gold);left:18px;top:104px}.portrait:after{content:"";position:absolute;inset:12px;background-image:linear-gradient(rgba(11,17,22,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(11,17,22,.08) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to right,transparent,#000 18%,#000)}.queen{position:absolute;z-index:2;right:2px;bottom:-4px;width:360px;height:430px}.queen svg{width:100%;height:100%;filter:drop-shadow(0 12px 20px rgba(0,0,0,.18))}.floating{position:absolute;z-index:3;width:12px;height:12px;background:var(--ink)}.f1{left:38px;top:42px}.f2{right:35px;top:145px;background:var(--gold)}.f3{left:96px;bottom:32px;background:var(--gold)}
-.panel{border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.26);box-shadow:0 1px 0 rgba(255,255,255,.6) inset}.panel-head{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--line);font-weight:800;font-size:11px;text-transform:uppercase}.panel-head small{font-weight:500;text-transform:none;color:var(--muted)}.topgrid{display:grid;grid-template-columns:1.05fr 1fr;gap:12px}.terminal{height:190px;background:linear-gradient(145deg,#0c1823,#071019);color:#eef3f5;border-color:#182b3a}.terminal .panel-head{border-color:#243746}.terminal pre{margin:0;padding:15px 18px;font:11px/1.65 DM Mono;color:#f4f4ee}.live{color:var(--green)}.terminal .command{margin:0 18px;height:34px;border:1px solid #56616a;border-radius:5px;display:flex;align-items:center;padding:0 12px;font-size:10px;font-weight:800}.health{height:190px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);height:112px}.metric{padding:14px 12px;border-right:1px solid var(--line)}.metric:last-child{border-right:0}.metric small{display:block;font-size:8px;text-transform:uppercase}.metric strong{display:block;font:700 24px Oswald;margin:8px 0}.metric span{font-size:9px;color:var(--muted)}.statusbar{height:33px;border-top:1px solid var(--line);display:flex;align-items:center;padding:0 15px;font-size:9px;font-weight:800}.middlegrid{display:grid;grid-template-columns:.92fr 1.08fr;gap:12px;margin-top:12px}.activity,.quick{height:230px}.activity-list{padding:8px 16px}.event{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(206,198,184,.6)}.event i{width:22px;height:22px;border-radius:4px;border:1px solid var(--gold);display:grid;place-items:center;font-style:normal;color:var(--gold)}.event strong{display:block;font-size:10px}.event span,.event time{font-size:8px;color:var(--muted)}.quick-body{display:grid;grid-template-columns:1fr 140px;height:185px}.steps{padding:13px 15px}.step{display:flex;align-items:center;gap:10px;margin:11px 0;font-size:9px}.step b{width:18px;height:18px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center}.stackart{position:relative;display:grid;place-items:center}.stackart .layer{position:absolute;width:82px;height:48px;background:#0c1720;border:1px solid #6a7278;transform:rotate(30deg) skewX(-25deg);box-shadow:0 8px 0 #09131c,0 9px 0 #bd8625}.stackart .l1{top:30px}.stackart .l2{top:65px}.stackart .l3{top:100px}.featured{height:182px;margin-top:12px;background:linear-gradient(115deg,#0b1822,#08111a);color:white;border-color:#152936;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}.featured-copy{padding:20px}.featured-copy h2{margin:8px 0;font-size:18px}.featured-copy p{color:#c7cdd1;font-size:10px;line-height:1.5;max-width:320px}.tags{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.tag{border:1px solid #4b5963;border-radius:3px;padding:4px 7px;font-size:8px}.cube{position:relative;display:grid;place-items:center}.cube .sq{position:absolute;width:90px;height:65px;border:1px solid var(--gold);transform:rotate(30deg) skewX(-25deg);background:rgba(189,134,37,.08)}.cube .s1{top:24px}.cube .s2{top:54px}.cube .s3{top:84px}.cube .s4{top:114px}.cube:after{content:"⚖";position:absolute;font-size:34px;color:var(--gold);top:54px}
-.packages{margin-top:12px;height:180px;padding:0 14px 12px}.section-title{height:40px;display:flex;align-items:center;justify-content:space-between;font-weight:800;font-size:11px;text-transform:uppercase}.package-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.pkg{height:122px;border:1px solid var(--line);border-radius:7px;padding:13px 10px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,rgba(255,255,255,.45),rgba(255,255,255,.1));transition:.2s}.pkg:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--gold)}.pkg b{font-size:24px;color:var(--gold);font-weight:400}.pkg strong{font-size:9px;text-transform:uppercase}.pkg span{font-size:8px;color:var(--muted);line-height:1.35}.legal{background:#f3eadc}.education{background:#e4eee5}.research{background:#e9e1ed}.trucking{background:#e2e7ee}.healthc{background:#f0e1e2}.creative{background:#f5e6d8}
-.bottomgrid{display:grid;grid-template-columns:1.08fr .92fr;gap:12px;margin-top:12px}.ecosystem{height:166px;padding:0 15px}.flow{display:grid;grid-template-columns:repeat(6,1fr);align-items:center;height:115px}.node{text-align:center;position:relative}.node:not(:last-child):after{content:"→";position:absolute;right:-8px;top:15px;color:var(--muted)}.node b{display:block;font-size:27px;font-weight:400;margin-bottom:8px}.node strong{display:block;font-size:8px;text-transform:uppercase}.node span{font-size:7px;color:var(--muted);line-height:1.3;display:block;margin-top:7px}.community{height:166px;display:grid;grid-template-columns:1.15fr .85fr}.quote{padding:15px 20px;border-right:1px solid var(--line)}.quote p{font-size:12px;line-height:1.6;margin:12px 0}.author{display:flex;align-items:center;gap:9px;font-size:9px}.avatar{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 50% 35%,#d7a84b 0 18%,#172733 19% 44%,#bd8625 45% 50%,#09131c 51%)}.leaders{padding:12px 18px}.leader{display:grid;grid-template-columns:18px 1fr auto;gap:7px;font-size:8px;margin:7px 0}.leader b{color:var(--gold)}
-.footer{margin:14px -18px 0;background:linear-gradient(135deg,#0a151f,#071019);color:#d8dde1;padding:20px 32px 14px}.footer-grid{display:grid;grid-template-columns:1.1fr repeat(3,.8fr) 1.2fr 1.2fr;gap:28px}.footer h4{font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:#fff}.footer p,.footer a{font-size:8px;line-height:1.6;color:#b9c0c6;text-decoration:none;display:block}.footer-logo{font:700 40px Oswald;color:#fff}.subscribe{display:flex}.subscribe input{height:32px;background:#111e28;border:1px solid #394852;color:#fff;padding:0 10px;width:150px}.subscribe button{height:32px;border:0;background:var(--gold);color:#fff;font-size:8px;font-weight:800;padding:0 14px}.opensource{border:1px solid #7c5d20;border-radius:7px;padding:12px;text-align:center}.copyright{border-top:1px solid #30404c;margin-top:15px;padding-top:10px;display:flex;justify-content:space-between;font-size:7px;color:#8d999f}
-@media(max-width:1280px){.toplinks{gap:16px}.search{display:none}.dashboard{grid-template-columns:1fr}.hero{height:420px}.right{display:grid;grid-template-columns:1fr 1fr;gap:12px}.topgrid,.middlegrid{display:contents}.featured{grid-column:1/-1}.packages{height:auto}.package-grid{grid-template-columns:repeat(3,1fr)}.bottomgrid{grid-template-columns:1fr}.footer-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:800px){.app{grid-template-columns:1fr}.rail{display:none}.topbar{grid-template-columns:1fr auto;height:62px}.toplinks{display:none}.brand span{display:none}.actions .btn:not(.dark){display:none}.main{padding:10px}.dashboard{display:block}.hero{height:auto;grid-template-columns:1fr}.hero-copy{padding:28px 12px}.portrait{height:350px}.queen{left:50%;transform:translateX(-50%)}.right{display:block}.topgrid,.middlegrid{display:grid;grid-template-columns:1fr;margin-top:12px}.terminal,.health,.activity,.quick,.featured{height:auto;min-height:190px;margin-top:12px}.quick-body{min-height:180px}.package-grid{grid-template-columns:repeat(2,1fr)}.bottomgrid{grid-template-columns:1fr}.ecosystem,.community{height:auto}.flow{grid-template-columns:repeat(3,1fr);height:auto;gap:20px;padding:12px 0}.node:after{display:none}.community{grid-template-columns:1fr}.quote{border-right:0;border-bottom:1px solid var(--line)}.footer{margin-left:-10px;margin-right:-10px}.footer-grid{grid-template-columns:1fr 1fr}.copyright{display:block}.actions{gap:6px}.btn{padding:0 12px}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workflowware™ — Software packaged as agent-operable workflows</title>
+  <meta name="description" content="Workflowware is the operating package for real work: workflow specs, agent behavior, approvals, evals, and handoff — portable for humans and agents.">
+  <meta name="maat-artifact" content="tehuti.workflowware.public-site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #eef1f4;
+      --paper: #ffffff;
+      --ink: #10141c;
+      --muted: #5c6775;
+      --line: #d7dde5;
+      --navy: #121826;
+      --lime: #c8f542;
+      --lime-deep: #a8d12a;
+      --blue-soft: #c9d7f0;
+      --max: 1180px;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Sora", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(200, 245, 66, 0.12), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(170, 196, 240, 0.28), transparent 34%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+    .skip {
+      position: absolute; left: -999px;
+    }
+    .skip:focus {
+      left: 12px; top: 12px; z-index: 40;
+      background: #fff; padding: 8px 12px;
+    }
+
+    .shell {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ——— Nav ——— */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.15rem 0 0.75rem;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+    }
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 9px;
+      position: relative;
+      overflow: hidden;
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 3px;
+      background: var(--lime);
+      transform: rotate(-38deg);
+      bottom: 9px;
+      right: 4px;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.15rem;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      position: relative;
+      padding-top: 0.35rem;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.is-active { color: var(--ink); font-weight: 600; }
+    .nav-links a.is-active::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      margin-left: -3px;
+      border-radius: 50%;
+      background: var(--lime-deep);
+    }
+
+    /* ——— Hero ——— */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 2.5rem 3rem;
+      align-items: center;
+      padding: 2.25rem 0 2rem;
+      min-height: calc(100vh - 8.5rem);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 1.25rem;
+    }
+    .eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--navy);
+    }
+
+    .headline {
+      margin: 0 0 1.1rem;
+      font-size: clamp(2.35rem, 5.2vw, 3.85rem);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+      max-width: 11ch;
+      padding-bottom: 0.08em;
+    }
+    .headline .mark {
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .headline .mark::after {
+      content: "";
+      position: absolute;
+      left: -2%;
+      right: -2%;
+      bottom: 0.08em;
+      height: 0.18em;
+      background: var(--lime);
+      border-radius: 2px;
+      transform: rotate(-1.5deg);
+      z-index: -1;
+    }
+
+    .support {
+      margin: 0 0 1.6rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      max-width: 34ch;
+      font-weight: 400;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 0.9rem 1.15rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1.5px solid transparent;
+      transition: transform 0.2s var(--ease), background 0.2s var(--ease);
+    }
+    .btn svg { width: 16px; height: 16px; flex: 0 0 auto; }
+    .btn.primary {
+      background: var(--navy);
+      color: var(--lime);
+    }
+    .btn.primary:hover { transform: translateY(-2px); }
+    .btn.secondary {
+      background: var(--paper);
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .btn.secondary:hover {
+      transform: translateY(-2px);
+      border-color: #b7c0cc;
+    }
+
+    .traits {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+    .traits span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0 0.85rem;
+    }
+    .traits span:first-child { padding-left: 0; }
+    .traits span + span {
+      border-left: 1px solid #c9d1db;
+    }
+    .traits svg {
+      width: 15px;
+      height: 15px;
+      opacity: 0.8;
+    }
+
+    /* ——— Stack visual ——— */
+    .hero-visual {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .circuit {
+      position: absolute;
+      inset: 8% 4% 12% 8%;
+      background-image:
+        radial-gradient(circle at 20% 30%, #9eb6e0 1.5px, transparent 1.6px),
+        radial-gradient(circle at 70% 55%, #9eb6e0 1.5px, transparent 1.6px),
+        radial-gradient(circle at 45% 75%, #9eb6e0 1.5px, transparent 1.6px),
+        linear-gradient(115deg, transparent 48%, rgba(150, 175, 210, 0.45) 48.5%, transparent 49%),
+        linear-gradient(70deg, transparent 40%, rgba(150, 175, 210, 0.35) 40.5%, transparent 41%),
+        linear-gradient(20deg, transparent 60%, rgba(150, 175, 210, 0.3) 60.5%, transparent 61%);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .stack {
+      position: relative;
+      width: min(100%, 380px);
+      perspective: 900px;
+      transform-style: preserve-3d;
+    }
+    .layer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: var(--paper);
+      border: 1px solid #e2e8f0;
+      border-left: 5px solid var(--blue-soft);
+      border-radius: 14px;
+      padding: 1rem 1.05rem;
+      margin-bottom: 0.7rem;
+      box-shadow: 0 10px 24px rgba(16, 20, 28, 0.08);
+      transform: rotateY(-18deg) rotateX(4deg) translateZ(0);
+      animation: floatIn 0.7s var(--ease) both;
+    }
+    .layer:nth-child(1) { animation-delay: 0.05s; }
+    .layer:nth-child(2) { animation-delay: 0.12s; transform: rotateY(-18deg) rotateX(4deg) translateX(10px); }
+    .layer:nth-child(3) { animation-delay: 0.19s; transform: rotateY(-18deg) rotateX(4deg) translateX(20px); }
+    .layer:nth-child(4) {
+      animation-delay: 0.26s;
+      background: var(--navy);
+      color: #fff;
+      border-color: #1d2638;
+      border-left-color: #3b4d73;
+      transform: rotateY(-18deg) rotateX(4deg) translateX(30px);
+    }
+    .layer:nth-child(5) {
+      animation-delay: 0.33s;
+      background: var(--lime);
+      border-color: #b6e038;
+      border-left-color: #9ccc20;
+      color: var(--navy);
+      transform: rotateY(-18deg) rotateX(4deg) translateX(40px);
+      box-shadow: 0 14px 28px rgba(168, 209, 42, 0.28);
+    }
+    .layer .meta { min-width: 0; }
+    .layer .k {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-bottom: 0.2rem;
+    }
+    .layer .t {
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .layer .ico {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      background: rgba(16, 20, 28, 0.05);
+      flex: 0 0 auto;
+    }
+    .layer:nth-child(4) .ico { background: rgba(255, 255, 255, 0.08); }
+    .layer:nth-child(5) .ico { background: rgba(16, 20, 28, 0.08); }
+    .layer .ico svg { width: 18px; height: 18px; }
+
+    @keyframes floatIn {
+      from { opacity: 0; filter: blur(2px); }
+      to { opacity: 1; filter: none; }
+    }
+
+    /* ——— Proof bar ——— */
+    .proof {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem 1.75rem;
+      margin: 0 0 2.5rem;
+      padding: 1rem 1.2rem;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .proof .label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .proof-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 0.75rem;
+      align-items: center;
+    }
+    .proof-logos a {
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.4rem 0.75rem;
+      transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+    .proof-logos a:hover {
+      border-color: #b7c0cc;
+      transform: translateY(-1px);
+    }
+    .proof-logos a code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* ——— Lower sections (same system) ——— */
+    section.block {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .sec-kicker {
+      margin: 0 0 0.55rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7280;
+    }
+    section.block h2 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      max-width: 18ch;
+    }
+    .sec-lead {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      max-width: 42ch;
+      line-height: 1.55;
+    }
+    .quote {
+      margin: 0;
+      padding: 0.15rem 0 0.15rem 1rem;
+      border-left: 3px solid var(--lime-deep);
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+      line-height: 1.35;
+      max-width: 28ch;
+    }
+    .anatomy { border-top: 1px solid var(--line); }
+    .anatomy ul { list-style: none; margin: 0; padding: 0; }
+    .anatomy li {
+      display: grid;
+      grid-template-columns: 10rem 1fr;
+      gap: 1rem;
+      padding: 0.95rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .anatomy .name { font-weight: 700; letter-spacing: -0.02em; }
+    .anatomy .desc { margin: 0; color: var(--muted); }
+
+    .pilot-band {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 18px;
+      padding: 2.25rem 1.5rem;
+      margin: 0.5rem 0 1rem;
+    }
+    .pilot-band .sec-kicker { color: var(--lime); }
+    .pilot-band h2 { color: #fff; }
+    .pilot-band .sec-lead { color: rgba(255, 255, 255, 0.72); }
+    .pilot-band .btn.primary {
+      background: var(--lime);
+      color: var(--navy);
+    }
+    .pilot-band .btn.secondary {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .cards {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .cards a {
+      text-decoration: none;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.1rem 1.15rem;
+      transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+    .cards a:hover {
+      border-color: #b7c0cc;
+      transform: translateY(-2px);
+    }
+    .cards h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .cards p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    footer.site {
+      border-top: 1px solid var(--line);
+      padding: 1.75rem 0 2.75rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer.site strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 1.75rem;
+        padding-top: 1.25rem;
+      }
+      .headline { max-width: 12ch; }
+      .hero-visual { min-height: 420px; }
+      .layer,
+      .layer:nth-child(2),
+      .layer:nth-child(3),
+      .layer:nth-child(4),
+      .layer:nth-child(5) {
+        transform: none;
+      }
+      .anatomy li { grid-template-columns: 1fr; gap: 0.2rem; }
+    }
+
+    @media (max-width: 640px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .traits span + span { border-left: 0; padding-left: 0; }
+      .traits { gap: 0.55rem 1rem; }
+      .proof { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .layer { animation: none !important; opacity: 1 !important; }
+    }
+  </style>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 </head>
 <body>
-<div class="app">
-<aside class="rail">
-  <div class="rail-logo">WW</div>
-  <nav>
-    <a class="active" href="index.html"><span class="ico">⌂</span>Home</a>
-    <a href="library.html"><span class="ico">⌘</span>Workflows</a>
-    <a href="pilot.html"><span class="ico">⬡</span>Agents</a>
-    <a href="spec.html"><span class="ico">⚭</span>Evals</a>
-    <a href="library.html"><span class="ico">＋</span>Installs</a>
-    <a href="docs.html"><span class="ico">▱</span>Memory</a>
-    <a href="#community"><span class="ico">♙</span>Community</a>
-    <a href="docs.html"><span class="ico">⚙</span>Settings</a>
-  </nav>
-  <div class="rail-bottom"><div class="operator"></div>MA'AT LAB<br>OPERATOR <span class="online"></span></div>
-</aside>
-<div class="shell">
-<header class="topbar">
-  <div class="brand"><strong>WORKFLOWWARE</strong><span>Software packaged as agent-operable workflows</span></div>
-  <nav class="toplinks"><a href="#product">Product</a><a href="library.html">Library</a><a href="library.html">Marketplace</a><a href="docs.html">Docs</a><a href="#community">Community</a><a href="spec.html">About</a></nav>
-  <div class="actions"><label class="search">⌕<input placeholder="Search workflows, skills, docs..."></label><a class="btn" href="#">Sign in</a><a class="btn dark" href="pilot.html">Launch Lab ↗</a></div>
-</header>
-<main class="main" id="product">
-<div class="dashboard">
-<section class="left">
-  <div class="hero">
-    <div class="hero-copy">
-      <h1>BUILD.<br>VERIFY.<br><span>DEPLOY.</span></h1>
-      <p class="lead">Workflows that agents can run.<br>Humans can trust.</p>
-      <div class="hero-actions"><a class="btn dark" href="library.html">Browse library →</a><a class="btn" href="spec.html">See how it works →</a></div>
-      <div class="micro">Built for agents. Designed for humans.</div>
-      <div class="trust-row"><div class="trust"><b>⌘</b>Interoperable</div><div class="trust"><b>♢</b>Verifiable</div><div class="trust"><b>◇</b>Portable</div><div class="trust"><b>◯</b>Open standard</div></div>
-    </div>
-    <div class="portrait">
-      <i class="floating f1"></i><i class="floating f2"></i><i class="floating f3"></i>
-      <div class="queen" aria-label="Afrofuturist Ma'at profile illustration">
-      <svg viewBox="0 0 360 430" role="img"><defs><linearGradient id="skin" x1="0" x2="1"><stop stop-color="#3a1f16"/><stop offset=".55" stop-color="#6c3a25"/><stop offset="1" stop-color="#21140f"/></linearGradient><linearGradient id="crown" x1="0" x2="1"><stop stop-color="#071019"/><stop offset=".55" stop-color="#172733"/><stop offset="1" stop-color="#050b10"/></linearGradient></defs><path fill="url(#crown)" stroke="#bd8625" stroke-width="2" d="M132 15Q214 0 278 59L295 212Q240 176 143 189Z"/><path fill="none" stroke="#bd8625" stroke-width="9" d="M139 61Q216 38 279 85M140 91Q221 65 284 112M141 120Q224 95 287 141M142 150Q225 123 291 169"/><path fill="#bd8625" d="M138 168Q221 143 293 190L286 216Q217 185 143 210Z"/><path fill="url(#skin)" d="M145 185Q160 157 211 165Q255 171 267 206Q274 230 258 252Q246 268 252 295Q260 326 298 381L155 430Q173 369 165 321Q157 277 132 248Q118 232 125 210Z"/><path fill="url(#skin)" d="M133 213Q99 228 91 254Q82 282 112 290Q139 294 158 272L178 250L168 210Z"/><path fill="#080b0d" d="M107 247Q128 235 155 241Q135 247 113 251Z"/><path fill="#d6a347" d="M111 260Q131 266 151 259Q132 274 111 263Z"/><path fill="#140c09" d="M145 221Q166 214 183 224Q164 222 149 228Z"/><circle cx="156" cy="229" r="3" fill="#d9aa4a"/><path fill="none" stroke="#bd8625" stroke-width="3" d="M180 236Q193 253 178 267M188 273Q210 281 228 271"/><path fill="none" stroke="#bd8625" stroke-width="4" d="M231 223Q252 247 234 275"/><circle cx="241" cy="274" r="19" fill="none" stroke="#bd8625" stroke-width="4"/><circle cx="241" cy="274" r="6" fill="#bd8625"/><path fill="#0b1116" stroke="#bd8625" stroke-width="2" d="M198 309Q257 301 291 348L313 430H148Q163 365 198 309Z"/><path fill="none" stroke="#bd8625" stroke-width="5" d="M176 346Q238 325 295 365M167 378Q235 355 305 394M159 411Q235 383 314 423"/><path fill="none" stroke="#bd8625" d="M153 41l122 108M149 73l137 111M144 106l143 109" opacity=".55"/></svg>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="shell">
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html">
+        <span class="logo-mark" aria-hidden="true">W</span>
+        <span>Workflowware</span>
+      </a>
+      <div class="nav-links">
+        <a href="app.html">Platform</a>
+        <a href="spec.html">Spec</a>
+        <a href="library.html">Library</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="docs.html">Docs</a>
+        <a href="https://maatecosystem.com/">MAAT</a>
+        <a href="https://github.com/Propershare/workflowware">GitHub</a>
+      </div>
+    </nav>
+
+    <header class="hero" id="main">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Built for agents. Designed for humans.</p>
+        <h1 class="headline">
+          Software packaged as
+          <span class="mark">agent-operable</span>
+          workflows.
+        </h1>
+      <p class="maat-bridge"><strong>MAAT is the governance layer. Workflowware is what you install.</strong> Governance doctrine: <a href="https://maatecosystem.com/">maatecosystem.com</a> · machine summary: <a href="https://maatecosystem.com/llms.txt">llms.txt</a>.</p>
+        <p class="support">The job, the rules, the evals, and the handoff — portable for humans and agents.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="pilot.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 10-14h-7l0-6z"/></svg>
+            Test the pilot
+            <span aria-hidden="true">→</span>
+          </a>
+          <a class="btn secondary" href="spec.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3z"/><path d="M14 3v5h5"/></svg>
+            Read the spec
+            <span aria-hidden="true">→</span>
+          </a>
+          <a class="btn secondary" href="app.html">
+            Open platform shell
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="traits" aria-label="Product traits">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 19c1.5-3 4-4.5 7-4.5S17.5 16 19 19"/></svg>
+            Agent-native
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 7h8M8 12h8M8 17h5"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg>
+            Interoperable
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+            Verifiable
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="7" width="13" height="10" rx="2"/><path d="M16 10h3l2 2v5h-5"/></svg>
+            Portable
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="circuit"></div>
+        <div class="stack">
+          <div class="layer">
+            <div class="meta"><div class="k">Layer 01</div><div class="t">Human trust surface</div></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="2.5"/><circle cx="16" cy="9" r="2"/><path d="M4.5 18c.8-2.4 2.5-3.5 4.5-3.5s3.5 1 4.3 3"/><path d="M14 14.5c1.4 0 2.7.6 3.5 2.5"/></svg></div>
+          </div>
+          <div class="layer">
+            <div class="meta"><div class="k">Layer 02</div><div class="t">Workflow + agent specs</div></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4h6l4 4v12H8V4z"/><path d="M14 4v4h4"/><path d="M10 12h2.5M10 15h4"/></svg></div>
+          </div>
+          <div class="layer">
+            <div class="meta"><div class="k">Layer 03</div><div class="t">Approvals + evals</div></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          </div>
+          <div class="layer">
+            <div class="meta"><div class="k">Layer 04</div><div class="t">Install + handoff</div></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v10"/><path d="M8 10l4 4 4-4"/><path d="M5 18h14"/></svg></div>
+          </div>
+          <div class="layer">
+            <div class="meta"><div class="k">Unit</div><div class="t">The operating package</div></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="proof">
+      <div class="label">Open repos</div>
+      <div class="proof-logos" aria-label="Public GitHub repositories">
+        <a href="https://github.com/Propershare/workflowware"><code>workflowware</code></a>
+        <a href="https://github.com/Propershare/hermes-agent"><code>hermes-agent</code></a>
+        <a href="https://github.com/Propershare/maat-ecosystem"><code>maat-ecosystem</code></a>
+        <a href="https://github.com/Propershare/tehuti-guard"><code>tehuti-guard</code></a>
+        <a href="https://github.com/Propershare/maatbenchmark"><code>maatbenchmark</code></a>
       </div>
     </div>
-  </div>
-  <section class="packages panel">
-    <div class="section-title">Explore workflow packages <small><a href="library.html">View all →</a></small></div>
-    <div class="package-grid">
-      <article class="pkg legal"><b>⚖</b><strong>Legal</strong><span>Draft motions, analyze cases, build defenses.<br><em>12 workflows</em></span></article>
-      <article class="pkg education"><b>⌂</b><strong>Education</strong><span>Curricula, tutoring, assessment engines.<br><em>9 workflows</em></span></article>
-      <article class="pkg research"><b>▤</b><strong>Research</strong><span>RAG pipelines, data analysis, citations.<br><em>14 workflows</em></span></article>
-      <article class="pkg trucking"><b>▣</b><strong>Trucking</strong><span>Load search, dispatch, compliance, IFTA.<br><em>8 workflows</em></span></article>
-      <article class="pkg healthc"><b>♡</b><strong>Health</strong><span>Patient intake, triage, records, follow-up.<br><em>7 workflows</em></span></article>
-      <article class="pkg creative"><b>↗</b><strong>Creative</strong><span>Content pipelines, TTS, media generation.<br><em>11 workflows</em></span></article>
+
+    <section class="block" aria-labelledby="what-title">
+      <p class="sec-kicker">What this is</p>
+      <h2 id="what-title">A package for one job — not another chatbot.</h2>
+      <p class="sec-lead">Workflowware is a folder of instructions, rules, test cases, and handoff notes so a human and an AI agent can run the same job the same way. Swap the model if you want. The job definition stays.</p>
+      <div class="cta-row">
+        <a class="btn secondary" href="spec.html">See what’s inside a package →</a>
+        <a class="btn secondary" href="library.html">See jobs we package</a>
+      </div>
+    </section>
+
+    <div class="pilot-band" id="pilot">
+      <p class="sec-kicker">Open pilot</p>
+      <h2>Missed Lead Recovery</h2>
+      <p class="sec-lead">First public kit for home-service businesses. Sample data first — no live inbox, no secrets, no unattended send.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="pilot.html">Open pilot page →</a>
+        <a class="btn secondary" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">Download tester ZIP</a>
+        <a class="btn secondary" href="mailto:hello@workflowware.org?subject=Missed%20Lead%20guided%20pilot">Email for guided pilot</a>
+      </div>
     </div>
-  </section>
-</section>
-<section class="right">
-  <div class="topgrid">
-    <section class="terminal panel"><div class="panel-head">Live Lab <small class="live">● All systems operational</small></div><pre>&gt; Agent Spine connected
-&gt; Memory store online
-&gt; Evaluator ready
-&gt; Gateway listening on :8040
-&gt; You are in control_</pre><div class="command">⌁ &nbsp; OPEN COMMAND CENTER &nbsp; →</div></section>
-    <section class="health panel"><div class="panel-head">System Health <small>⌁</small></div><div class="metrics"><div class="metric"><small>Agents</small><strong>12</strong><span class="live">Online</span></div><div class="metric"><small>Workflows</small><strong>47</strong><span>Installed</span></div><div class="metric"><small>Evals run</small><strong>1,328</strong><span>This week</span></div><div class="metric"><small>Success rate</small><strong>93.7%</strong><span>Overall</span></div></div><div class="statusbar">⌁ &nbsp; VIEW STATUS</div></section>
+
+    <section class="block" aria-labelledby="start-title">
+      <p class="sec-kicker">Start here</p>
+      <h2 id="start-title">Pick a door.</h2>
+      <p class="sec-lead">Try the pilot, skim the docs, or ask us to package a job for you.</p>
+      <div class="cards">
+        <a href="pilot.html"><h3>Pilot</h3><p>Test Missed Lead Recovery with sample data.</p></a>
+        <a href="docs.html"><h3>Docs</h3><p>Short map for customers and agents.</p></a>
+        <a href="library.html"><h3>Library</h3><p>Jobs we can build: scholarship, security training, ops, and more.</p></a>
+        <a href="spec.html"><h3>Spec</h3><p>The package standard — files and required layers.</p></a>
+      </div>
+    </section>
+
+    <footer class="site">
+      <strong>Workflowware™</strong>
+      Unregistered mark — use ™, not ®, until filing is funded. Domain: workflowware.org · Maintained by BlackLabRats / propershare · Spec v0.1
+      <p style="margin-top:0.75rem">Governed by <a href="https://maatecosystem.com/">MAAT</a> (<a href="https://maatecosystem.com/llms.txt">llms.txt</a>). Email <a href="mailto:hello@workflowware.org">hello@workflowware.org</a> — GitHub Issues optional for builders.</p>
+    <section class="contact-cta" style="padding:2rem 1.25rem;max-width:720px;margin:0 auto">
+      <h2>Talk to a human</h2>
+      <p>Business owners: you do not need a GitHub account. Email <a href="mailto:hello@workflowware.org">hello@workflowware.org</a> (or Imhotep via Tehuti Lab) for the Missed Lead pilot and custom kits.</p>
+    </section>
+</footer>
   </div>
-  <div class="middlegrid">
-    <section class="activity panel"><div class="panel-head">Recent activity</div><div class="activity-list"><div class="event"><i>♙</i><div><strong>Legal Motion Generator</strong><span>Installed</span></div><time>2m ago</time></div><div class="event"><i>◇</i><div><strong>MaatBench Full Tier</strong><span>Eval Completed</span></div><time>15m ago</time></div><div class="event"><i>⌘</i><div><strong>Hermes Agent v2</strong><span>Updated</span></div><time>1h ago</time></div><div class="event"><i>▤</i><div><strong>Evidence Analyzer</strong><span>Workflow deployed</span></div><time>3h ago</time></div></div></section>
-    <section class="quick panel"><div class="panel-head">Quick start</div><div class="quick-body"><div class="steps"><p style="font-size:9px;color:var(--muted)">Get up and running in minutes.</p><div class="step"><b>1</b>Choose a workflow</div><div class="step"><b>2</b>Install & configure</div><div class="step"><b>3</b>Run evals</div><div class="step"><b>4</b>Deploy with confidence</div><a class="btn dark" href="pilot.html">Start building →</a></div><div class="stackart"><i class="layer l1"></i><i class="layer l2"></i><i class="layer l3"></i></div></div></section>
-  </div>
-  <section class="featured panel"><div class="featured-copy"><small>FEATURED WORKFLOW</small><h2>Workflowware Legal Suite</h2><p>End-to-end litigation support for modern legal teams and solo operators.</p><div class="tags"><span class="tag">Litigation</span><span class="tag">Research</span><span class="tag">Drafting</span><span class="tag">Evals</span></div><a class="btn" style="color:white;border-color:#72808a" href="library.html">View workflow →</a></div><div class="cube"><i class="sq s1"></i><i class="sq s2"></i><i class="sq s3"></i><i class="sq s4"></i></div></section>
-</section>
-</div>
-<div class="bottomgrid">
-<section class="ecosystem panel"><div class="section-title">The Workflowware ecosystem</div><div class="flow"><div class="node"><b>✎</b><strong>Author</strong><span>Create workflows with our spec</span></div><div class="node"><b>◇</b><strong>Package</strong><span>Bundle rules, evals and instructions</span></div><div class="node"><b>◎</b><strong>Publish</strong><span>Share to library or marketplace</span></div><div class="node"><b>⇩</b><strong>Install</strong><span>Agents install with one command</span></div><div class="node"><b>♢</b><strong>Run & verify</strong><span>Built-in evals ensure quality</span></div><div class="node"><b>♙</b><strong>Handoff</strong><span>Deliver outputs ready for humans</span></div></div></section>
-<section class="community panel" id="community"><div class="quote"><div class="section-title">Community highlight</div><p>“Workflowware changed how I build. My agents execute with context, and the evals give me confidence every time.”</p><div class="author"><div class="avatar"></div><b>— KEMETIC_DEV<br><span style="color:var(--muted);font-weight:400">Workflow Author</span></b></div></div><div class="leaders"><div class="section-title">Top contributors</div><div class="leader"><b>1</b><span>Maat Lab</span><em>124</em></div><div class="leader"><b>2</b><span>Kmetic_Dev</span><em>98</em></div><div class="leader"><b>3</b><span>RBG Scholar</span><em>76</em></div><div class="leader"><b>4</b><span>DataLion</span><em>65</em></div><div class="leader"><b>5</b><span>FreeMinds Collective</span><em>54</em></div></div></section>
-</div>
-<footer class="footer"><div class="footer-grid"><div><div class="footer-logo">WW</div><p>An open standard for agent-operable workflows. Built on Ma'at. Governed by truth. Shared for humanity.</p></div><div><h4>Resources</h4><a href="docs.html">Documentation</a><a href="spec.html">Spec</a><a href="docs.html">Tutorials</a><a href="docs.html">API Reference</a></div><div><h4>Community</h4><a href="#community">Forum</a><a href="#community">Events</a><a href="#community">Blog</a><a href="#community">Discord</a></div><div><h4>Company</h4><a href="spec.html">About us</a><a href="spec.html">Partners</a><a href="spec.html">Careers</a><a href="mailto:hello@workflowware.org">Contact</a></div><div><h4>Stay connected</h4><p>Get updates on new workflows, releases, and events.</p><div class="subscribe"><input placeholder="Enter your email"><button>Subscribe</button></div></div><div class="opensource"><h4 style="color:var(--gold2)">Workflowware is open source</h4><p>Built in the open. For the people.</p><a class="btn" style="color:white;border-color:#697782" href="https://github.com/Propershare/workflowware">◉ View on GitHub</a></div></div><div class="copyright"><span>© 2026 Workflowware Project. All rights reserved.</span><span>Privacy Policy &nbsp;&nbsp; Terms of Service &nbsp;&nbsp; Code of Conduct</span></div></footer>
-</main>
-</div>
-</div>
 </body>
 </html>
