@@ -1,27 +1,16 @@
-# Community Schooling Workflowware
+# Community Schooling — superseded pointer
 
-Help-first path for the private MAAT / Tehuti community — orient someone, give them **one** installable package, fold them into schooling, and keep a human gate.
+**Do not treat this folder as the community template.**
 
-**Status:** living draft (`v0.1`)  
-**Public surface:** `https://maatecosystem.com/#community`  
-**Not a paywall. Not a store.** Templates stay forkable; jobs come from finishing with people.
+The real community hub is an install of:
 
-## What it returns
+**`futuristic-community-event-site@0.1`** → **`templates/community-hub/`**
 
-- orientation brief (where they are: MAAT vs Workflowware);
-- one recommended starter package;
-- schooling next step (portal / curriculum spine);
-- help ask (what to email / what not to send);
-- approval questions before live data or live send.
+| Item | Path |
+|------|------|
+| Kit vault | `hermes/research-artifacts/futuristic-community-event-site-workflowware/` |
+| Client install | `…/clients/maat-tehuti-community/` (intake + receipt + `index.html`) |
+| Public page | https://maatecosystem.com/community/ |
+| Deployed copy | `ka-education/public/community/index.html` |
 
-## Finish line
-
-A community member can name their next action and ask for human help without drowning in the catalog.
-
-## AI agent instructions
-
-1. Read `approval-rules.md` first.  
-2. Prefer **one** package — default Missed Lead Recovery unless they ask for research/release.  
-3. Point schooling to MAAT portal (`#portal` / sign-in), not a fake membership wall.  
-4. Do not invent community pricing or certifications.  
-5. Return the sections in `agent-spec.md`.
+This example folder previously held a freelanced “schooling” pack that was **not** the kit. Kept only as a redirect for agents who land here.
