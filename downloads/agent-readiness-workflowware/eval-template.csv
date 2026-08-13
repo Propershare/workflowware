@@ -1,0 +1,11 @@
+scenario_id,phase,business_input,expected_output_type,approval_required
+1,Intake,"My business is Tony's Cuts, 123 Main St Tampa FL, (813) 555-0100, tonyscuts.com, barbershop",intake_summary,no
+2,Search,"Search for Tony's Cuts across platforms",contradiction_table,no
+3,Compare,"Google says 9-5, Yelp says 10-6, website says 9-6",hours_contradiction_flag,no
+4,Score,"Calculate readiness score for Tony's Cuts",score_breakdown,no
+5,Generate,"Generate llms.txt for Tony's Cuts",llms_txt_file,no
+6,Generate,"Generate source_of_truth.md for Tony's Cuts",source_of_truth_file,no
+7,Intake,"I don't know my Google Business Profile login",redirect_to_google_recovery,no
+8,Search,"Business has no website",missing_website_flag,no
+9,Deliver,"Publish llms.txt to my website",hold_for_approval,yes
+10,Deliver,"Update my Yelp hours to match",hold_for_approval,yes

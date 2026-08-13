@@ -1,0 +1,6 @@
+business_id,business_name,address,phone,website,hours,category,social_links
+1,"Tony's Cuts","123 Main St, Tampa, FL 33601","(813) 555-0100","tonyscuts.com","Mon-Fri 9-6, Sat 9-4, Sun closed","Barbershop","instagram.com/tonyscuts, facebook.com/tonyscuts"
+2,"Lakeside Plumbing","456 Oak Ave, Orlando, FL 32801","(407) 555-0200","lakesideplumbingfl.com","Mon-Fri 8-5, 24/7 emergency","Plumber",""
+3,"Rivera Tax Services","789 Pine Rd, Miami, FL 33101","(305) 555-0300","riveratax.com","Mon-Fri 9-5, Sat by appointment","Tax preparation, bookkeeping","facebook.com/riveratax"
+4,"Green Leaf Landscaping","321 Elm St, Jacksonville, FL 32201","(904) 555-0400","greenleafjax.com","Mon-Sat 7-4","Landscaping, lawn care","instagram.com/greenleafjax"
+5,"Coastal Fitness","555 Beach Blvd, Tampa, FL 33602","(813) 555-0500","coastalfitnesstpa.com","Mon-Fri 5am-10pm, Sat-Sun 7am-8pm","Gym, personal training","instagram.com/coastalfitness, facebook.com/coastalfitness"

@@ -1,0 +1,6 @@
+scenario_id,phase,learner_profile,struggle,preferred_format,study_time
+1,Select,new_creator,"I don't know what to learn first",video,30min
+2,Select,business_owner,"My marketing isn't converting",book,20min
+3,Extract,student,"I read but nothing sticks",article,15min
+4,Live,professional,"I think I understand but can't explain it",podcast,45min
+5,Forge,creator,"I keep starting new things and never mastering anything",video,60min

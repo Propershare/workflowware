@@ -1,0 +1,41 @@
+{
+  "schema": "workflowware.manifest.v0.1",
+  "id": "education.self-learning.v0.1",
+  "title": "SELF Learning Workflowware",
+  "status": "free-public-package",
+  "audience": [
+    "self-directed learners",
+    "students",
+    "professionals",
+    "creators",
+    "AI-agent operators"
+  ],
+  "requires_secrets": false,
+  "phone_ok_for": [
+    "reading",
+    "prompt-use",
+    "mirror-test",
+    "daily-brief",
+    "feedback"
+  ],
+  "computer_best_for": [
+    "zip download",
+    "cron-job setup",
+    "Hermes integration",
+    "file inspection"
+  ],
+  "files": [
+    "README.md",
+    "workflow-spec.md",
+    "agent-spec.md",
+    "approval-rules.md",
+    "agent-handoff.md",
+    "prompts.md",
+    "self-worksheet.md",
+    "eval-template.csv",
+    "sample-scenarios.csv",
+    "feedback.md"
+  ],
+  "price": "free",
+  "license": "Ma'at Governed — free to use, share, and adapt. Do not gate behind paywalls."
+}

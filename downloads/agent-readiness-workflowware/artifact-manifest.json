@@ -1,0 +1,39 @@
+{
+  "schema": "workflowware.manifest.v0.1",
+  "id": "business.agent-readiness.v0.1",
+  "title": "Agent Readiness Workflowware",
+  "status": "free-public-package",
+  "audience": [
+    "local business owners",
+    "service providers",
+    "consultants",
+    "agencies",
+    "AI-agent operators"
+  ],
+  "requires_secrets": false,
+  "phone_ok_for": [
+    "reading",
+    "intake",
+    "approval",
+    "feedback"
+  ],
+  "computer_best_for": [
+    "zip download",
+    "file inspection",
+    "llms.txt generation",
+    "source_of_truth.md review"
+  ],
+  "files": [
+    "README.md",
+    "workflow-spec.md",
+    "agent-spec.md",
+    "approval-rules.md",
+    "agent-handoff.md",
+    "prompts.md",
+    "eval-template.csv",
+    "sample-data.csv",
+    "feedback.md"
+  ],
+  "price": "free",
+  "license": "Ma'at Governed — free to use, share, and adapt. Do not gate behind paywalls."
+}

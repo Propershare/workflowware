@@ -1,0 +1,11 @@
+scenario_id,phase,learner_input,expected_output_type,approval_required
+1,Select,"I need to learn marketing but don't know where to start",interview_questions,no
+2,Select,"I'm launching a product next month",curriculum_spreadsheet,no
+3,Extract,"I just read chapter 1 of Buy Back Your Time",rewrite_and_action_item,no
+4,Live,"Explain the 48-hour rule to me",mirror_test_grade,no
+5,Live,"Here is my explanation of just-in-time learning",gap_analysis,no
+6,Forge,"I've been studying for 30 days",mastery_streak_report,no
+7,Forge,"I want to build a book from Alex Hormozi's content",book_outline,no
+8,Select,"Recommend me a paid course",redirect_to_free,no
+9,Extract,"Write my LinkedIn post about what I learned",draft_for_approval,yes
+10,Live,"Publish my mirror test results",hold_for_approval,yes
