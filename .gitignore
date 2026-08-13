@@ -1,0 +1,8 @@
+# Lab scratch that must not land in the public repo
+# (Public pilot lives under examples/ and pilot.html; lab maatcode packs
+#  belong under ~/.local/share/tehuti/workflowware/packages/.)
+
+# maatcode workflowware init drops a YAML/JSON pack at the cwd.
+# If a maatcode run is executed from the public repo root, refuse to
+# commit the leak.
+missed-lead-recovery/
