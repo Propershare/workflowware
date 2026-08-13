@@ -76,9 +76,17 @@
     "truth_rule": "Never claim a page, workflow, package, metric, or capability is live unless the repository and runtime evidence support that claim."
   },
   "design_system": {
-    "colors": ["ivory", "matte_black", "deep_navy", "gold"],
+    "colors": {
+      "lime": "#c8f542",
+      "paper": "#ffffff",
+      "bg": "#eef1f4",
+      "ink": "#10141c",
+      "navy": "#121826"
+    },
+    "brand_mark": "logo-mark",
     "spacing_base_px": 8,
-    "visual_target": "dense_afrofuturist_application_platform",
-    "asset_paths": ["assets/hero-queen.svg", "assets/v2-polish.css"]
+    "visual_target": "classic_lime_marketing_site",
+    "asset_paths": ["assets/site.css"],
+    "lock": "AGENTS.md:14-39 forbids ivory/gold/afrofuturist/command-center look on the public site; do not reintroduce hero-queen.svg, v2-polish.css, or any lab-console palette here."
   }
 }
