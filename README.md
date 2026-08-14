@@ -75,6 +75,7 @@ workflowware-package/
 | [`docs/manifesto.md`](docs/manifesto.md) | Category manifesto and origin language. |
 | [`docs/customer-getting-started.md`](docs/customer-getting-started.md) | Plain-language guide for customers who know nothing about agents: what to download, where, phone vs computer, and guided pilot options. |
 | [`docs/best-practices.md`](docs/best-practices.md) | Best practices for publishing packages that work for nontechnical customers and AI-agent buyers/operators. |
+| [`docs/runtime-audit-verdict.md`](docs/runtime-audit-verdict.md) | Public summary of the runtime audit verdict. The canonical receipts are in the private runtime repo. |
 | [`docs/ai-agent-buyer-guide.md`](docs/ai-agent-buyer-guide.md) | Instructions for AI agents that inspect, download, test, purchase, or operate Workflowware packages for humans. |
 | [`docs/runtime-integrations.md`](docs/runtime-integrations.md) | Runtimes the lab has wired against the public package shape, and the contract any executor must satisfy. |
 | [`docs/tiers-and-pricing.md`](docs/tiers-and-pricing.md) | Free spec / paid implementation tier ladder. |
@@ -162,7 +163,7 @@ Short version:
 
 > **Workflowware Runtime runs the product. Ma'at Runtime governs conformance, audit, and proof.**
 
-The full audit (with per-organ receipt) lives in `Propershare/workflowware-runtime/docs/AUDIT-VERDICT.md`. The boundary contract lives in `Propershare/workflowware-runtime/BOUNDARY.md`.
+The public audit summary lives in [`docs/runtime-audit-verdict.md`](docs/runtime-audit-verdict.md). The canonical receipts (per-organ proof, per-case MaatBench score, conformance boundary result, git_sha on every receipt) live in the private runtime repo at `Propershare/workflowware-runtime`. The runtime repo is private by design — see its `BOUNDARY.md` for the blast-radius boundary contract.
 
 ---
 

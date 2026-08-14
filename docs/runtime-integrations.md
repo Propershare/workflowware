@@ -40,7 +40,7 @@ If a runtime can do all six, the package is portable to it. If it can't enforce 
 - **What it enforces:** the 6-clause runtime contract (above). 11/11 Isfet pressure-test cases pass on the current build.
 - **Relationship to the lab:** the Workflowware Runtime is wrapped around prime-agent via the adapter in `conformance/maatbench/adapters/prime.py`. The lab's MAAT Runtime audits the Workflowware Runtime's receipts. The blast-radius boundary is enforced — the Workflowware Runtime does not import the lab.
 - **Public stance:** install detail is published; runtime ports are `127.0.0.1`-bound by default; lab keys are never embedded.
-- **Audit receipt:** `evidence/conformance/maatbench-latest.json` on the runtime repo (`PASS`, 11/11 against both targets).
+- **Audit verdict:** `docs/runtime-audit-verdict.md` (the public summary). The canonical receipts live in the private runtime repo at `Propershare/workflowware-runtime` on the `feature/public-doc-graft` branch, commit `08f2cd4`. The runtime repo is private by design — see `BOUNDARY.md` for the blast-radius boundary contract.
 
 ### ChatGPT / Claude project (manual reference)
 
