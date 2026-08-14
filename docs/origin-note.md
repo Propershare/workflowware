@@ -8,7 +8,7 @@ BlackLabRats
 
 ## Foundation
 
-This work is backed by a local Hermes + MAAT Runtime / gitMaat artifact system that packages research, workflow specs, human-facing artifacts, evals, approval rules, and agent handoffs into durable records.
+This work is backed by a local Hermes + prime-agent + Workflowware Runtime stack that packages research, workflow specs, human-facing artifacts, evals, approval rules, and agent handoffs into durable records. The lab's MAAT Runtime is the private governance plane that audits the product runtime; it is referenced here but is not the product runtime.
 
 ## What we claim
 

@@ -140,23 +140,29 @@ Exact service pricing is intentionally not published here. Pricing depends on wo
 
 ---
 
-## MAAT Runtime relationship
+## Runtime planes (three-plane architecture)
 
-Workflowware is intended to be stack-neutral.
-
-BlackLabRats uses **MAAT Runtime** as the private/pro foundation for professional Workflowware systems:
+Workflowware is stack-neutral *and* plane-separated. The public category/spec surface is not the same thing as the private lab governance plane, and neither is the customer-facing runtime. Conflating them is the most common mistake customers make when reading this site.
 
 ```text
 workflowware.org              public category/spec surface
 propershare/workflowware      public repo/spec/templates
 BlackLabRats                  service/training brand
-MAAT Runtime                  private/pro governance + memory foundation
+Workflowware Runtime          product runtime — runs the package (this repo + Propershare/workflowware-runtime)
+MAAT Runtime                  private lab governance + memory foundation (Propershare/Maat-runtime, private)
+prime-agent                   private lab runtime, single-node, ed25519 identity (lab use)
 Hermes                        operator/agent cockpit
 ```
 
+- **Workflowware Runtime** is the product runtime. It lives in its own repo (`Propershare/workflowware-runtime`) and is blast-radius-separated from the lab. It is what actually runs customer Workflowware packages.
+- **MAAT Runtime** is the **private lab governance plane**. It governs, audits, and certifies the product runtime. It does not run customer workloads.
+- **prime-agent** is a single-node lab runtime that backs the adapter. It is referenced here so AI-agent buyers know the package works against it, not as a customer install.
+
 Short version:
 
-> **Workflowware.org defines the package. MAAT Runtime powers the professional operating layer.**
+> **Workflowware Runtime runs the product. Ma'at Runtime governs conformance, audit, and proof.**
+
+The full audit (with per-organ receipt) lives in `Propershare/workflowware-runtime/docs/AUDIT-VERDICT.md`. The boundary contract lives in `Propershare/workflowware-runtime/BOUNDARY.md`.
 
 ---
 

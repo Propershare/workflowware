@@ -109,13 +109,20 @@ Never:
 - make purchases without approval;
 - claim the package guarantees revenue;
 - hide limitations from the human;
-- treat Workflowware as requiring MAAT Runtime unless the package says it is a MAAT-backed professional install.
+- treat Workflowware as requiring Workflowware Runtime unless the package specifies a different executor;
+- treat the Workflowware Runtime as the same plane as the private lab's MAAT Runtime — they are separated by blast radius (`BOUNDARY.md`).
 
-## MAAT Runtime note
+## Runtime note (three-plane architecture)
 
-Workflowware is stack-neutral. The public package can be reviewed or tested without installing MAAT Runtime.
+Workflowware is stack-neutral. The public package can be reviewed or tested without installing any runtime.
 
-BlackLabRats may use MAAT Runtime privately for professional installs that require:
+There are three runtime planes the lab operates:
+
+- **Workflowware Runtime** — the product runtime (this repo + `Propershare/workflowware-runtime`). It runs customer packages.
+- **MAAT Runtime** — the private lab governance plane. It governs, audits, and certifies the product runtime. It is *not* the product runtime.
+- **prime-agent** — a single-node lab runtime that backs the Workflowware Runtime adapter. Used internally for pilots that need a tamper-evident audit trail.
+
+BlackLabRats may use Workflowware Runtime (the product runtime) for professional installs that require:
 
 - governed memory;
 - approval gates;
@@ -123,5 +130,7 @@ BlackLabRats may use MAAT Runtime privately for professional installs that requi
 - artifact registry;
 - eval tracking;
 - recurring improvement.
+
+The Workflowware Runtime's blast-radius boundary means the lab's MAAT Runtime never imports the product runtime, and the product runtime never imports the lab. See `Propershare/workflowware-runtime/BOUNDARY.md`.
 
 Do not expose private runtime endpoints or secrets to the public website or to the customer unless the project scope explicitly requires a deployed client runtime.

@@ -83,12 +83,13 @@ Only our runtime can run Workflowware
 
 Because the goal is to spread the category, the language should stay open:
 
-> Workflowware can be implemented with any agent/runtime stack. BlackLabRats uses MAAT Runtime as its governed memory and artifact foundation for professional installs.
+> Workflowware can be implemented with any agent/runtime stack. BlackLabRats ships the **Workflowware Runtime** as the product runtime for professional installs; the lab's MAAT Runtime is the private governance plane and is not the product runtime.
 
 Internally:
 
 ```text
-MAAT Runtime = private/pro foundation
+Workflowware Runtime = product runtime (Propershare/workflowware-runtime)
+MAAT Runtime = private lab governance plane (Propershare/Maat-runtime)
 Workflowware.org = public category/spec surface
 BlackLabRats = service/training brand
 propershare/workflowware = public repo/spec

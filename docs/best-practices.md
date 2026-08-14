@@ -130,9 +130,9 @@ A package can be used in several ways:
 | Hermes Desktop | Operator-led local runs | Medium |
 | Customer computer | DIY package testing | Medium |
 | Customer server/cloud | installed workflow | High |
-| BlackLabRats-managed MAAT Runtime | professional governed delivery | Low for customer |
+| BlackLabRats-managed Workflowware Runtime | professional governed delivery | Low for customer |
 
-Do not imply that MAAT Runtime is required for everyone. Public Workflowware should stay stack-neutral.
+Do not imply that any specific runtime is required for everyone. Public Workflowware should stay stack-neutral. The lab's MAAT Runtime is a private governance plane and is not the product runtime.
 
 ## Approval best practices
 

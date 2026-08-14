@@ -8,11 +8,12 @@ This page lists runtimes the lab has actually wired up and tested against the pu
 
 | Runtime | Surface | Lab relationship | Public docs? |
 |---|---|---|---|
+| **Workflowware Runtime** | HTTP `/v1/*` on `127.0.0.1:8140`, blast-radius-separated | BlackLabRats product runtime (`Propershare/workflowware-runtime`). This is the runtime that runs customer packages. | yes |
 | ChatGPT / Claude project | Web UI, no install | Reference manual path | yes |
 | Hermes Desktop | Operator cockpit, local | BlackLabRats operator tool | yes |
 | n8n + workflow agent nodes | Self-hosted automation | Common customer stack | yes |
-| **MAAT Runtime** | Governed memory + artifact registry | BlackLabRats private/pro foundation | reference only |
-| **prime-agent** | Governed single-node agent runtime, ed25519 identity, audit trail | BlackLabRats lab runtime (staydangerous) | reference only |
+| **MAAT Runtime** | Governed memory + artifact registry | BlackLabRats private lab governance plane (audits the product runtime; not the product runtime) | reference only |
+| **prime-agent** | Governed single-node agent runtime, ed25519 identity, audit trail | BlackLabRats lab runtime; the body that backs the Workflowware Runtime adapter | reference only |
 
 > Reference-only runtimes are private/lab internals. They are listed so AI-agent buyers and operators know the package works against them, **not** as endorsements, install instructions, or public hostnames.
 
@@ -30,6 +31,16 @@ A runtime is "Workflowware-compatible" when it can do all of these against any p
 If a runtime can do all six, the package is portable to it. If it can't enforce #3, it is **not** a valid Workflowware runtime regardless of its other features.
 
 ## Per-runtime notes
+
+### Workflowware Runtime (BlackLabRats product runtime)
+
+- **What it is:** the product runtime that runs customer Workflowware packages. Lives in `Propershare/workflowware-runtime` and is blast-radius-separated from the lab.
+- **Endpoints:** `/health`, `/v1/who`, `/v1/may`, `/v1/entitlements`, `/v1/did`, `/v1/packages`, `/v1/session/operator`, `/v1/session/revoke`. See `Propershare/workflowware-runtime/docs/WHO-MAY-DID.md`.
+- **Surfaces:** `lab` · `library` · `pilot` · `marketplace` · `builder`.
+- **What it enforces:** the 6-clause runtime contract (above). 11/11 Isfet pressure-test cases pass on the current build.
+- **Relationship to the lab:** the Workflowware Runtime is wrapped around prime-agent via the adapter in `conformance/maatbench/adapters/prime.py`. The lab's MAAT Runtime audits the Workflowware Runtime's receipts. The blast-radius boundary is enforced — the Workflowware Runtime does not import the lab.
+- **Public stance:** install detail is published; runtime ports are `127.0.0.1`-bound by default; lab keys are never embedded.
+- **Audit receipt:** `evidence/conformance/maatbench-latest.json` on the runtime repo (`PASS`, 11/11 against both targets).
 
 ### ChatGPT / Claude project (manual reference)
 
@@ -52,19 +63,19 @@ If a runtime can do all six, the package is portable to it. If it can't enforce 
 - **Customer skill:** medium to high.
 - **Notes:** the customer must wire approval rules into n8n's "wait for approval" nodes themselves; Workflowware does not assume n8n-native approval semantics.
 
-### MAAT Runtime (BlackLabRats private/pro)
+### MAAT Runtime (BlackLabRats private lab governance plane)
 
-- **What it is:** the BlackLabRats private/pro governance and memory foundation. Governed memory, artifact registry, approval log, eval tracking, and a recurring improvement loop.
-- **Best for:** professional installs that need durable audit trails, multi-tenant memory, and recurring package improvement.
-- **Customer skill:** low (BlackLabRats runs it; customer approves outputs).
+- **What it is:** the BlackLabRats private lab governance plane. It governs, audits, and certifies the product runtime. Governed memory, artifact registry, approval log, eval tracking, and a recurring improvement loop.
+- **Role:** the **lab** side of the three-plane architecture. It is **not** the product runtime. The product runtime is the Workflowware Runtime.
+- **Relationship to the product runtime:** MAAT Runtime and the Workflowware Runtime are independent enforcement instances of the same constitution. They share contracts and conformance; they never share code, secrets, identity, policy state, or required services. See `Propershare/workflowware-runtime/BOUNDARY.md`.
 - **Public stance:** referenced on this page, never install-instructed on the public site. Internal endpoints are not exposed publicly.
 
-### prime-agent (BlackLabRats lab runtime)
+### prime-agent (BlackLabRats lab runtime, body of the Workflowware Runtime adapter)
 
-- **What it is:** the BlackLabRats single-node governed agent runtime. Per-machine ed25519 identity, agent-protocol auto-reporting (`memory_start_session` / `memory_log_event` / `memory_log_audit`), constitutional compliance hooks, and a portable artifact bank.
-- **Best for:** lab work, internal pilots, and any package execution that needs a tamper-evident audit trail and per-agent memory isolation without the full MAAT multi-tenant memory stack.
+- **What it is:** the single-node agent runtime that backs the Workflowware Runtime via the adapter. Long-running agent features: persistent IPython kernel, recursive subagents, durable harness state, goals, heartbeats, schedules, executable skills, agent-to-agent messaging.
+- **Role:** the **body**. The Ma'at wrap is the Workflowware Runtime; prime-agent is what the adapter wraps.
+- **Best for:** the lab side of the adapter. The product runtime (Workflowware Runtime) is what customers actually run.
 - **Customer skill:** high (operator-tier; not a customer-facing install).
-- **Relationship to MAAT Runtime:** prime-agent is the **single-node lab runtime**; MAAT Runtime is the **multi-tenant professional foundation**. They are siblings, not replacements. prime-agent writes receipts that MAAT Runtime can ingest when a customer is upgraded to a pro install.
 - **Public stance:** referenced on this page, never install-instructed on the public site. Hostnames, ports, and per-machine ed25519 keys are private lab configuration.
 
 ## What a prime-agent Workflowware example package would look like (sketch, not yet published)

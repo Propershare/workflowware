@@ -11,7 +11,7 @@ The library is organized into shelves so customer-facing packages, internal oper
 | Customer Pilot Packages | Customers who know zero about agents, AI-agent buyers, human operators | Test concrete business workflows and create revenue opportunities. |
 | Research Workflowware | Research agents, Hermes, MAAT runtime, human research operators | Make research disciplined, tagged, evidence-backed, and reusable. |
 | Operator Workflowware | BlackLabRats operators, Hermes, MAAT agents | Fulfill pilots, process intake, analyze feedback, and standardize delivery. |
-| Runtime / Pro Workflowware | Backend/server agents, private MAAT runtime, advanced operators | Govern memory, artifacts, approvals, evals, and runtime execution. |
+| Runtime / Pro Workflowware | The **Workflowware Runtime** (product runtime), server/backend agents, advanced operators | Govern memory, artifacts, approvals, evals, and runtime execution. The lab's MAAT Runtime is the private governance plane; it is referenced for audit but is not the product runtime. |
 | Training / Installer Workflowware | Freelancers, consultants, agent operators, trainees | Teach people and agents how to package, install, sell, and govern Workflowware. |
 
 ---
