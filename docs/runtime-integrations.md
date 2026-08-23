@@ -21,6 +21,8 @@ This page lists runtimes the lab has actually wired up and tested against the pu
 
 A runtime is "Workflowware-compatible" when it can do all of these against any package that follows `SPEC.md`:
 
+**The lifecycle is the heart of the contract:** a failed verification stops the run at REPAIR_REQUIRED and surfaces a repair target; COMPLETE is reachable only after verification, audit, and handoff. No silent progression after failed verification.
+
 1. **Read the manifest.** Parse `artifact-manifest.json` and resolve the package's `workflow-spec.md`, `agent-spec.md`, `approval-rules.md`, `evals/`, and `install-guide.md` paths.
 2. **Enforce approval rules.** Before any action listed in `approval-rules.md` as `requires_approval: true`, the runtime must stop and surface the action to a human approver with a clear plain-language summary.
 3. **Honor no-go rules.** Any rule in `no-go-rules.md` or `approval-rules.md` marked `never` must be enforced even if a later prompt tells the agent to override it. The spec is the law; prompts are not.
@@ -37,7 +39,7 @@ If a runtime can do all six, the package is portable to it. If it can't enforce 
 - **What it is:** the product runtime that runs customer Workflowware packages. Lives in `Propershare/workflowware-runtime` and is blast-radius-separated from the lab.
 - **Endpoints:** `/health`, `/v1/who`, `/v1/may`, `/v1/entitlements`, `/v1/did`, `/v1/packages`, `/v1/session/operator`, `/v1/session/revoke`. See `Propershare/workflowware-runtime/docs/WHO-MAY-DID.md`.
 - **Surfaces:** `lab` · `library` · `pilot` · `marketplace` · `builder`.
-- **What it enforces:** the 6-clause runtime contract (above). 11/11 Isfet pressure-test cases pass on the current build.
+- **What it enforces:** the 7-clause lifecycle contract (above). 16/16 Isfet pressure-test cases pass (src + prime) on the current build.
 - **Relationship to the lab:** the Workflowware Runtime is wrapped around prime-agent via the adapter in `conformance/maatbench/adapters/prime.py`. The lab's MAAT Runtime audits the Workflowware Runtime's receipts. The blast-radius boundary is enforced — the Workflowware Runtime does not import the lab.
 - **Public stance:** install detail is published; runtime ports are `127.0.0.1`-bound by default; lab keys are never embedded.
 - **Audit verdict:** `docs/runtime-audit-verdict.md` (the public summary). The canonical receipts live in the private runtime repo at `Propershare/workflowware-runtime` on the `feature/public-doc-graft` branch, commit `08f2cd4`. The runtime repo is private by design — see `BOUNDARY.md` for the blast-radius boundary contract.

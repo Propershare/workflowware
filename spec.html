@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Spec — Workflowware™</title>
-  <meta name="description" content="Workflowware Package Spec v0.1 — what every agent-operable workflow package must include.">
+  <meta name="description" content="Workflowware Package Spec v0.2 — the discipline by which agent-operable work is performed, checked, corrected, audited, and handed off.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,9 +30,9 @@
     </nav>
 
     <header class="page-hero" id="main">
-      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Spec v0.1</p>
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Spec v0.2</p>
       <h1>The package standard for <span class="mark">agent-operable</span> work.</h1>
-      <p class="lead">Workflowware is software packaged as an agent-operable workflow — readable by humans and agents, with the job, rules, evals, and handoff in one kit.</p>
+      <p class="lead">Workflowware does not merely describe how work should be performed. It encodes the discipline by which work is performed, checked, corrected, audited, and handed off.</p>
       <div class="cta-row">
         <a class="btn primary" href="https://github.com/Propershare/workflowware/blob/main/SPEC.md">View SPEC.md on GitHub →</a>
         <a class="btn secondary" href="templates/workflowware-package-template/README.md">Open package template</a>
@@ -40,9 +40,20 @@
     </header>
 
     <section class="block">
+      <p class="sec-kicker">The work discipline</p>
+      <h2>A job is not complete just because the agent returned text.</h2>
+      <p class="sec-lead">Every governed run moves through a lifecycle. COMPLETE is reachable only after verification, audit, and handoff — never by silently passing a failed check.</p>
+      <pre>READY -> RUNNING -> VERIFYING -> REPAIR_REQUIRED | VERIFIED
+     -> AUDIT -> HANDOFF_READY -> COMPLETE
+
+No silent progression after failed verification.
+calculate -> apply -> inspect -> correct -> continue.</pre>
+    </section>
+
+    <section class="block">
       <p class="sec-kicker">Definition</p>
       <h2>What a package must do.</h2>
-      <p class="sec-lead">Explain the job, define the workflow, describe agent behavior, state safety boundaries, include evaluation examples, and provide handoff metadata.</p>
+      <p class="sec-lead">State the job, define the procedure, declare authority, specify the checks, the repair path, the audit criteria, the evals, and the handoff record.</p>
     </section>
 
     <section class="block">
@@ -50,11 +61,12 @@
       <h2>MVP file set.</h2>
       <pre>workflowware-package/
   README.md
-  index.html
   workflow-spec.md
   agent-spec.md
-  install-guide.md
   approval-rules.md
+  checks.md
+  repair.md
+  audit.md
   eval-template.csv
   agent-handoff.md
   artifact-manifest.json</pre>
@@ -65,9 +77,11 @@
       <h2>Concepts every kit carries.</h2>
       <div class="cards">
         <div class="card"><h3>Human trust surface</h3><p>What it does, why it exists, how it’s controlled, and what proof exists.</p></div>
-        <div class="card"><h3>Workflow spec</h3><p>Trigger, context, old/new workflow, finish line, edge cases, success metrics.</p></div>
-        <div class="card"><h3>Agent spec</h3><p>Role, inputs, tools, allowed/prohibited actions, outputs, escalation.</p></div>
-        <div class="card"><h3>Governance</h3><p>Approvals, safety boundaries, audit trail, human review, non-autonomous zones.</p></div>
+        <div class="card"><h3>Workflow spec</h3><p>Trigger, context, procedure, finish line, edge cases, success metrics, executable graph.</p></div>
+        <div class="card"><h3>Agent spec</h3><p>Role, inputs, tools, allowed/prohibited actions, outputs, escalation, model hint.</p></div>
+        <div class="card"><h3>Checks</h3><p>What must be verified, how, and by whom (which audit level).</p></div>
+        <div class="card"><h3>Repair</h3><p>The correction procedure for a failed check.</p></div>
+        <div class="card"><h3>Audit</h3><p>Whole-job conformity criteria and the evidence the run must produce.</p></div>
         <div class="card"><h3>Evals</h3><p>Example inputs and expected behavior you can test and improve.</p></div>
         <div class="card"><h3>Handoff + manifest</h3><p>Install path, customization notes, and machine-readable package map.</p></div>
       </div>
@@ -75,7 +89,7 @@
 
     <section class="block">
       <p class="sec-kicker">Manifest</p>
-      <h2>Machine-readable fields v0.1.</h2>
+      <h2>Machine-readable fields v0.2.</h2>
       <pre>{
   "title": "string",
   "artifact_type": "workflowware_package | …",
@@ -85,6 +99,7 @@
   "files": [],
   "related_artifacts": [],
   "agent_handoff": "path",
+  "lifecycle": { "verification": "required", "audit": "required", "handoff": "required" },
   "registered_in_maat_memory": "uuid or pending"
 }</pre>
       <p class="sec-lead" style="margin-top:1.25rem">Full schema: <a href="MANIFEST.schema.json"><code>MANIFEST.schema.json</code></a></p>
@@ -93,16 +108,16 @@
     <div class="band">
       <p class="sec-kicker">Next</p>
       <h2>See a live package.</h2>
-      <p class="sec-lead">Missed Lead Recovery is the first public pilot built on this spec.</p>
+      <p class="sec-lead">Kmt Mathematics is the reference implementation that exercises the full lifecycle — count, calculate, verify, repair, audit, handoff.</p>
       <div class="cta-row">
-        <a class="btn primary" href="pilot.html">Open the pilot →</a>
+        <a class="btn primary" href="examples/kmt-mathematics/README.md">Open the Kmt package →</a>
         <a class="btn secondary" href="library.html">Browse the library</a>
       </div>
     </div>
 
     <footer class="site">
       <strong>Workflowware™</strong>
-      Spec v0.1 · Free/open package definition · Maintained by BlackLabRats / propershare
+      Spec v0.2 · Free/open package definition · Maintained by BlackLabRats / propershare
     </footer>
   </div>
 </body>

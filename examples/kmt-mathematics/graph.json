@@ -1,0 +1,100 @@
+{
+  "package": "kmt-mathematics",
+  "version": "0.1.0",
+  "job": "Multiply two integers by Egyptian doubling, verify the result by a second method, audit the procedure, and hand off.",
+  "example": "57 x 23 = 1311",
+  "nodes": [
+    {
+      "id": "n_count",
+      "kind": "start",
+      "title": "Count: state 57 x 23",
+      "model": "qwen3.8:27b"
+    },
+    {
+      "id": "n_double",
+      "kind": "draft",
+      "title": "Calculate: build doubling table (1,2,4,8,16)",
+      "produces": [
+        "doubling_table"
+      ]
+    },
+    {
+      "id": "n_select",
+      "kind": "draft",
+      "title": "Calculate: select rows summing to 23 (16+4+2+1)",
+      "produces": [
+        "selected_rows"
+      ]
+    },
+    {
+      "id": "n_sum",
+      "kind": "draft",
+      "title": "Calculate: sum 912+228+114+57 = 1311",
+      "produces": [
+        "result"
+      ]
+    },
+    {
+      "id": "n_verify",
+      "kind": "verify",
+      "title": "Compare/measure: verify 1311 by reverse division",
+      "check": {
+        "pass": true,
+        "method": "reverse_division",
+        "expected": 1311
+      },
+      "repair": "n_repair",
+      "model": "deepseek"
+    },
+    {
+      "id": "n_repair",
+      "kind": "repair",
+      "title": "Correct: re-derive doubling table and re-select",
+      "produces": [
+        "corrected_result"
+      ]
+    },
+    {
+      "id": "n_audit",
+      "kind": "audit",
+      "title": "Inspect/audit: procedural correctness + evidence present",
+      "require": [
+        "doubling_table",
+        "selected_rows",
+        "result"
+      ],
+      "model": "claude"
+    },
+    {
+      "id": "n_handoff",
+      "kind": "handoff",
+      "title": "Record/teach: record method + result, hand off"
+    }
+  ],
+  "edges": [
+    {
+      "from": "n_count",
+      "to": "n_double"
+    },
+    {
+      "from": "n_double",
+      "to": "n_select"
+    },
+    {
+      "from": "n_select",
+      "to": "n_sum"
+    },
+    {
+      "from": "n_sum",
+      "to": "n_verify"
+    },
+    {
+      "from": "n_verify",
+      "to": "n_audit"
+    },
+    {
+      "from": "n_audit",
+      "to": "n_handoff"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://workflowware.org/MANIFEST.schema.json",
-  "title": "Workflowware Manifest Schema v0.1",
+  "title": "Workflowware Manifest Schema v0.2",
   "description": "Machine-readable metadata for a Workflowware package or related category artifact.",
   "type": "object",
   "required": [
@@ -63,6 +63,33 @@
     },
     "agent_handoff": {
       "type": "string"
+    },
+    "lifecycle": {
+      "type": "object",
+      "description": "The work-discipline contract the runtime enforces for this package.",
+      "properties": {
+        "verification": {
+          "type": "string",
+          "enum": [
+            "required",
+            "optional"
+          ]
+        },
+        "audit": {
+          "type": "string",
+          "enum": [
+            "required",
+            "optional"
+          ]
+        },
+        "handoff": {
+          "type": "string",
+          "enum": [
+            "required",
+            "optional"
+          ]
+        }
+      }
     },
     "registered_in_maat_memory": {
       "type": "string"

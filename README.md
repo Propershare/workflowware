@@ -7,7 +7,7 @@
 <p>
   <a href="https://propershare.github.io/workflowware/"><strong>Live site</strong></a>
   ·
-  <a href="SPEC.md"><strong>Spec v0.1</strong></a>
+  <a href="SPEC.md"><strong>Spec v0.2</strong></a>
   ·
   <a href="MANIFEST.schema.json"><strong>Manifest schema</strong></a>
   ·
@@ -70,7 +70,7 @@ workflowware-package/
 
 | Resource | What it is |
 |---|---|
-| [`SPEC.md`](SPEC.md) | Workflowware package spec v0.1. |
+| [`SPEC.md`](SPEC.md) | Workflowware package spec v0.2. |
 | [`MANIFEST.schema.json`](MANIFEST.schema.json) | Machine-readable manifest schema. |
 | [`docs/manifesto.md`](docs/manifesto.md) | Category manifesto and origin language. |
 | [`docs/customer-getting-started.md`](docs/customer-getting-started.md) | Plain-language guide for customers who know nothing about agents: what to download, where, phone vs computer, and guided pilot options. |
@@ -207,7 +207,7 @@ We do **not** claim to have invented agents, prompts, skills, automation templat
 
 The claim is narrower:
 
-> The missing layer is the governed, agent-operable workflow artifact that packages the job itself.
+> The missing layer is the governed, agent-operable workflow artifact that packages the job itself — plus the discipline by which it is checked, corrected, audited, and handed off.
 
 ---
 

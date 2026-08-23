@@ -1,0 +1,15 @@
+{
+  "title": "Kmt Mathematics Workflowware",
+  "artifact_type": "workflowware_package",
+  "status": "prototype",
+  "summary": "Reference package: Egyptian doubling multiplication through the verify/repair/audit/handoff lifecycle.",
+  "files": [
+    "README.md",
+    "workflow-spec.md",
+    "checks.md",
+    "repair.md",
+    "audit.md",
+    "graph.json"
+  ],
+  "agent_handoff": "README.md"
+}

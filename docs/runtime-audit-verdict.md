@@ -17,7 +17,7 @@ The audit asked one question: *is the Workflowware Runtime interchangeable with 
 
 The Method:
 
-- 11 Isfet pressure-test cases covering constitution, policy, identity, evidence, skill gating, subagent authority, memory quarantine, autonomous budget/NOGO, storage mount, and receipt-with-git-sha.
+- 16 Isfet pressure-test cases covering constitution, policy, identity, evidence, skill gating, subagent authority, memory quarantine, autonomous budget/NOGO, storage mount, and receipt-with-git-sha.
 - Two targets: the existing Workflowware Runtime (`src.*`) and a Prime Agent adapter (`adapters/prime.py`).
 - A conformance runner that emits a combined JSON receipt chain every run.
 
@@ -25,8 +25,8 @@ The Method:
 
 | Runtime | MaatBench score | Status |
 |---|---|---|
-| Workflowware Runtime (current) | 11/11 | PASS |
-| Prime Agent (via adapter) | 11/11 | PASS |
+| Workflowware Runtime (current) | 16/16 | PASS |
+| Prime Agent (via adapter) | 16/16 | PASS |
 | Promotion gate | both pass | **PASS** |
 
 ## The four-organ table
