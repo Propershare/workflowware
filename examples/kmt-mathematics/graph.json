@@ -1,47 +1,77 @@
 {
   "package": "kmt-mathematics",
-  "version": "0.1.0",
-  "job": "Multiply two integers by Egyptian doubling, verify the result by a second method, audit the procedure, and hand off.",
+  "version": "0.1.1",
+  "job": "Multiply two integers by Egyptian doubling, verify by independent recomputation, audit the procedure, and hand off.",
   "example": "57 x 23 = 1311",
   "nodes": [
     {
       "id": "n_count",
       "kind": "start",
       "title": "Count: state 57 x 23",
-      "model": "qwen3.8:27b"
+      "model": "qwen3.8:27b",
+      "produces": {
+        "multiplicand": 57,
+        "multiplier": 23
+      }
     },
     {
       "id": "n_double",
       "kind": "draft",
-      "title": "Calculate: build doubling table (1,2,4,8,16)",
-      "produces": [
-        "doubling_table"
-      ]
+      "title": "Calculate: build doubling table",
+      "produces": {
+        "doubling_table": [
+          57,
+          114,
+          228,
+          456,
+          912
+        ]
+      }
     },
     {
       "id": "n_select",
       "kind": "draft",
-      "title": "Calculate: select rows summing to 23 (16+4+2+1)",
-      "produces": [
-        "selected_rows"
-      ]
+      "title": "Calculate: select rows summing to 23",
+      "produces": {
+        "selected_rows": [
+          912,
+          228,
+          114,
+          57
+        ]
+      }
     },
     {
       "id": "n_sum",
       "kind": "draft",
-      "title": "Calculate: sum 912+228+114+57 = 1311",
-      "produces": [
-        "result"
-      ]
+      "title": "Calculate: sum the selected rows",
+      "produces": {
+        "result": 1311
+      }
     },
     {
-      "id": "n_verify",
+      "id": "n_verify_table",
       "kind": "verify",
-      "title": "Compare/measure: verify 1311 by reverse division",
+      "title": "Inspect: verify the doubling table",
       "check": {
-        "pass": true,
+        "method": "doubling_table_valid",
+        "args": {
+          "table": "doubling_table"
+        }
+      },
+      "model": "deepseek"
+    },
+    {
+      "id": "n_verify_product",
+      "kind": "verify",
+      "title": "Inspect: verify the product by reverse division",
+      "check": {
         "method": "reverse_division",
-        "expected": 1311
+        "args": {
+          "multiplicand": "multiplicand",
+          "multiplier": "multiplier",
+          "product": "result"
+        }
       },
       "repair": "n_repair",
       "model": "deepseek"
@@ -49,15 +79,15 @@
     {
       "id": "n_repair",
       "kind": "repair",
-      "title": "Correct: re-derive doubling table and re-select",
-      "produces": [
-        "corrected_result"
-      ]
+      "title": "Correct: re-derive and re-select",
+      "produces": {
+        "corrected_result": 1311
+      }
     },
     {
       "id": "n_audit",
       "kind": "audit",
-      "title": "Inspect/audit: procedural correctness + evidence present",
+      "title": "Audit: procedural correctness + evidence",
       "require": [
         "doubling_table",
         "selected_rows",
@@ -86,10 +116,14 @@
     },
     {
       "from": "n_sum",
-      "to": "n_verify"
+      "to": "n_verify_table"
     },
     {
-      "from": "n_verify",
+      "from": "n_verify_table",
+      "to": "n_verify_product"
+    },
+    {
+      "from": "n_verify_product",
       "to": "n_audit"
     },
     {
