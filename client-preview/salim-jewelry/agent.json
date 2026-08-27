@@ -1,0 +1,10 @@
+{
+  "schema_version": "0.1",
+  "business_name": "Salim Jewelry",
+  "business_type": "JewelryStore",
+  "human_actions": ["book_consultation", "approve_quote", "approve_custom_design"],
+  "agent_actions": ["answer_service_questions", "collect_intake", "route_repair_request", "draft_consultation_summary"],
+  "requires_human_approval": ["final_price", "stone_claim", "order_submission", "repair_commitment"],
+  "maat_runtime_ready": true,
+  "receipt_fields": ["who", "may", "did", "source", "timestamp", "human_approval"]
+}
