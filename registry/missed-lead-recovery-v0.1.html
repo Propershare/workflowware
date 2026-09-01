@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Missed Lead Recovery v0.1 — Workflowware Registry</title>
+  <meta name="description" content="Registry evidence record for Missed Lead Recovery Workflowware v0.1.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/registry.css">
+  <link rel="icon" href="../assets/favicon.ico" sizes="any">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <nav class="nav" aria-label="Registry">
+      <a class="logo" href="../index.html"><span class="logo-mark" aria-hidden="true">W</span><span>Workflowware</span></a>
+      <div class="nav-links">
+        <a href="../library.html">Library</a>
+        <a class="is-active" href="../registry.html">Registry</a>
+        <a href="../spec.html">Spec</a>
+        <a href="https://github.com/Propershare/workflowware">GitHub</a>
+      </div>
+    </nav>
+
+    <main id="main">
+      <div class="breadcrumb"><a href="../registry.html">Registry</a><span>/</span><span>Missed Lead Recovery v0.1</span></div>
+      <header class="record-hero">
+        <div>
+          <p class="record-id">ww:package:missed-lead-recovery:0.1</p>
+          <h1>Missed Lead Recovery</h1>
+          <p class="lead">A governed workflow package for triaging missed customer leads and drafting follow-up messages for human approval.</p>
+        </div>
+        <div class="verdict-card">
+          <span class="registry-badge documented">Documented</span>
+          <strong>Not independently verified</strong>
+          <p>The package is available for inspection. Canonical package hashing, recorded eval execution, and independent review are still pending.</p>
+        </div>
+      </header>
+
+      <nav class="record-jump" aria-label="Record sections">
+        <a href="#identity">Identity</a>
+        <a href="#claims">Claims</a>
+        <a href="#policy">Policy</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#team">Agent team</a>
+        <a href="#evidence">Evidence</a>
+      </nav>
+
+      <section class="registry-section" id="identity">
+        <p class="sec-kicker">Identity</p>
+        <h2>Package record</h2>
+        <dl class="evidence-grid">
+          <div><dt>Publisher</dt><dd>BlackLabRats / Propershare</dd></div>
+          <div><dt>Version</dt><dd>0.1</dd></div>
+          <div><dt>Status</dt><dd>Public pilot</dd></div>
+          <div><dt>Artifact</dt><dd><a href="../downloads/missed-lead-recovery-workflowware-v0.1.zip">Tester ZIP</a></dd></div>
+          <div><dt>Content hash</dt><dd>Pending canonical package build</dd></div>
+          <div><dt>Registry record</dt><dd><a href="../registry/packages/missed-lead-recovery/v0.1.json">JSON v0.1</a></dd></div>
+        </dl>
+      </section>
+
+      <section class="registry-section" id="claims">
+        <p class="sec-kicker">Author claim</p>
+        <h2>What the package says it does</h2>
+        <div class="claim-box">
+          <p>Given a missed lead, the package produces triage notes, a safe follow-up draft, approval questions, a next-action recommendation, and uncertainty notes.</p>
+          <p><strong>Boundary:</strong> it drafts; it does not contact a customer without human approval.</p>
+        </div>
+      </section>
+
+      <section class="registry-section" id="policy">
+        <p class="sec-kicker">Governance</p>
+        <h2>Policy surface</h2>
+        <div class="three policy-cards">
+          <article class="card"><span class="tag">Allow</span><h3>Read sample input</h3><p>Classify fake or anonymized lead information and prepare internal notes.</p></article>
+          <article class="card"><span class="tag">Human gate</span><h3>Customer contact</h3><p>A person must review and approve any message before it is sent.</p></article>
+          <article class="card"><span class="tag">No-go</span><h3>Secrets and promises</h3><p>Do not request credentials or invent prices, availability, guarantees, or completed work.</p></article>
+        </div>
+      </section>
+
+      <section class="registry-section" id="platforms">
+        <p class="sec-kicker">Portability</p>
+        <h2>Platform setup kits</h2>
+        <div class="platform-table" role="table" aria-label="Platform setup status">
+          <div class="platform-row heading" role="row"><span>Platform</span><span>Status</span><span>Required adapter</span></div>
+          <div class="platform-row" role="row"><strong>Generic agent</strong><span class="state ready">Documented</span><span>README + agent spec + approval rules</span></div>
+          <div class="platform-row" role="row"><strong>ChatGPT</strong><span class="state planned">Planned</span><span>Project instructions and setup guide</span></div>
+          <div class="platform-row" role="row"><strong>Claude</strong><span class="state planned">Planned</span><span>Project instructions and setup guide</span></div>
+          <div class="platform-row" role="row"><strong>Grok</strong><span class="state planned">Planned</span><span>Bot prompt, sample configuration, setup guide</span></div>
+          <div class="platform-row" role="row"><strong>Hermes</strong><span class="state planned">Planned</span><span>Agent profile, skills, runtime mapping</span></div>
+          <div class="platform-row" role="row"><strong>n8n</strong><span class="state planned">Planned</span><span>Workflow template and approval-node mapping</span></div>
+        </div>
+      </section>
+
+      <section class="registry-section" id="team">
+        <p class="sec-kicker">Multi-agent operation</p>
+        <h2>Required separation of duties</h2>
+        <div class="team-grid">
+          <article><strong>Workflow Architect</strong><span>Defines the job and finish line.</span></article>
+          <article><strong>Package Builder</strong><span>Assembles the portable artifact.</span></article>
+          <article><strong>Policy Guardian</strong><span>Defines approval and no-go rules.</span></article>
+          <article><strong>Platform Adapter</strong><span>Translates the neutral spec per platform.</span></article>
+          <article><strong>Evaluation Agent</strong><span>Runs normal and adversarial cases.</span></article>
+          <article><strong>Runtime Operator</strong><span>Executes approved test runs.</span></article>
+          <article><strong>Evidence Auditor</strong><span>Checks hashes, receipts, and approvals.</span></article>
+          <article><strong>Registry Publisher</strong><span>Publishes findings without inflating status.</span></article>
+        </div>
+        <div class="note separation-note"><strong>Separation rule:</strong> the package builder cannot independently certify the package it built.</div>
+      </section>
+
+      <section class="registry-section" id="evidence">
+        <div class="section-line">
+          <div><p class="sec-kicker">Evidence ledger</p><h2>What exists and what is missing</h2></div>
+          <span class="registry-badge pending">Work in progress</span>
+        </div>
+        <table class="matrix">
+          <thead><tr><th>Evidence item</th><th>Status</th><th>Finding</th></tr></thead>
+          <tbody>
+            <tr><td>Public package files</td><td>Present</td><td>Available for inspection and sample testing.</td></tr>
+            <tr><td>Approval rules</td><td>Present</td><td>Human approval required before customer contact.</td></tr>
+            <tr><td>Canonical content hash</td><td>Pending</td><td>No registry hash should be claimed until the downloadable artifact is rebuilt deterministically.</td></tr>
+            <tr><td>Recorded evaluation run</td><td>Pending</td><td>Starter cases exist; a signed or hash-linked result has not been published here.</td></tr>
+            <tr><td>Runtime receipt chain</td><td>Pending</td><td>The product runtime supports receipts; this package has not yet published a linked run.</td></tr>
+            <tr><td>Independent review</td><td>Not performed</td><td>No verified or certified badge may be used.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div class="band">
+        <p class="sec-kicker">Next verification step</p>
+        <h2>Build once. Hash once. Test against the exact artifact.</h2>
+        <p class="sec-lead">The next registry event should attach the canonical package hash, evaluation results, policy decisions, and runtime receipts to this record.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="../downloads/missed-lead-recovery-workflowware-v0.1.zip">Download package</a>
+          <a class="btn secondary" href="../docs/testing.html">Read testing guide</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site"><strong>Workflowware™ Registry Prototype</strong>Record status describes evidence currently published, not a guarantee of business results.</footer>
+  </div>
+</body>
+</html>
