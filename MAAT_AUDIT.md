@@ -63,9 +63,34 @@ from "Missed Lead Recovery" (README/roadmap still call this the live pilot)
 to a new, previously-undisclosed "Kmt Mathematics" example package. This is
 exactly the kind of unreviewed protected-file change `AGENTS.md` exists to
 catch — the PR title and body describe unrelated runtime-naming work, and
-would not have prompted a careful reviewer to check `spec.html` at all. Not
-merged. Left for the repo owner to review directly rather than merged on the
-strength of a PR description that doesn't match its own diff.
+would not have prompted a careful reviewer to check `spec.html` at all.
+
+**2026-09-01 update — the deeper problem.** The `spec.html` v0.2 rewrite and
+`examples/kmt-mathematics` both hinge on `docs/runtime-audit-verdict.md`
+(also added by this PR), which claims "16 Isfet pressure-test cases...
+16/16 PASS" for both the Workflowware Runtime and a Prime Agent adapter, on
+`workflowware-runtime`'s `feature/public-doc-graft` branch. Verified false:
+
+- The cited receipt (`evidence/conformance/maatbench-latest.json`) is stale
+  — generated at commit `5d80226`, when only 11 of the 16 isfet cases
+  existed (`"cases": 11, "passing": 11`).
+- Running the harness fresh against the branch tip (`1834a75`): **all 16
+  cases fail**, with the same circular import — `src/runs.py` does
+  `from . import evidence, lifecycle, policy`, but `src/evidence.py`,
+  `src/identity.py`, `src/policy.py`, `src/store.py` don't exist in that
+  branch's `src/` package (only `checks.py`, `lifecycle.py`, `runs.py`,
+  `__init__.py` do). `src/` doesn't exist on `main` at all — it's a second,
+  incomplete runtime scaffold, distinct from the working `ww_runtime/`
+  package (22/22 tests passing, verified this session).
+
+**Resolution:** PR #6 closed without merging (2026-09-01) — see comment on
+the PR. Nothing from it ships (the runtime-naming doc corrections included)
+until `src/` on `workflowware-runtime` is actually completed and the harness
+is genuinely re-run. Filed as a `maat_tasks` entry
+(`lab-hardening-2026-09: finish src/ scaffold on workflowware-runtime before
+republishing the MaatBench 16/16 claim`) for whoever built that scaffold —
+most likely on the now-decommissioned Imhotep machine, per the user, who
+doesn't fully recall the details.
 
 ## Open items (not fixed here, need a decision)
 
