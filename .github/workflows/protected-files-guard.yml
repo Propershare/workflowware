@@ -1,0 +1,74 @@
+name: Protected files guard
+
+# AGENTS.md locks index.html, library.html, pilot.html, spec.html, docs.html,
+# and assets/site.css against a wholesale rewrite without explicit human
+# approval. This guard doesn't block a PR -- "allowed polish" (copy fixes,
+# broken links, the Pilot conversion path) is legitimate and shouldn't be
+# gated by CI. It exists so a PR touching one of these files can never merge
+# on the strength of a description that doesn't mention it, the way PR #6
+# did (closed 2026-09-01 after the "no protected files touched" claim in its
+# body turned out to be false -- see MAAT_AUDIT.md).
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for protected file changes
+        id: check
+        run: |
+          PROTECTED='^(index\.html|library\.html|pilot\.html|spec\.html|docs\.html|assets/site\.css)$'
+          CHANGED=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" | grep -E "$PROTECTED" || true)
+          if [ -n "$CHANGED" ]; then
+            echo "touched=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "files<<EOF"
+              echo "$CHANGED"
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "touched=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Label and comment
+        if: steps.check.outputs.touched == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const files = `${{ steps.check.outputs.files }}`.trim().split('\n');
+            const list = files.map(f => `- \`${f}\``).join('\n');
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['protected-files-touched'],
+            });
+
+            const body = [
+              '⚠️ **This PR touches a protected file** (see `AGENTS.md`):',
+              '',
+              list,
+              '',
+              'These need explicit human approval before merge -- "allowed polish" (copy, broken links, the Pilot conversion path, keeping Spec/Library/Docs in the same visual system) is fine; a wholesale rewrite is not. Please confirm in this PR\'s description *why* each protected file changed, not just what the rest of the PR is about.',
+              '',
+              '_Posted automatically by the protected-files guard — this does not block merge._',
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
