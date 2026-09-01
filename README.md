@@ -79,6 +79,7 @@ workflowware-package/
 | [`docs/runtime-integrations.md`](docs/runtime-integrations.md) | Runtimes the lab has wired against the public package shape, and the contract any executor must satisfy. |
 | [`docs/tiers-and-pricing.md`](docs/tiers-and-pricing.md) | Free spec / paid implementation tier ladder. |
 | [`docs/interim-brand-protection.md`](docs/interim-brand-protection.md) | No-budget `Workflowware™` usage plan until trademark filing is funded. |
+| [`docs/client-preview-policy.md`](docs/client-preview-policy.md) | Consent requirements before any named client's content merges to a public repo. |
 | [`examples/`](examples/) | Starter examples and package skeletons. |
 
 
