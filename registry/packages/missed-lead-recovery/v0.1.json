@@ -1,0 +1,86 @@
+{
+  "schema_version": "0.1",
+  "registry_id": "ww:package:missed-lead-recovery:0.1",
+  "title": "Missed Lead Recovery",
+  "version": "0.1",
+  "publisher": {
+    "name": "BlackLabRats / Propershare",
+    "type": "self_attested"
+  },
+  "lifecycle_status": "published",
+  "trust_status": "documented",
+  "certification_status": "not_independently_verified",
+  "summary": "Triages missed customer leads and drafts follow-up messages behind a human approval gate.",
+  "artifact": {
+    "path": "downloads/missed-lead-recovery-workflowware-v0.1.zip",
+    "sha256": null,
+    "hash_status": "pending_canonical_build"
+  },
+  "policy": {
+    "approval_required": [
+      "send_customer_message",
+      "connect_live_account",
+      "write_customer_record"
+    ],
+    "no_go": [
+      "request_credentials",
+      "invent_price",
+      "invent_availability",
+      "promise_guarantee"
+    ]
+  },
+  "platform_adapters": [
+    {
+      "platform": "generic-agent",
+      "status": "documented"
+    },
+    {
+      "platform": "chatgpt",
+      "status": "planned"
+    },
+    {
+      "platform": "claude",
+      "status": "planned"
+    },
+    {
+      "platform": "grok",
+      "status": "planned"
+    },
+    {
+      "platform": "hermes",
+      "status": "planned"
+    },
+    {
+      "platform": "n8n",
+      "status": "planned"
+    }
+  ],
+  "evidence": {
+    "package_files": "present",
+    "approval_rules": "present",
+    "canonical_hash": "pending",
+    "recorded_eval_run": "pending",
+    "runtime_receipt_chain": "pending",
+    "independent_review": "not_performed"
+  },
+  "agent_team_roles": [
+    "workflow_architect",
+    "package_builder",
+    "policy_guardian",
+    "platform_adapter",
+    "evaluation_agent",
+    "runtime_operator",
+    "evidence_auditor",
+    "registry_publisher"
+  ],
+  "limitations": [
+    "Listing is not certification.",
+    "No independently verified evidence is published for this version.",
+    "Platform adapters marked planned are not yet included."
+  ],
+  "links": {
+    "record_page": "registry/missed-lead-recovery-v0.1.html",
+    "testing_guide": "docs/testing.html",
+    "source_repo": "https://github.com/Propershare/workflowware"
+  }
+}
