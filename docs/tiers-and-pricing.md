@@ -169,6 +169,14 @@ Includes:
 - fulfillment checklist;
 - optional MAAT-backed lab setup.
 
+## Beyond the ladder
+
+Everything above is what's actually offered today. Past Tier 5 is a
+north-star, not a tier: a registry where package trust, certification, and
+revocation are checkable infrastructure rather than a claim. See
+[`docs/workflowware-registry-vision.md`](workflowware-registry-vision.md).
+Not roadmapped, not priced — the direction the ladder points, nothing more.
+
 ## What stays free vs scoped
 
 ### Free/open
