@@ -167,3 +167,106 @@
   .platform-row.heading { display: none; }
   .team-grid { grid-template-columns: 1fr; }
 }
+
+
+/* Local package verification workspace */
+.registry-hero-actions { margin-top: 1.25rem; }
+.verify-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, .65fr);
+  gap: 2rem;
+  align-items: end;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.verify-hero h1 {
+  margin: 0 0 .9rem;
+  font-size: clamp(2.25rem, 4.8vw, 4.1rem);
+  line-height: 1.03;
+  letter-spacing: -.055em;
+  max-width: 15ch;
+}
+.verify-hero .lead { margin: 0; color: var(--muted); line-height: 1.6; max-width: 60ch; }
+.privacy-card {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 16px;
+  padding: 1.2rem;
+}
+.privacy-card strong { color: var(--lime); }
+.privacy-card p { margin: .55rem 0 0; color: rgba(255,255,255,.72); font-size: .82rem; line-height: 1.5; }
+.verify-workspace {
+  display: grid;
+  grid-template-columns: minmax(280px, .75fr) minmax(0, 1.35fr);
+  gap: 1rem;
+  padding: 2rem 0 1rem;
+}
+.upload-panel, .result-panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.25rem;
+}
+.upload-panel h2, .result-panel h2 { margin: 0 0 1rem; letter-spacing: -.035em; }
+.file-drop {
+  display: grid;
+  justify-items: center;
+  gap: .45rem;
+  padding: 2rem 1rem;
+  border: 2px dashed #c5ced9;
+  border-radius: 14px;
+  background: #f8fafb;
+  text-align: center;
+  cursor: pointer;
+}
+.file-drop:hover { border-color: var(--lime-deep); background: rgba(200,245,66,.08); }
+.file-drop input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.file-drop > span:last-of-type { color: var(--muted); font-size: .75rem; }
+.file-icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: var(--navy);
+  color: var(--lime);
+  font: 800 .72rem/1 "Sora", sans-serif;
+}
+.file-name { color: var(--muted); font-size: .78rem; line-height: 1.4; overflow-wrap: anywhere; }
+button.btn { cursor: pointer; font-family: inherit; }
+button.btn:disabled { cursor: not-allowed; opacity: .45; transform: none; }
+.result-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.result-summary { color: var(--muted); line-height: 1.5; }
+.registry-badge.failed { background: #ffe2e0; color: #9a2521; }
+.verify-facts {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, .6fr);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+.verify-facts div { padding: .75rem; border-right: 1px solid var(--line); background: #fafbfd; min-width: 0; }
+.verify-facts div:last-child { border-right: 0; }
+.verify-facts dt { color: var(--muted); font-size: .65rem; text-transform: uppercase; letter-spacing: .07em; font-weight: 700; }
+.verify-facts dd { margin: .3rem 0 0; font: 600 .72rem/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+.findings { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+.findings h3 { margin: 0 0 .45rem; font-size: .82rem; }
+.check-list { list-style: none; padding: 0; margin: 0; }
+.check-list li { padding: .4rem .5rem .4rem 1.25rem; border-bottom: 1px solid var(--line); position: relative; color: var(--muted); font-size: .74rem; overflow-wrap: anywhere; }
+.check-list li::before { content: "✓"; position: absolute; left: .15rem; color: #4d7719; font-weight: 800; }
+.check-list.missing li::before { content: "×"; color: #b13530; }
+.result-actions { margin-top: 1rem; }
+.verify-warning { margin: 1rem 0 2rem; }
+
+@media (max-width: 860px) {
+  .verify-hero, .verify-workspace { grid-template-columns: 1fr; }
+  .verify-facts { grid-template-columns: 1fr 1fr; }
+  .verify-facts div:nth-child(2) { border-right: 0; }
+  .verify-facts div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 620px) {
+  .verify-facts, .findings { grid-template-columns: 1fr; }
+  .verify-facts div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .verify-facts div:last-child { border-bottom: 0; }
+}
