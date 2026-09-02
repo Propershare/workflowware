@@ -44,7 +44,9 @@
     },
     {
       "platform": "grok",
-      "status": "planned"
+      "status": "documented",
+      "verification_status": "not_verified",
+      "adapter_path": "examples/missed-lead-recovery-workflowware/platforms/grok/"
     },
     {
       "platform": "hermes",
@@ -76,7 +78,8 @@
   "limitations": [
     "Listing is not certification.",
     "No independently verified evidence is published for this version.",
-    "Platform adapters marked planned are not yet included."
+    "Platform adapters marked planned are not yet included.",
+    "The Grok adapter is documented but has no published execution results."
   ],
   "links": {
     "record_page": "registry/missed-lead-recovery-v0.1.html",

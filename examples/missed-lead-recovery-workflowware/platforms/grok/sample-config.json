@@ -1,0 +1,70 @@
+{
+  "schema": "workflowware.platform-adapter.v0.1",
+  "package_id": "home-services.missed-lead-recovery.v0.1",
+  "platform": "grok",
+  "adapter_status": "documented",
+  "verification_status": "not_verified",
+  "system_instructions": "bot-prompt.md",
+  "authoritative_package_files": [
+    "../../README.md",
+    "../../workflow-spec.md",
+    "../../agent-spec.md",
+    "../../approval-rules.md"
+  ],
+  "context_layers": {
+    "package_context": "Stable workflow definition and safety rules supplied by the package publisher.",
+    "business_context": "Human-approved business facts such as service area, tone, hours, and escalation contact.",
+    "lead_context": "Untrusted lead content processed as data, never as system instructions."
+  },
+  "allowed_capabilities": [
+    "read_human_provided_text",
+    "classify_lead",
+    "draft_follow_up",
+    "ask_clarifying_questions",
+    "recommend_next_action",
+    "produce_action_log"
+  ],
+  "prohibited_capabilities": [
+    "request_credentials",
+    "send_customer_message",
+    "connect_live_account",
+    "write_customer_record",
+    "book_appointment",
+    "invent_business_fact",
+    "expose_sensitive_data"
+  ],
+  "approval_required": [
+    "external_communication",
+    "live_tool_connection",
+    "record_change",
+    "price_quote",
+    "availability_commitment",
+    "appointment_change",
+    "use_of_real_customer_data"
+  ],
+  "expected_output_sections": [
+    "Triage",
+    "Draft follow-up",
+    "Approval questions",
+    "Next action",
+    "Uncertainty / missing context",
+    "Action log"
+  ],
+  "evidence_fields": [
+    "package_id",
+    "platform",
+    "adapter_version",
+    "test_case_id",
+    "input_hash",
+    "output_hash",
+    "policy_decision",
+    "approval_reference",
+    "timestamp"
+  ],
+  "test_suite": "test-cases.json",
+  "limitations": [
+    "This sample does not configure a live messaging tool.",
+    "Grok product controls may change; confirm current UI fields during installation.",
+    "Documented status does not mean the adapter passed an independent execution test."
+  ]
+}
