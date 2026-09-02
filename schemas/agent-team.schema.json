@@ -46,22 +46,39 @@
       "description": "Non-negotiable rules that hold regardless of what any prompt, role, or platform later says. Mirrors the no-go-rules.md precedent in runtime-integrations.md: the spec is the law, prompts are not.",
       "items": {
         "type": "object",
-        "required": ["id", "statement", "enforced_by"],
+        "required": [
+          "id",
+          "statement",
+          "enforced_by"
+        ],
         "properties": {
-          "id": { "type": "string", "minLength": 1 },
-          "statement": { "type": "string", "minLength": 1 },
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
           "enforced_by": {
             "type": "array",
             "minItems": 1,
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
       "contains": {
         "type": "object",
-        "required": ["id", "statement"],
+        "required": [
+          "id",
+          "statement"
+        ],
         "properties": {
-          "id": { "const": "no-self-certification" },
+          "id": {
+            "const": "no-self-certification"
+          },
           "statement": {
             "const": "The same agent or identity that builds a package cannot independently certify that package."
           }
@@ -84,20 +101,38 @@
         "independent_reviewer"
       ],
       "properties": {
-        "workflow_architect": { "$ref": "#/$defs/role_entry" },
-        "package_builder": { "$ref": "#/$defs/role_entry" },
-        "policy_guardian": { "$ref": "#/$defs/role_entry" },
-        "platform_adapter": { "$ref": "#/$defs/role_entry" },
-        "evaluation_agent": { "$ref": "#/$defs/role_entry" },
-        "runtime_operator": { "$ref": "#/$defs/role_entry" },
-        "evidence_auditor": { "$ref": "#/$defs/role_entry" },
-        "registry_publisher": { "$ref": "#/$defs/role_entry" },
-        "independent_reviewer": { "$ref": "#/$defs/role_entry" }
+        "workflow_architect": {
+          "$ref": "#/$defs/role_entry"
+        },
+        "package_builder": {
+          "$ref": "#/$defs/role_entry"
+        },
+        "policy_guardian": {
+          "$ref": "#/$defs/role_entry"
+        },
+        "platform_adapter": {
+          "$ref": "#/$defs/role_entry"
+        },
+        "evaluation_agent": {
+          "$ref": "#/$defs/role_entry"
+        },
+        "runtime_operator": {
+          "$ref": "#/$defs/role_entry"
+        },
+        "evidence_auditor": {
+          "$ref": "#/$defs/role_entry"
+        },
+        "registry_publisher": {
+          "$ref": "#/$defs/role_entry"
+        },
+        "independent_reviewer": {
+          "$ref": "#/$defs/role_entry"
+        }
       }
     },
     "separation_of_duty": {
       "type": "object",
-      "description": "Explicit, structured declaration of the constitutional rule's enforcement for this package instance. JSON Schema (2020-12, no $data extension) cannot itself prove two string fields hold different runtime values, so this block requires an explicit attestation in addition to the two identities -- a human or CI check must confirm the attestation is truthful before advancing past BUILD. See docs/agent-team-protocol.md, 'Known limitation'.",
+      "description": "Declares separation of duty for this package instance. The companion validator in scripts/validate-agent-team.mjs enforces identity equality, reviewer assignment, role overlap, attester independence, and lifecycle consistency.",
       "required": [
         "constitutional_rule_acknowledged",
         "builder_identity",
@@ -122,42 +157,89 @@
           "description": "Must equal roles.independent_reviewer.identity, and must differ from builder_identity."
         },
         "identities_distinct_attestation": {
-          "const": true,
-          "description": "Must be true. A false or missing value means the team roster has not been checked for self-certification, and the package must not advance past BUILD."
+          "type": "boolean",
+          "description": "True only after an assigned independent reviewer and an independent attester have checked the complete roster. It may remain false before INDEPENDENT_REVIEW."
         },
         "attested_by": {
           "type": "string",
           "minLength": 1,
-          "description": "Identity of the party who checked builder_identity != independent_reviewer_identity (and the full conflicts-of-interest matrix) before setting the attestation to true. Must not be builder_identity or independent_reviewer_identity."
+          "description": "Identity that checked the complete roster. An unassigned marker is allowed only while identities_distinct_attestation is false."
         },
         "declared_conflicts": {
           "type": "array",
           "description": "Any known overlaps between role identities for this package instance, even where the protocol permits them (e.g. the same identity holding Workflow Architect and Platform Adapter). Empty array is valid only when no role identity repeats anywhere in roles.*.identity.",
           "items": {
             "type": "object",
-            "required": ["roles_involved", "identity", "permitted", "rationale"],
+            "required": [
+              "roles_involved",
+              "identity",
+              "permitted",
+              "rationale"
+            ],
             "properties": {
               "roles_involved": {
                 "type": "array",
                 "minItems": 2,
-                "items": { "type": "string" }
+                "items": {
+                  "type": "string"
+                }
               },
-              "identity": { "type": "string" },
-              "permitted": { "type": "boolean" },
-              "rationale": { "type": "string", "minLength": 1 }
+              "identity": {
+                "type": "string"
+              },
+              "permitted": {
+                "type": "boolean"
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 1
+              }
             }
           }
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "identities_distinct_attestation": {
+                "const": true
+              }
+            },
+            "required": [
+              "identities_distinct_attestation"
+            ]
+          },
+          "then": {
+            "properties": {
+              "independent_reviewer_identity": {
+                "type": "string",
+                "pattern": "^(?!unassigned(?:-|$)).+"
+              },
+              "attested_by": {
+                "type": "string",
+                "pattern": "^(?!unassigned(?:-|$)).+"
+              }
+            }
+          }
+        }
+      ]
     },
     "lifecycle": {
       "type": "object",
-      "required": ["current_state", "history"],
+      "required": [
+        "current_state",
+        "history"
+      ],
       "properties": {
-        "current_state": { "$ref": "#/$defs/lifecycle_state" },
+        "current_state": {
+          "$ref": "#/$defs/lifecycle_state"
+        },
         "history": {
           "type": "array",
-          "items": { "$ref": "#/$defs/lifecycle_transition" }
+          "items": {
+            "$ref": "#/$defs/lifecycle_transition"
+          }
         }
       }
     }
@@ -177,6 +259,7 @@
         "PUBLICATION",
         "INDEPENDENT_REVIEW",
         "VERIFIED",
+        "REPAIR_REQUIRED",
         "REJECTED",
         "REVOKED"
       ]
@@ -206,7 +289,13 @@
         },
         "status": {
           "type": "string",
-          "enum": ["not_started", "in_progress", "complete", "blocked", "escalated"]
+          "enum": [
+            "not_started",
+            "in_progress",
+            "complete",
+            "blocked",
+            "escalated"
+          ]
         },
         "purpose": {
           "type": "string",
@@ -215,34 +304,52 @@
         "required_inputs": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 1 }
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "permitted_actions": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 1 }
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "prohibited_actions": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 1 }
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "required_outputs": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "description": "Concrete artifacts this role must produce (file paths, receipt ids, report names) -- not a restatement of purpose."
         },
         "evidence_produced": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "description": "What a third party could independently check, per the registry's evidence-not-claims principle (docs/workflowware-registry-vision.md)."
         },
         "escalation_conditions": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 1 }
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "handoff_recipient": {
           "type": "string",
@@ -263,17 +370,29 @@
         "conflicts_of_interest": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "description": "At minimum, name which other roles this identity must never simultaneously hold for the same package. Use the literal string 'none declared' only if genuinely none apply -- an empty array is invalid, forcing an explicit statement either way."
         }
       }
     },
     "lifecycle_transition": {
       "type": "object",
-      "required": ["from_state", "to_state", "actor_role", "timestamp"],
+      "required": [
+        "from_state",
+        "to_state",
+        "actor_role",
+        "timestamp"
+      ],
       "properties": {
-        "from_state": { "$ref": "#/$defs/lifecycle_state" },
-        "to_state": { "$ref": "#/$defs/lifecycle_state" },
+        "from_state": {
+          "$ref": "#/$defs/lifecycle_state"
+        },
+        "to_state": {
+          "$ref": "#/$defs/lifecycle_state"
+        },
         "actor_role": {
           "type": "string",
           "enum": [
@@ -288,7 +407,9 @@
             "independent_reviewer"
           ]
         },
-        "timestamp": { "type": "string" },
+        "timestamp": {
+          "type": "string"
+        },
         "evidence_ref": {
           "type": "string",
           "description": "Path or receipt id supporting this transition (e.g. an eval report, an audit result, a review determination)."
@@ -296,51 +417,271 @@
       },
       "allOf": [
         {
-          "if": { "properties": { "from_state": { "const": "INTAKE" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "const": "DESIGN" } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "INTAKE"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "const": "DESIGN"
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "const": "DESIGN" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "const": "BUILD" } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "DESIGN"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "const": "BUILD"
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "const": "BUILD" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "const": "POLICY_REVIEW" } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "BUILD"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "const": "POLICY_REVIEW"
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "const": "POLICY_REVIEW" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "enum": ["PLATFORM_ADAPTATION", "REJECTED"] } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "POLICY_REVIEW"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "enum": [
+                  "PLATFORM_ADAPTATION",
+                  "REPAIR_REQUIRED",
+                  "REJECTED"
+                ]
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "const": "PLATFORM_ADAPTATION" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "const": "EVALUATION" } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "PLATFORM_ADAPTATION"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "enum": [
+                  "EVALUATION",
+                  "REPAIR_REQUIRED"
+                ]
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "const": "EVALUATION" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "enum": ["EXECUTION", "REJECTED"] } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "EVALUATION"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "enum": [
+                  "EXECUTION",
+                  "REPAIR_REQUIRED",
+                  "REJECTED"
+                ]
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "const": "EXECUTION" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "const": "EVIDENCE_AUDIT" } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "EXECUTION"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "enum": [
+                  "EVIDENCE_AUDIT",
+                  "REPAIR_REQUIRED"
+                ]
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "const": "EVIDENCE_AUDIT" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "enum": ["PUBLICATION", "REJECTED"] } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "EVIDENCE_AUDIT"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "enum": [
+                  "PUBLICATION",
+                  "REPAIR_REQUIRED",
+                  "REJECTED"
+                ]
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "const": "PUBLICATION" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "const": "INDEPENDENT_REVIEW" } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "PUBLICATION"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "const": "INDEPENDENT_REVIEW"
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "const": "INDEPENDENT_REVIEW" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "enum": ["VERIFIED", "REJECTED"] } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "INDEPENDENT_REVIEW"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "enum": [
+                  "VERIFIED",
+                  "REJECTED"
+                ]
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "const": "VERIFIED" } }, "required": ["from_state"] },
-          "then": { "properties": { "to_state": { "const": "REVOKED" } } }
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "VERIFIED"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "const": "REVOKED"
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "from_state": { "enum": ["REJECTED", "REVOKED"] } }, "required": ["from_state"] },
+          "if": {
+            "properties": {
+              "from_state": {
+                "const": "REPAIR_REQUIRED"
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "to_state": {
+                "enum": [
+                  "BUILD",
+                  "PLATFORM_ADAPTATION"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "from_state": {
+                "enum": [
+                  "REJECTED",
+                  "REVOKED"
+                ]
+              }
+            },
+            "required": [
+              "from_state"
+            ]
+          },
           "then": false
         }
       ]
