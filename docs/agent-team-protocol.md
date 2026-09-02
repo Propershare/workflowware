@@ -1,8 +1,6 @@
 # Workflowware Agent Team Protocol v0.1
 
-**Status: authoritative.** Any package built or certified with more than one
-agent role involved must produce a conforming `agent-team.json` before it can
-advance past `BUILD` in the lifecycle below. This protocol does not change
+**Status: proposed v0.1.** This protocol becomes authoritative only after it is merged and its companion validator is part of the registry gate. Packages using the proposed protocol must produce a conforming `agent-team.json` before claiming protocol conformance beyond `BUILD`. This protocol does not change
 `SPEC.md`'s package file shape, `MANIFEST.schema.json`, or any protected site
 file (`index.html`, `library.html`, `pilot.html`, `spec.html`, `docs.html`,
 `assets/site.css`) — it adds a governance layer on top of the existing
@@ -21,8 +19,7 @@ names the gap directly: the registry's event model already has `created`,
 
 This protocol is that missing role definition. It does not implement the
 hashing/signing pipeline the vision doc also flags as open — it defines who
-is allowed to say a package is trustworthy, and makes it structurally
-impossible for the package's own builder to be the one who says so.
+is allowed to say a package is trustworthy, and makes self-certification machine-checkable through the JSON Schema plus `scripts/validate-agent-team.py`. The schema declares the required data; the companion validator enforces cross-field identity rules that JSON Schema cannot express.
 
 ## The constitutional rule
 
@@ -291,6 +288,10 @@ definition — it is still a required field in the schema.
   for this package version. This role *is* the constitutional rule made
   concrete.
 
+## Identity identifiers
+
+Identity values are opaque identifiers issued by the runtime, registry, or accountable organization. They are not inferred from role names. Documentation examples use the reserved `example:identity:*` namespace and must never be treated as proof that a real identity was issued or authenticated.
+
 ## Lifecycle
 
 ```text
@@ -299,9 +300,11 @@ INTAKE
     -> BUILD
       -> POLICY REVIEW ----------------------> REJECTED
         -> PLATFORM ADAPTATION
-          -> EVALUATION --------------------->  REJECTED
-            -> EXECUTION
-              -> EVIDENCE AUDIT -------------->  REJECTED
+          -> EVALUATION --> REPAIR REQUIRED --> BUILD / PLATFORM ADAPTATION
+                       \-----------------------> REJECTED
+            -> EXECUTION --> REPAIR REQUIRED
+              -> EVIDENCE AUDIT --> REPAIR REQUIRED
+                              \---------------> REJECTED
                 -> PUBLICATION
                   -> INDEPENDENT REVIEW ------>  REJECTED
                     -> VERIFIED
@@ -315,27 +318,25 @@ INTAKE
 | `BUILD` | Package Builder | Full package file set written; `agent-team.json` present and schema-valid. |
 | `POLICY_REVIEW` | Policy Guardian | Approval rules and no-go coverage complete, or `REJECTED`. |
 | `PLATFORM_ADAPTATION` | Platform Adapter | At least one platform honestly passes the six-point runtime contract. |
-| `EVALUATION` | Evaluation Agent | Eval suite run and reported, or `REJECTED`. |
+| `EVALUATION` | Evaluation Agent | Eval suite passes to `EXECUTION`; repairable failures enter `REPAIR_REQUIRED`; hard failures may be `REJECTED`. |
 | `EXECUTION` | Runtime Operator | Workflow run to completion (or safely halted) with a full receipt chain. |
-| `EVIDENCE_AUDIT` | Evidence Auditor | Receipt chain independently verified, or `REJECTED`. |
+| `EVIDENCE_AUDIT` | Evidence Auditor | Receipt chain verifies to `PUBLICATION`; repairable gaps enter `REPAIR_REQUIRED`; invalid evidence may be `REJECTED`. |
 | `PUBLICATION` | Registry Publisher | Registry record and index updated. |
 | `INDEPENDENT_REVIEW` | Independent Reviewer | `VERIFIED` or `REJECTED` issued. |
 | `VERIFIED` | Independent Reviewer | Terminal, unless later `REVOKED`. |
+| `REPAIR_REQUIRED` | Package Builder / Platform Adapter | Nonterminal correction loop returning to `BUILD` or `PLATFORM_ADAPTATION`; all failed evidence remains in history. |
 | `REJECTED` | — | Terminal. A rejected package is not repaired in place — see below. |
 | `REVOKED` | Independent Reviewer / Registry Publisher | Terminal. |
 
 **Append-only, not editable in place.** Matching
 `workflowware-registry-vision.md`'s event model
-(`created -> published -> certified -> executed -> failed -> revoked`), a
-rejected or revoked package is never silently rewritten back to an earlier
-state. A team that fixes the underlying problem resubmits as a new version
+(`created -> published -> certified -> executed -> failed -> revoked`), a terminally rejected or revoked package is never silently rewritten back to an earlier state. Ordinary correctable failures use `REPAIR_REQUIRED`, preserving the failed transition and repair evidence in history without falsely turning routine iteration into a terminal decision. A team that fixes a terminal rejection resubmits as a new version
 (`INTAKE` again, new `package_version`), so the rejection and its reasoning
 stay on the record rather than disappearing. This is also why the schema
 forbids any `lifecycle.history` transition *from* `REJECTED` or `REVOKED` —
 those states have no valid successor.
 
-**Mapping to registry fields.** `PUBLICATION` corresponds to
-`lifecycle_status: "published"`. `certification_status` stays
+**Mapping to registry fields.** Publication and protocol trust are separate axes. `publication_status: "published"` records distribution; `protocol_status` records the protocol state; `trust_status` records `documented`, `tested`, `evidence_audited`, `independently_verified`, or `revoked`. The legacy `lifecycle_status: "published"` may remain for compatibility but must not be interpreted as verification. `certification_status` stays
 `not_independently_verified` for every state through `PUBLICATION` — it can
 only become verified once `INDEPENDENT_REVIEW` issues `VERIFIED`. A package
 sitting at `PUBLICATION` with `certification_status:
@@ -350,15 +351,12 @@ of a package awaiting review (see the worked example in
 - `constitutional_rule_acknowledged: true`
 - `builder_identity` and `independent_reviewer_identity`, both required,
   non-empty
-- `identities_distinct_attestation: true`
-- `attested_by`: whoever checked the roster for overlaps
+- `identities_distinct_attestation`: `false` while the reviewer or attester is unassigned; `true` only after both are assigned and the complete roster has been checked
+- `attested_by`: whoever checked the roster for overlaps, or an explicit unassigned marker while the attestation is `false`
 - `declared_conflicts`: an explicit list — even an empty roster overlap
   must be stated, not omitted
 
-**Known limitation, stated plainly:** JSON Schema draft 2020-12 (without a
-non-standard `$data` extension) cannot itself assert that two string fields
-hold different runtime values — it can require both fields to exist and
-require a boolean attestation, but it cannot compute
+**Known limitation, stated plainly:** JSON Schema draft 2020-12 (without a non-standard `$data` extension) cannot itself assert that two string fields hold different runtime values. The schema declares the fields and attestation conditions; `scripts/validate-agent-team.py` computes
 `builder_identity != independent_reviewer_identity` and fail validation if
 that's false. The schema in `schemas/agent-team.schema.json` therefore
 detects the *absence* of a separation-of-duty declaration (structurally
