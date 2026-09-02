@@ -29,6 +29,12 @@
     "agent-handoff.md",
     "eval-template.csv",
     "sample-leads.csv",
-    "feedback.md"
+    "feedback.md",
+    "platforms/grok/README.md",
+    "platforms/grok/bot-prompt.md",
+    "platforms/grok/sample-config.json",
+    "platforms/grok/setup-guide.md",
+    "platforms/grok/operator-checklist.md",
+    "platforms/grok/test-cases.json"
   ]
 }
