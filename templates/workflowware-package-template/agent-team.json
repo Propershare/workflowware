@@ -1,0 +1,359 @@
+{
+  "$comment": "Worked example, not a blank template. This is the real current agent-team state for registry/packages/missed-lead-recovery/v0.1.json, used here to show what a conforming agent-team.json looks like in practice. A new package should copy this file's shape and replace every value, not just the identities. Where this file's status is 'not_started' or 'blocked', that is the honest current state of the real package -- it is not a placeholder that was forgotten.",
+  "schema_version": "0.1",
+  "protocol_version": "0.1",
+  "package_registry_id": "ww:package:missed-lead-recovery:0.1",
+  "package_version": "0.1",
+  "generated": "2026-09-01",
+  "constitutional_rules": [
+    {
+      "id": "no-self-certification",
+      "statement": "The same agent or identity that builds a package cannot independently certify that package.",
+      "enforced_by": [
+        "separation_of_duty",
+        "independent_reviewer.conflicts_of_interest"
+      ]
+    }
+  ],
+  "roles": {
+    "workflow_architect": {
+      "identity": "example:identity:workflow-architect-01",
+      "status": "complete",
+      "purpose": "Turn the missed-lead business problem into a workflow spec: trigger, context, old workflow, new workflow, finish line, edge cases, success metrics.",
+      "required_inputs": [
+        "home-services intake notes on missed inbound leads",
+        "SPEC.md"
+      ],
+      "permitted_actions": [
+        "draft and revise workflow-spec.md",
+        "define success metrics",
+        "enumerate edge cases"
+      ],
+      "prohibited_actions": [
+        "write agent-spec.md or approval-rules.md",
+        "approve own design as final"
+      ],
+      "required_outputs": [
+        "examples/missed-lead-recovery-workflowware/workflow-spec.md"
+      ],
+      "evidence_produced": [
+        "workflow-spec.md committed 2026-07-23, reviewed against SPEC.md's required-concepts section before handoff"
+      ],
+      "escalation_conditions": [
+        "finish line cannot be defined without live CRM access"
+      ],
+      "handoff_recipient": "package_builder",
+      "conflicts_of_interest": [
+        "must not also serve as independent_reviewer or evidence_auditor for this package version"
+      ]
+    },
+    "package_builder": {
+      "identity": "example:identity:package-builder-01",
+      "status": "complete",
+      "purpose": "Implement the minimum-viable package file set from the approved workflow spec.",
+      "required_inputs": [
+        "approved workflow-spec.md",
+        "SPEC.md minimum-viable package list",
+        "MANIFEST.schema.json"
+      ],
+      "permitted_actions": [
+        "write agent-spec.md, install-guide equivalent (README.md), agent-handoff.md, artifact-manifest.json",
+        "write eval-template.csv and sample-leads.csv",
+        "propose a first draft of approval-rules.md"
+      ],
+      "prohibited_actions": [
+        "mark own build policy-approved, evaluated, audited, published, or certified",
+        "modify any protected site file"
+      ],
+      "required_outputs": [
+        "examples/missed-lead-recovery-workflowware/README.md",
+        "examples/missed-lead-recovery-workflowware/agent-spec.md",
+        "examples/missed-lead-recovery-workflowware/agent-handoff.md",
+        "examples/missed-lead-recovery-workflowware/artifact-manifest.json",
+        "examples/missed-lead-recovery-workflowware/eval-template.csv",
+        "examples/missed-lead-recovery-workflowware/sample-leads.csv"
+      ],
+      "evidence_produced": [
+        "9-file package committed 2026-07-23 14:17, zipped as downloads/missed-lead-recovery-workflowware-v0.1.zip",
+        "registry evidence.package_files: present"
+      ],
+      "escalation_conditions": [
+        "none encountered for v0.1"
+      ],
+      "handoff_recipient": "policy_guardian",
+      "conflicts_of_interest": [
+        "must not also serve as policy_guardian, evidence_auditor, registry_publisher, or independent_reviewer for this package version -- this is the identity the constitutional rule is written about"
+      ]
+    },
+    "policy_guardian": {
+      "identity": "example:identity:policy-guardian-01",
+      "status": "complete",
+      "purpose": "Verify approval-rules.md and no-go coverage are complete before the package touches a real platform.",
+      "required_inputs": [
+        "built package",
+        "docs/ai-agent-buyer-guide.md 'Do not do these things' list"
+      ],
+      "permitted_actions": [
+        "require changes to approval-rules.md",
+        "add no-go rules",
+        "block advancement until fixed"
+      ],
+      "prohibited_actions": [
+        "rewrite non-policy package files",
+        "approve own added rules without independent recheck"
+      ],
+      "required_outputs": [
+        "examples/missed-lead-recovery-workflowware/approval-rules.md (finalized)",
+        "policy review checklist"
+      ],
+      "evidence_produced": [
+        "checklist mapping buyer-guide 'never' items to approval-rules.md lines: send_customer_message, write_customer_record (CRM changes/appointments), invent_price (quoting), invent_availability (promising availability), connect_live_account, request_credentials (real customer data beyond sample) -- all covered",
+        "registry evidence.approval_rules: present; policy.no_go covers request_credentials, invent_price, invent_availability, promise_guarantee"
+      ],
+      "escalation_conditions": [
+        "an autonomous action with no approval gate is requested"
+      ],
+      "handoff_recipient": "platform_adapter",
+      "conflicts_of_interest": [
+        "must not also serve as package_builder or registry_publisher for this package version"
+      ]
+    },
+    "platform_adapter": {
+      "identity": "example:identity:platform-adapter-01",
+      "status": "in_progress",
+      "purpose": "Adapt the policy-approved package to specific runtimes against the six-point contract in docs/runtime-integrations.md.",
+      "required_inputs": [
+        "policy-approved package",
+        "docs/runtime-integrations.md runtime contract"
+      ],
+      "permitted_actions": [
+        "write platform-specific adapter instructions",
+        "set platform_adapters[] status per platform"
+      ],
+      "prohibited_actions": [
+        "weaken approval-rules.md or no-go rules to fit a platform's limitations",
+        "mark a platform tested without checking all six contract points"
+      ],
+      "required_outputs": [
+        "one platform_adapters[] entry per target platform"
+      ],
+      "evidence_produced": [
+        "generic-agent: documented (six-point contract checked manually against approval-rules.md language)",
+        "chatgpt, claude, grok, hermes, n8n: planned -- not yet adapted, correctly not claimed as documented or tested"
+      ],
+      "escalation_conditions": [
+        "a platform cannot enforce no-go rules against a later prompt (contract point 3)"
+      ],
+      "handoff_recipient": "evaluation_agent",
+      "conflicts_of_interest": [
+        "must not also serve as runtime_operator or evaluation_agent for a platform they personally adapted, without an independent evaluation gate between adaptation and execution"
+      ]
+    },
+    "evaluation_agent": {
+      "identity": "unassigned-pending-platform-adaptation",
+      "status": "not_started",
+      "purpose": "Run eval-template.csv against the adapted package and report pass/fail per row.",
+      "required_inputs": [
+        "adapted package for at least one non-generic platform",
+        "examples/missed-lead-recovery-workflowware/eval-template.csv",
+        "examples/missed-lead-recovery-workflowware/sample-leads.csv"
+      ],
+      "permitted_actions": [
+        "execute evals in sandbox/sample-data mode",
+        "record pass/fail per row"
+      ],
+      "prohibited_actions": [
+        "edit package files to force a pass",
+        "use live customer data"
+      ],
+      "required_outputs": [
+        "eval run report, per-row pass/fail"
+      ],
+      "evidence_produced": [
+        "not yet produced -- registry evidence.recorded_eval_run: pending"
+      ],
+      "escalation_conditions": [
+        "eval suite has no case covering a declared no-go rule"
+      ],
+      "handoff_recipient": "runtime_operator",
+      "conflicts_of_interest": [
+        "must not also serve as package_builder or platform_adapter for the platform under evaluation"
+      ]
+    },
+    "runtime_operator": {
+      "identity": "unassigned-pending-evaluation",
+      "status": "not_started",
+      "purpose": "Execute the evaluated package for a real or supervised pilot run, operator-present.",
+      "required_inputs": [
+        "evaluated package (passed)",
+        "live-or-sample data cleared by approval-rules.md",
+        "active human approval channel"
+      ],
+      "permitted_actions": [
+        "execute workflow steps",
+        "enforce approval gates in real time",
+        "halt on any no-go trigger"
+      ],
+      "prohibited_actions": [
+        "bypass any requires_approval action",
+        "use data the approval rules didn't clear"
+      ],
+      "required_outputs": [
+        "execution log",
+        "one receipt per step (step_id, actor, timestamp, inputs_hash, outputs_hash, approval_ref, evidence_uri)"
+      ],
+      "evidence_produced": [
+        "not yet produced -- registry evidence.runtime_receipt_chain: pending; artifact.hash_status: pending_canonical_build"
+      ],
+      "escalation_conditions": [
+        "a no-go rule is nearly triggered",
+        "a required approval does not arrive in the allowed window"
+      ],
+      "handoff_recipient": "evidence_auditor",
+      "conflicts_of_interest": [
+        "must not also serve as evidence_auditor for their own execution run"
+      ]
+    },
+    "evidence_auditor": {
+      "identity": "unassigned-pending-execution",
+      "status": "not_started",
+      "purpose": "Independently verify the receipt chain's integrity and completeness before publication.",
+      "required_inputs": [
+        "execution receipts",
+        "registry evidence.* fields"
+      ],
+      "permitted_actions": [
+        "recompute and verify the hash chain",
+        "flag missing or inconsistent evidence",
+        "block publication until resolved"
+      ],
+      "prohibited_actions": [
+        "generate or edit receipts themselves",
+        "audit a chain they personally produced"
+      ],
+      "required_outputs": [
+        "audit report with a chain-verification result",
+        "evidence completeness checklist"
+      ],
+      "evidence_produced": [
+        "not yet produced -- no receipt chain exists yet to audit"
+      ],
+      "escalation_conditions": [
+        "chain verification fails",
+        "required evidence fields remain pending past the package's stated maturity"
+      ],
+      "handoff_recipient": "registry_publisher",
+      "conflicts_of_interest": [
+        "must not also serve as runtime_operator or package_builder for this package version"
+      ]
+    },
+    "registry_publisher": {
+      "identity": "example:identity:registry-publisher-01",
+      "status": "blocked",
+      "purpose": "Write and keep current the package's registry record and index entry.",
+      "required_inputs": [
+        "policy review (available)",
+        "platform adapter statuses (partial)",
+        "audit report (not yet available)"
+      ],
+      "permitted_actions": [
+        "publish or update registry/packages/missed-lead-recovery/v0.1.json and registry/index.json",
+        "set lifecycle_status",
+        "set certification_status up to and including not_independently_verified -- never higher"
+      ],
+      "prohibited_actions": [
+        "set certification_status to any verified state without a signed Independent Reviewer determination",
+        "alter evidence fields after an audit without a new audit"
+      ],
+      "required_outputs": [
+        "registry/packages/missed-lead-recovery/v0.1.json",
+        "registry/index.json entry"
+      ],
+      "evidence_produced": [
+        "a registry record for this package already exists (published 2026-07-23, trust_status: documented, certification_status: not_independently_verified) -- but it predates this protocol and was not gated by an EVIDENCE_AUDIT step. It is a legacy documentation-tier publish, not evidence of this role's protocol-conformant output. A protocol-conformant re-publish is blocked pending Evaluation, Execution, and Evidence Audit, which is why lifecycle.current_state below is PLATFORM_ADAPTATION rather than PUBLICATION despite the record's own lifecycle_status already saying 'published'. See the PR's open question on reconciling this."
+      ],
+      "escalation_conditions": [
+        "evidence is incomplete and a publish is requested anyway at a higher trust_status than the evidence supports",
+        "a pre-protocol record's lifecycle_status implies more certification than this protocol's evidence chain actually supports (the present case)"
+      ],
+      "handoff_recipient": "independent_reviewer",
+      "conflicts_of_interest": [
+        "must not also serve as package_builder, evidence_auditor, or independent_reviewer for this package version"
+      ]
+    },
+    "independent_reviewer": {
+      "identity": "unassigned-pending-reviewer-selection",
+      "status": "not_started",
+      "purpose": "Serve as the certifying authority distinct from the package author, per docs/workflowware-registry-vision.md's named gap.",
+      "required_inputs": [
+        "published registry record",
+        "full evidence chain (not yet complete)",
+        "package artifact and canonical hash (not yet built)"
+      ],
+      "permitted_actions": [
+        "independently re-run or spot-check evals",
+        "issue VERIFIED or REJECTED",
+        "issue REVOKED against a previously VERIFIED package"
+      ],
+      "prohibited_actions": [
+        "hold any of the other eight roles for this package version",
+        "modify the package itself"
+      ],
+      "required_outputs": [
+        "independent review report with a signed determination"
+      ],
+      "evidence_produced": [
+        "none yet -- registry evidence.independent_review: not_performed. This is the accurate current state of the real package, not an oversight in this example."
+      ],
+      "escalation_conditions": [
+        "the evidence chain does not independently reproduce",
+        "the reviewer discovers an identity overlap elsewhere in the team roster"
+      ],
+      "handoff_recipient": "none",
+      "conflicts_of_interest": [
+        "full separation from all eight other roles for this package version"
+      ]
+    }
+  },
+  "separation_of_duty": {
+    "constitutional_rule_acknowledged": true,
+    "builder_identity": "example:identity:package-builder-01",
+    "independent_reviewer_identity": "unassigned-pending-reviewer-selection",
+    "identities_distinct_attestation": false,
+    "attested_by": "unassigned-pending-reviewer-selection",
+    "declared_conflicts": []
+  },
+  "lifecycle": {
+    "current_state": "PLATFORM_ADAPTATION",
+    "history": [
+      {
+        "from_state": "INTAKE",
+        "to_state": "DESIGN",
+        "actor_role": "workflow_architect",
+        "timestamp": "2026-07-20",
+        "evidence_ref": "intake notes, home-services missed-lead problem statement"
+      },
+      {
+        "from_state": "DESIGN",
+        "to_state": "BUILD",
+        "actor_role": "workflow_architect",
+        "timestamp": "2026-07-22",
+        "evidence_ref": "examples/missed-lead-recovery-workflowware/workflow-spec.md"
+      },
+      {
+        "from_state": "BUILD",
+        "to_state": "POLICY_REVIEW",
+        "actor_role": "package_builder",
+        "timestamp": "2026-07-23",
+        "evidence_ref": "examples/missed-lead-recovery-workflowware/ (9-file package, committed 2026-07-23 14:17)"
+      },
+      {
+        "from_state": "POLICY_REVIEW",
+        "to_state": "PLATFORM_ADAPTATION",
+        "actor_role": "policy_guardian",
+        "timestamp": "2026-07-23",
+        "evidence_ref": "examples/missed-lead-recovery-workflowware/approval-rules.md, no-go coverage checklist"
+      }
+    ]
+  }
+}

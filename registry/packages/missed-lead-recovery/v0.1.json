@@ -71,16 +71,23 @@
     "evaluation_agent",
     "runtime_operator",
     "evidence_auditor",
-    "registry_publisher"
+    "registry_publisher",
+    "independent_reviewer"
   ],
   "limitations": [
     "Listing is not certification.",
     "No independently verified evidence is published for this version.",
-    "Platform adapters marked planned are not yet included."
+    "Platform adapter status is recorded per branch; Grok remains planned here until feature/grok-platform-kit is integrated.",
+    "Evaluation has not been run; no passing result is claimed."
   ],
   "links": {
     "record_page": "registry/missed-lead-recovery-v0.1.html",
     "testing_guide": "docs/testing.html",
     "source_repo": "https://github.com/Propershare/workflowware"
-  }
+  },
+  "publication_status": "published",
+  "protocol_status": "PLATFORM_ADAPTATION",
+  "protocol_version": "0.1",
+  "verification_status": "not_verified",
+  "evaluation_status": "not_run"
 }
