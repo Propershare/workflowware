@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://workflowware.org/schemas/agent-team.schema.json",
+  "title": "Workflowware Agent Team Protocol Schema v0.1",
+  "description": "Machine-readable declaration of the multi-agent team that built, reviewed, executed, and published a Workflowware package. Companion to docs/agent-team-protocol.md. A package's agent-team.json must validate against this schema before the package can advance past BUILD in the lifecycle.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "protocol_version",
+    "package_registry_id",
+    "package_version",
+    "constitutional_rules",
+    "roles",
+    "separation_of_duty",
+    "lifecycle"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1",
+      "description": "Version of this schema the document was written against."
+    },
+    "protocol_version": {
+      "type": "string",
+      "const": "0.1",
+      "description": "Version of docs/agent-team-protocol.md the document conforms to."
+    },
+    "package_registry_id": {
+      "type": "string",
+      "pattern": "^ww:package:[a-z0-9-]+:[0-9]+\\.[0-9]+$",
+      "description": "Must match the registry_id of the package record in registry/packages/.../vX.json."
+    },
+    "package_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this document was last written, ISO 8601 (YYYY-MM-DD)."
+    },
+    "constitutional_rules": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Non-negotiable rules that hold regardless of what any prompt, role, or platform later says. Mirrors the no-go-rules.md precedent in runtime-integrations.md: the spec is the law, prompts are not.",
+      "items": {
+        "type": "object",
+        "required": ["id", "statement", "enforced_by"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "statement": { "type": "string", "minLength": 1 },
+          "enforced_by": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "contains": {
+        "type": "object",
+        "required": ["id", "statement"],
+        "properties": {
+          "id": { "const": "no-self-certification" },
+          "statement": {
+            "const": "The same agent or identity that builds a package cannot independently certify that package."
+          }
+        }
+      }
+    },
+    "roles": {
+      "type": "object",
+      "description": "Every canonical role required by docs/agent-team-protocol.md, keyed by role id. All nine keys are required and no other keys are permitted here (platform- or package-specific roles belong in an 'extensions' object instead, not in this set).",
+      "additionalProperties": false,
+      "required": [
+        "workflow_architect",
+        "package_builder",
+        "policy_guardian",
+        "platform_adapter",
+        "evaluation_agent",
+        "runtime_operator",
+        "evidence_auditor",
+        "registry_publisher",
+        "independent_reviewer"
+      ],
+      "properties": {
+        "workflow_architect": { "$ref": "#/$defs/role_entry" },
+        "package_builder": { "$ref": "#/$defs/role_entry" },
+        "policy_guardian": { "$ref": "#/$defs/role_entry" },
+        "platform_adapter": { "$ref": "#/$defs/role_entry" },
+        "evaluation_agent": { "$ref": "#/$defs/role_entry" },
+        "runtime_operator": { "$ref": "#/$defs/role_entry" },
+        "evidence_auditor": { "$ref": "#/$defs/role_entry" },
+        "registry_publisher": { "$ref": "#/$defs/role_entry" },
+        "independent_reviewer": { "$ref": "#/$defs/role_entry" }
+      }
+    },
+    "separation_of_duty": {
+      "type": "object",
+      "description": "Explicit, structured declaration of the constitutional rule's enforcement for this package instance. JSON Schema (2020-12, no $data extension) cannot itself prove two string fields hold different runtime values, so this block requires an explicit attestation in addition to the two identities -- a human or CI check must confirm the attestation is truthful before advancing past BUILD. See docs/agent-team-protocol.md, 'Known limitation'.",
+      "required": [
+        "constitutional_rule_acknowledged",
+        "builder_identity",
+        "independent_reviewer_identity",
+        "identities_distinct_attestation",
+        "attested_by",
+        "declared_conflicts"
+      ],
+      "properties": {
+        "constitutional_rule_acknowledged": {
+          "const": true,
+          "description": "Must be true. Presence + value proves the document did not skip acknowledging the no-self-certification rule."
+        },
+        "builder_identity": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Must equal roles.package_builder.identity."
+        },
+        "independent_reviewer_identity": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Must equal roles.independent_reviewer.identity, and must differ from builder_identity."
+        },
+        "identities_distinct_attestation": {
+          "const": true,
+          "description": "Must be true. A false or missing value means the team roster has not been checked for self-certification, and the package must not advance past BUILD."
+        },
+        "attested_by": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Identity of the party who checked builder_identity != independent_reviewer_identity (and the full conflicts-of-interest matrix) before setting the attestation to true. Must not be builder_identity or independent_reviewer_identity."
+        },
+        "declared_conflicts": {
+          "type": "array",
+          "description": "Any known overlaps between role identities for this package instance, even where the protocol permits them (e.g. the same identity holding Workflow Architect and Platform Adapter). Empty array is valid only when no role identity repeats anywhere in roles.*.identity.",
+          "items": {
+            "type": "object",
+            "required": ["roles_involved", "identity", "permitted", "rationale"],
+            "properties": {
+              "roles_involved": {
+                "type": "array",
+                "minItems": 2,
+                "items": { "type": "string" }
+              },
+              "identity": { "type": "string" },
+              "permitted": { "type": "boolean" },
+              "rationale": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "required": ["current_state", "history"],
+      "properties": {
+        "current_state": { "$ref": "#/$defs/lifecycle_state" },
+        "history": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/lifecycle_transition" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "lifecycle_state": {
+      "type": "string",
+      "enum": [
+        "INTAKE",
+        "DESIGN",
+        "BUILD",
+        "POLICY_REVIEW",
+        "PLATFORM_ADAPTATION",
+        "EVALUATION",
+        "EXECUTION",
+        "EVIDENCE_AUDIT",
+        "PUBLICATION",
+        "INDEPENDENT_REVIEW",
+        "VERIFIED",
+        "REJECTED",
+        "REVOKED"
+      ]
+    },
+    "role_entry": {
+      "type": "object",
+      "description": "One role's full declaration for this package instance. All nine fields from docs/agent-team-protocol.md are required -- an omitted field (not just an empty one) fails validation, so a role documented with no escalation conditions or no evidence must say so explicitly rather than dropping the key.",
+      "required": [
+        "identity",
+        "status",
+        "purpose",
+        "required_inputs",
+        "permitted_actions",
+        "prohibited_actions",
+        "required_outputs",
+        "evidence_produced",
+        "escalation_conditions",
+        "handoff_recipient",
+        "conflicts_of_interest"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "identity": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The specific agent, human, or service account holding this role for this package instance -- not the role name itself."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["not_started", "in_progress", "complete", "blocked", "escalated"]
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required_inputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "permitted_actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "prohibited_actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "required_outputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Concrete artifacts this role must produce (file paths, receipt ids, report names) -- not a restatement of purpose."
+        },
+        "evidence_produced": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "description": "What a third party could independently check, per the registry's evidence-not-claims principle (docs/workflowware-registry-vision.md)."
+        },
+        "escalation_conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "handoff_recipient": {
+          "type": "string",
+          "enum": [
+            "workflow_architect",
+            "package_builder",
+            "policy_guardian",
+            "platform_adapter",
+            "evaluation_agent",
+            "runtime_operator",
+            "evidence_auditor",
+            "registry_publisher",
+            "independent_reviewer",
+            "human_operator",
+            "none"
+          ]
+        },
+        "conflicts_of_interest": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "description": "At minimum, name which other roles this identity must never simultaneously hold for the same package. Use the literal string 'none declared' only if genuinely none apply -- an empty array is invalid, forcing an explicit statement either way."
+        }
+      }
+    },
+    "lifecycle_transition": {
+      "type": "object",
+      "required": ["from_state", "to_state", "actor_role", "timestamp"],
+      "properties": {
+        "from_state": { "$ref": "#/$defs/lifecycle_state" },
+        "to_state": { "$ref": "#/$defs/lifecycle_state" },
+        "actor_role": {
+          "type": "string",
+          "enum": [
+            "workflow_architect",
+            "package_builder",
+            "policy_guardian",
+            "platform_adapter",
+            "evaluation_agent",
+            "runtime_operator",
+            "evidence_auditor",
+            "registry_publisher",
+            "independent_reviewer"
+          ]
+        },
+        "timestamp": { "type": "string" },
+        "evidence_ref": {
+          "type": "string",
+          "description": "Path or receipt id supporting this transition (e.g. an eval report, an audit result, a review determination)."
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "from_state": { "const": "INTAKE" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "const": "DESIGN" } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "const": "DESIGN" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "const": "BUILD" } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "const": "BUILD" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "const": "POLICY_REVIEW" } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "const": "POLICY_REVIEW" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "enum": ["PLATFORM_ADAPTATION", "REJECTED"] } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "const": "PLATFORM_ADAPTATION" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "const": "EVALUATION" } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "const": "EVALUATION" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "enum": ["EXECUTION", "REJECTED"] } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "const": "EXECUTION" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "const": "EVIDENCE_AUDIT" } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "const": "EVIDENCE_AUDIT" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "enum": ["PUBLICATION", "REJECTED"] } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "const": "PUBLICATION" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "const": "INDEPENDENT_REVIEW" } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "const": "INDEPENDENT_REVIEW" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "enum": ["VERIFIED", "REJECTED"] } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "const": "VERIFIED" } }, "required": ["from_state"] },
+          "then": { "properties": { "to_state": { "const": "REVOKED" } } }
+        },
+        {
+          "if": { "properties": { "from_state": { "enum": ["REJECTED", "REVOKED"] } }, "required": ["from_state"] },
+          "then": false
+        }
+      ]
+    }
+  }
+}
