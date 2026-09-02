@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1",
+  "generated": "2026-09-01",
+  "warning": "A registry listing is not a certification.",
+  "records": [
+    {
+      "registry_id": "ww:package:missed-lead-recovery:0.1",
+      "title": "Missed Lead Recovery",
+      "version": "0.1",
+      "trust_status": "documented",
+      "certification_status": "not_independently_verified",
+      "record": "packages/missed-lead-recovery/v0.1.json",
+      "page": "../missed-lead-recovery-v0.1.html"
+    }
+  ]
+}

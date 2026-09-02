@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registry — Workflowware™</title>
+  <meta name="description" content="Inspect Workflowware packages, their policies, evaluations, platform support, and verification evidence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/registry.css">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <nav class="nav" aria-label="Registry">
+      <a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true">W</span><span>Workflowware</span></a>
+      <div class="nav-links">
+        <a href="library.html">Library</a>
+        <a class="is-active" href="registry.html">Registry</a>\n        <a href="registry/verify.html">Verify</a>
+        <a href="spec.html">Spec</a>
+        <a href="docs.html">Docs</a>
+        <a href="https://github.com/Propershare/workflowware">GitHub</a>
+      </div>
+    </nav>
+
+    <main id="main">
+      <header class="registry-head">
+        <div>
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Registry prototype</p>
+          <h1>Inspect the evidence behind the workflow.</h1>
+          <p class="lead">Registry records separate package claims from tests, execution evidence, and independent findings. A listing is not a certification.</p>\n          <div class="cta-row registry-hero-actions"><a class="btn primary" href="registry/verify.html">Verify a package →</a></div>
+        </div>
+        <div class="trust-key" aria-label="Registry status key">
+          <p><span class="signal documented"></span><strong>Documented</strong> Author materials exist</p>
+          <p><span class="signal tested"></span><strong>Tested</strong> Recorded eval results exist</p>
+          <p><span class="signal verified"></span><strong>Verified</strong> Evidence independently checked</p>
+        </div>
+      </header>
+
+      <section class="registry-summary" aria-label="Registry summary">
+        <div><strong>1</strong><span>prototype record</span></div>
+        <div><strong>0</strong><span>independently verified</span></div>
+        <div><strong>v0.1</strong><span>registry data contract</span></div>
+      </section>
+
+      <section class="registry-section" aria-labelledby="packages-title">
+        <div class="section-line">
+          <div>
+            <p class="sec-kicker">Package records</p>
+            <h2 id="packages-title">Published for inspection</h2>
+          </div>
+          <p>Statuses describe available evidence, not product quality.</p>
+        </div>
+
+        <div class="record-list">
+          <article class="record-card">
+            <div class="record-top">
+              <div>
+                <p class="record-id">ww:package:missed-lead-recovery:0.1</p>
+                <h3>Missed Lead Recovery</h3>
+                <p>Triages missed customer leads and drafts follow-up messages behind a human approval gate.</p>
+              </div>
+              <span class="registry-badge documented">Documented</span>
+            </div>
+            <dl class="record-facts">
+              <div><dt>Publisher</dt><dd>BlackLabRats / Propershare</dd></div>
+              <div><dt>Version</dt><dd>0.1</dd></div>
+              <div><dt>Package hash</dt><dd>Pending canonical build</dd></div>
+              <div><dt>Independent review</dt><dd>Not yet performed</dd></div>
+            </dl>
+            <div class="support-row" aria-label="Platform adapter status">
+              <span>Generic agent: documented</span>
+              <span>ChatGPT: planned</span>
+              <span>Claude: planned</span>
+              <span>Grok: planned</span>
+              <span>Hermes: planned</span>
+              <span>n8n: planned</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn primary" href="registry/missed-lead-recovery-v0.1.html">Inspect record →</a>
+              <a class="btn secondary" href="downloads/missed-lead-recovery-workflowware-v0.1.zip">Download v0.1</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="registry-section two registry-principles">
+        <div>
+          <p class="sec-kicker">What belongs here</p>
+          <h2>Evidence, not badges.</h2>
+          <ul class="registry-list">
+            <li>Package identity, version, and content hash</li>
+            <li>Approval and no-go policy</li>
+            <li>Evaluation cases and recorded results</li>
+            <li>Runtime identity and execution receipts</li>
+            <li>Known limitations and review findings</li>
+          </ul>
+        </div>
+        <div>
+          <p class="sec-kicker">Lifecycle</p>
+          <h2>Trust remains reversible.</h2>
+          <ol class="lifecycle">
+            <li><span>1</span>Register</li>
+            <li><span>2</span>Test</li>
+            <li><span>3</span>Review</li>
+            <li><span>4</span>Verify</li>
+            <li><span>5</span>Revoke when evidence fails</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <strong>Workflowware™ Registry Prototype</strong>
+      Self-attested records are clearly distinguished from independently verified evidence.
+    </footer>
+  </div>
+</body>
+</html>

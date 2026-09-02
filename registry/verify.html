@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verify Package — Workflowware™ Registry</title>
+  <meta name="description" content="Run a private, local preflight check on a Workflowware ZIP package.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/registry.css">
+  <link rel="icon" href="../assets/favicon.ico" sizes="any">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <nav class="nav" aria-label="Registry">
+      <a class="logo" href="../index.html"><span class="logo-mark" aria-hidden="true">W</span><span>Workflowware</span></a>
+      <div class="nav-links">
+        <a href="../library.html">Library</a>
+        <a class="is-active" href="../registry.html">Registry</a>
+        <a href="../spec.html">Spec</a>
+        <a href="https://github.com/Propershare/workflowware">GitHub</a>
+      </div>
+    </nav>
+
+    <main id="main" class="verify-page">
+      <div class="breadcrumb"><a href="../registry.html">Registry</a><span>/</span><span>Verify package</span></div>
+      <header class="verify-hero">
+        <div>
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Local package preflight</p>
+          <h1>Check a Workflowware package before you trust it.</h1>
+          <p class="lead">Select a ZIP to calculate its SHA-256 hash, inspect its file structure, and check required package files. The file stays in your browser and is not uploaded.</p>
+        </div>
+        <div class="privacy-card">
+          <strong>Private by design</strong>
+          <p>This page performs the check on your device. It does not send the selected package to Workflowware, GitHub, MAAT, or another service.</p>
+        </div>
+      </header>
+
+      <section class="verify-workspace" aria-labelledby="verify-title">
+        <div class="upload-panel">
+          <p class="sec-kicker">Step 1</p>
+          <h2 id="verify-title">Choose the package ZIP</h2>
+          <label class="file-drop" for="package-file">
+            <span class="file-icon" aria-hidden="true">ZIP</span>
+            <strong>Select a Workflowware package</strong>
+            <span>Maximum recommended size: 100 MB</span>
+            <input id="package-file" type="file" accept=".zip,application/zip">
+          </label>
+          <p id="file-name" class="file-name" aria-live="polite">No package selected.</p>
+          <button id="verify-button" class="btn primary" type="button" disabled>Run local preflight</button>
+        </div>
+
+        <div class="result-panel" aria-live="polite">
+          <div class="result-head">
+            <div>
+              <p class="sec-kicker">Preflight result</p>
+              <h2 id="result-title">Waiting for a package</h2>
+            </div>
+            <span id="result-badge" class="registry-badge pending">Not run</span>
+          </div>
+          <p id="result-summary" class="result-summary">Select a ZIP package to begin.</p>
+
+          <dl class="verify-facts">
+            <div><dt>SHA-256</dt><dd id="hash-value">—</dd></div>
+            <div><dt>ZIP entries</dt><dd id="entry-count">—</dd></div>
+            <div><dt>Required files</dt><dd id="required-count">—</dd></div>
+            <div><dt>Unsafe paths</dt><dd id="unsafe-count">—</dd></div>
+          </dl>
+
+          <div id="findings" class="findings" hidden>
+            <div>
+              <h3>Present</h3>
+              <ul id="present-list" class="check-list"></ul>
+            </div>
+            <div>
+              <h3>Missing</h3>
+              <ul id="missing-list" class="check-list missing"></ul>
+            </div>
+          </div>
+
+          <div class="cta-row result-actions">
+            <button id="download-report" class="btn secondary" type="button" disabled>Download JSON report</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="note verify-warning">
+        <strong>This is a structural preflight, not certification.</strong> It confirms the package hash and visible ZIP structure. It does not prove that prompts are safe, evaluations passed, approvals were enforced, or execution receipts are genuine.
+      </div>
+    </main>
+
+    <footer class="site">
+      <strong>Workflowware™ Registry Prototype</strong>
+      Local preflight results must not be represented as independent certification.
+    </footer>
+  </div>
+  <script src="../assets/registry-verify.js" defer></script>
+</body>
+</html>
