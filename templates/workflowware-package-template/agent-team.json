@@ -9,12 +9,15 @@
     {
       "id": "no-self-certification",
       "statement": "The same agent or identity that builds a package cannot independently certify that package.",
-      "enforced_by": ["separation_of_duty", "independent_reviewer.conflicts_of_interest"]
+      "enforced_by": [
+        "separation_of_duty",
+        "independent_reviewer.conflicts_of_interest"
+      ]
     }
   ],
   "roles": {
     "workflow_architect": {
-      "identity": "blacklabrats:workflow-architect-01",
+      "identity": "example:identity:workflow-architect-01",
       "status": "complete",
       "purpose": "Turn the missed-lead business problem into a workflow spec: trigger, context, old workflow, new workflow, finish line, edge cases, success metrics.",
       "required_inputs": [
@@ -45,7 +48,7 @@
       ]
     },
     "package_builder": {
-      "identity": "blacklabrats:package-builder-01",
+      "identity": "example:identity:package-builder-01",
       "status": "complete",
       "purpose": "Implement the minimum-viable package file set from the approved workflow spec.",
       "required_inputs": [
@@ -83,7 +86,7 @@
       ]
     },
     "policy_guardian": {
-      "identity": "blacklabrats:policy-guardian-01",
+      "identity": "example:identity:policy-guardian-01",
       "status": "complete",
       "purpose": "Verify approval-rules.md and no-go coverage are complete before the package touches a real platform.",
       "required_inputs": [
@@ -116,7 +119,7 @@
       ]
     },
     "platform_adapter": {
-      "identity": "blacklabrats:platform-adapter-01",
+      "identity": "example:identity:platform-adapter-01",
       "status": "in_progress",
       "purpose": "Adapt the policy-approved package to specific runtimes against the six-point contract in docs/runtime-integrations.md.",
       "required_inputs": [
@@ -245,7 +248,7 @@
       ]
     },
     "registry_publisher": {
-      "identity": "blacklabrats:registry-publisher-01",
+      "identity": "example:identity:registry-publisher-01",
       "status": "blocked",
       "purpose": "Write and keep current the package's registry record and index entry.",
       "required_inputs": [
@@ -314,10 +317,10 @@
   },
   "separation_of_duty": {
     "constitutional_rule_acknowledged": true,
-    "builder_identity": "blacklabrats:package-builder-01",
+    "builder_identity": "example:identity:package-builder-01",
     "independent_reviewer_identity": "unassigned-pending-reviewer-selection",
-    "identities_distinct_attestation": true,
-    "attested_by": "blacklabrats:registry-publisher-01",
+    "identities_distinct_attestation": false,
+    "attested_by": "unassigned-pending-reviewer-selection",
     "declared_conflicts": []
   },
   "lifecycle": {
